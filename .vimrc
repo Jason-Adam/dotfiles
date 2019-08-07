@@ -17,6 +17,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'fatih/vim-go'
+Plugin 'jpalardy/vim-slime'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
