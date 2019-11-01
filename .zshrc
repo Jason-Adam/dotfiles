@@ -62,9 +62,10 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker python vi-mode zsh-autosuggestions)
+plugins=(git vi-mode zsh-autosuggestions docker kubectl web-search)
 
 source $ZSH/oh-my-zsh.sh
+source <(kubectl completion zsh)
 
 # User configuration
 

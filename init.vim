@@ -108,7 +108,9 @@ let g:ale_python_black_options     = '--line-length 100'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Jedi Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:jedi#use_splits_not_buffers = "right"
+let g:jedi#use_splits_not_buffers = "winwidth"
+let g:jedi#popup_on_dot = 0
+let g:jedi#smart_auto_mappings = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Go Settings
