@@ -125,24 +125,8 @@ let g:go_highlight_build_constraints = 1
 let g:go_highlight_generate_tags     = 1
 let g:go_highlight_debug             = 1
 
-let g:go_fmt_command       = "goimports"
-let g:go_fmt_autosave      = 0
-let g:go_fmt_fail_silently = 1
-let g:go_mod_fmt_autosave  = 0
-let g:go_asmfmt_autosave   = 0
-
-let g:go_metalinter_autosave        = 0
-let g:go_metaliner_enabled          = []
-let g:go_metaliner_autosave_enabled = []
-
-let g:go_term_enabled            = 1
-let g:go_term_mode               = "VTerm"
-let g:go_updatetime              = 100
-let g:go_code_completion_enabled = 0
-let g:go_jump_to_error           = 0
-let g:go_def_mapping_enabled     = 0
-let g:go_gorename_prefill        = ''
-let g:go_gocode_propose_source   = 0
+let g:go_fmt_command = "goimports"
+let g:go_auto_type_info = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " File Formatting
