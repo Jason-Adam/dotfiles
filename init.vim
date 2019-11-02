@@ -147,6 +147,8 @@ augroup docker_files
     au BufRead,BufNewFile Dockerfile.* set syntax=Dockerfile
 augroup END
 
+au BufNewFile,BufRead Jenkinsfile setf groovy
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FZF
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
