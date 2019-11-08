@@ -14,7 +14,6 @@ Plug 'davidhalter/jedi-vim'
 Plug 'ervandew/supertab'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'morhetz/gruvbox'
 Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 Plug 'w0rp/ale'
@@ -56,23 +55,15 @@ set clipboard=unnamedplus
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Visual Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Dracula
 colorscheme dracula
 
-" Gruvbox
-" set background=dark
-" colorscheme gruvbox
-" let g:gruvbox_contrast_dark = 'hard'
-" let g:gruvbox_invert_signs = 1
-" let g:gruvbox_invert_tabline = 1
-" let g:gruvbox_improved_warnings = 1
-
 " Airline
 let g:airline#extensions#ale#enabled = 1
-let g:airline#extesions#coc#enabled = 1
 let g:airline#extensions#ale#error_symbol = 'E:'
 let g:airline#extensions#ale#warning_symbol = 'W:'
 let g:airline_theme = 'dracula'
@@ -109,7 +100,6 @@ let g:ale_python_black_options     = '--line-length 100'
 " Jedi Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:jedi#use_splits_not_buffers = "winwidth"
-let g:jedi#popup_on_dot = 0
 let g:jedi#smart_auto_mappings = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -149,6 +139,7 @@ augroup END
 
 au BufNewFile,BufRead Jenkinsfile setf groovy
 
+command Json execute ":%!jq"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FZF
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
