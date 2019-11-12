@@ -17,7 +17,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 Plug 'w0rp/ale'
-Plug 'sheerun/vim-polygot'
+Plug 'sheerun/vim-polyglot'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
