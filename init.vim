@@ -17,6 +17,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 Plug 'w0rp/ale'
+Plug 'sheerun/vim-polygot'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
@@ -89,18 +90,28 @@ let g:ale_fixers = {
             \ '*': ['trim_whitespace'],
             \ 'c': ['trim_whitespace', 'clang-format', 'clangtidy'],
             \ 'go': ['trim_whitespace', 'goimports'],
-            \ 'python': ['black'],
+            \ 'python': ['black', 'isort'],
             \ }
 
-let g:ale_python_flake8_options    = '--max-line-length=100'
-let g:ale_python_black_options     = '--line-length 100'
+let g:ale_python_flake8_options    = '--max-line-length=120'
+let g:ale_python_black_options     = '--line-length 120'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Jedi Settings
+" Python Settings 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" JEDI
 let g:jedi#use_splits_not_buffers = "winwidth"
 let g:jedi#smart_auto_mappings = 1
+
+" Syntax
+let g:python_highlight_builtins = 1
+let g:python_highlight_exceptions = 1
+let g:python_highlight_string_formatting = 1
+let g:python_highlight_string_format = 1
+let g:python_highlight_string_templates = 1
+let g:python_highlight_class_vars = 1
+let g:python_highlight_operators = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Go Settings
