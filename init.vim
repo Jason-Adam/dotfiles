@@ -9,18 +9,19 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.local/share/nvim/plugged')
-
 Plug 'davidhalter/jedi-vim'
 Plug 'ervandew/supertab'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
+Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'tpope/vim-fugitive'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
-
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -28,14 +29,13 @@ call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " This ensures all virtual envs have access to flake8 & black
 let g:python3_host_prog = '/Users/jasonadam/.local/share/virtualenvs/nvim-kCTaSSN-/bin/python'
-
 syntax on
 set number
 set encoding=utf-8
 set fileencoding=utf-8
 set backspace=indent,eol,start
 set mouse=a
-let mapleader = "m"
+let mapleader = " "
 
 " Tab & Indent Config
 set tabstop=4
@@ -56,6 +56,30 @@ set clipboard=unnamedplus
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
+" JSON formatting
+command! -nargs=0 Json :exe "norm :%!jq\<Return>"
+
+" escape from the home row
+inoremap fd <ESC>
+vnoremap fd <ESC>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NERDTree
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Open NT when vim opens
+autocmd vimenter * NERDTree
+
+" Map toggle
+nnoremap <LEADER>tt :NERDTreeTabsToggle <CR>
+vnoremap <LEADER>tt :NERDTreeTabsToggle <CR>
+let NERDTreeMinimalUI = 1       " hide help string
+let NERDTreeShowLineNumbers = 0 " hide line numbers
+
+" Automatically find and select currently opened file in NERDTree.
+let g:nerdtree_tabs_autofind = 1
+
+" Close vim if NT only window open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Visual Settings
@@ -89,19 +113,18 @@ let g:ale_linters = {
 let g:ale_fixers = {
             \ '*': ['trim_whitespace'],
             \ 'c': ['trim_whitespace', 'clang-format', 'clangtidy'],
-            \ 'go': ['trim_whitespace', 'goimports'],
             \ 'python': ['black', 'isort'],
             \ }
 
 let g:ale_python_flake8_options    = '--max-line-length=120'
 let g:ale_python_black_options     = '--line-length 120'
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Python Settings 
+" Python Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " JEDI
 let g:jedi#use_splits_not_buffers = "winwidth"
+let g:jedi#popup_on_dot = 0
 let g:jedi#smart_auto_mappings = 1
 
 " Syntax
@@ -125,8 +148,7 @@ let g:go_highlight_operators         = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_generate_tags     = 1
 let g:go_highlight_debug             = 1
-
-let g:go_fmt_command = "goimports"
+let g:go_fmt_command = 'goimports'
 let g:go_auto_type_info = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -148,11 +170,28 @@ augroup docker_files
     au BufRead,BufNewFile Dockerfile.* set syntax=Dockerfile
 augroup END
 
-au BufNewFile,BufRead Jenkinsfile setf groovy
-
-command Json execute ":%!jq"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FZF
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:fzf_layout = {'down': '20%'}
 
+" search filenames
+nmap <LEADER>ff :Files <CR>
+
+" search tags in current buffer
+nmap <LEADER>ft :BTags <CR>
+
+" search tags in the project
+nmap <LEADER>fT :Tags <CR>
+
+" search lines in current buffer
+nmap <LEADER>fl :BLines <CR>
+
+" search lines in loaded buffers
+nmap <LEADER>fL :Lines <CR>
+
+" ripgrep search results
+nmap <LEADER>fr :Rg <CR>
+
+" another alias for ripgrep
+nmap <LEADER>rg :Rg <CR>

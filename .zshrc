@@ -1,28 +1,48 @@
-# -------------------------------------------
-# PATH
-# -------------------------------------------
+###################################################
+# Path
+###################################################
+# Gopath
 export GOPATH=$HOME/go
-export ZSH=$HOME/.oh-my-zsh
-if [ -f '/Users/jasonadam/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/jasonadam/google-cloud-sdk/path.zsh.inc'; fi
-if [ -f '/Users/jasonadam/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/jasonadam/google-cloud-sdk/completion.zsh.inc'; fi
 
-# -------------------------------------------
-# USER CONFIGURATION
-# -------------------------------------------
+# Path to your oh-my-zsh installation.
+export ZSH="/Users/jasonadam/.oh-my-zsh"
+
+###################################################
+# Misc
+###################################################
+# Theme
 ZSH_THEME="agnoster"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
-# -------------------------------------------
-# PLUGINS
-# -------------------------------------------
-plugins=(git vi-mode zsh-autosuggestions docker kubectl web-search)
-source $ZSH/oh-my-zsh.sh
+# Aliases
+alias reload!='clear && source ~/.zshrc'
+alias cat='bat'
+alias vim='nvim'
 
-# kubectl autocompletion
+alias ls='exa --group-directories-first'
+alias la='exa --group-directories-first --all'
+alias ll='exa --group-directories-first --long'
+alias lst='exa --group-directories-first --tree'
+alias llt='exa --group-directories-first --long --tree'
+
+export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
+alias vimfzf='vim $(fzf)'
+
+# Syntax highlighting
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+###################################################
+# Plugins
+###################################################
+plugins=(git vi-mode zsh-autosuggestions docker kubectl web-search)
+
+# K8 autocomplete
+source $ZSH/oh-my-zsh.sh
 source <(kubectl completion zsh)
 
-# Syntax Highlighting
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# fzf - fuzzy finder
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# gcloud autocomplete
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/jasonadam/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/jasonadam/google-cloud-sdk/path.zsh.inc'; fi
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/jasonadam/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/jasonadam/google-cloud-sdk/completion.zsh.inc'; fi
