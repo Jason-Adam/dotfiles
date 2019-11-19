@@ -16,8 +16,6 @@ Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'w0rp/ale'
 Plug 'dracula/vim', {'as': 'dracula'}
-Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --bin'}
 Plug 'junegunn/fzf.vim'
@@ -67,25 +65,6 @@ vnoremap fd <ESC>
 " switch buffers
 nnoremap <silent> gb :bp<CR>
 nnoremap <silent> gB :bn<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NERDTree
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Open NT when vim opens
-autocmd vimenter * NERDTree
-
-" Map toggle
-nnoremap <LEADER>tt :NERDTreeTabsToggle <CR>
-vnoremap <LEADER>tt :NERDTreeTabsToggle <CR>
-
-let NERDTreeMinimalUI = 1       " hide help string
-let NERDTreeShowLineNumbers = 0 " hide line numbers
-
-" Automatically find and select currently opened file in NERDTree.
-let g:nerdtree_tabs_autofind = 1
-
-" Close vim if NT only window open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Visual Settings
