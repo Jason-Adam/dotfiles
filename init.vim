@@ -13,12 +13,12 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
-Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'w0rp/ale'
+Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'tpope/vim-fugitive'
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --bin'}
 Plug 'junegunn/fzf.vim'
 
@@ -28,7 +28,8 @@ call plug#end()
 " Misc Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " This ensures all virtual envs have access to flake8 & black
-let g:python3_host_prog = '/Users/jasonadam/.local/share/virtualenvs/nvim-kCTaSSN-/bin/python'
+" let g:python3_host_prog = '/Users/jasonadam/.local/share/virtualenvs/nvim-kCTaSSN-/bin/python'
+
 syntax on
 set number
 set encoding=utf-8
@@ -72,6 +73,7 @@ autocmd vimenter * NERDTree
 " Map toggle
 nnoremap <LEADER>tt :NERDTreeTabsToggle <CR>
 vnoremap <LEADER>tt :NERDTreeTabsToggle <CR>
+
 let NERDTreeMinimalUI = 1       " hide help string
 let NERDTreeShowLineNumbers = 0 " hide line numbers
 
@@ -89,66 +91,90 @@ colorscheme dracula
 
 " Airline
 let g:airline_theme = 'dracula'
+let g:airline#extensions#ale#enabled     = 1
+let g:airline#extensions#coc#enabled     = 1
 
 " True Color Support
 set termguicolors
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" COC NVIM
+" ale
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" if hidden is not set, TextEdit might fail.
-set hidden
+let g:ale_completion_enabled = 0
+let g:ale_sign_column_always = 1
+let g:ale_fix_on_save = 1
+let g:ale_set_quickfix = 1
+let g:ale_virtualtext_cursor = 1
+let g:ale_warn_about_trailing_blank_lines = 0
 
-" Some servers have issues with backup files, see #649
+let g:ale_linters = {
+                \ 'python': ['flake8', 'mypy'],
+                \ 'sh': ['language_server'],
+                \ }
+
+let g:ale_fixers = {
+            \ '*': ['trim_whitespace'],
+            \ 'c': ['trim_whitespace', 'clang-format', 'clangtidy'],
+            \ 'go': ['trim whitespace', 'goimports'],
+            \ 'python': ['black', 'isort'],
+            \ }
+
+let g:ale_python_flake8_options    = '--max-line-length=120'
+let g:ale_python_black_options     = '--line-length 120'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Coc Nvim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set hidden
 set nobackup
 set nowritebackup
-
-" Better display for messages
-set cmdheight=2
-
-" You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=300
-
-" don't give |ins-completion-menu| messages.
 set shortmess+=c
-
-" always show signcolumns
 set signcolumn=yes
 
-" Use <TAB> to trigger completion.
-inoremap <silent><expr> <TAB>
-\	pumvisible() ? "\<C-n>" :
-\	<SID>check_back_space() ? "\<TAB>" :
-\	coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent> <expr><Tab>
+            \ pumvisible() ? "\<C-n>" :
+            \ <SID>check_back_space() ? "\<TAB>" :
+            \ coc#refresh()
+
+inoremap <silent> <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<C-p>"
+inoremap <silent> <expr> <C-Space> coc#refresh()
 
 function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~# '\s'
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Goto Mappings.
+" Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" Rename Mapping.
-nmap <leader>rn <Plug>(coc-rename)
-
-" Use K to show documentation in preview window.
+" Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
-
 function! s:show_documentation()
-	if (index(['vim','help'], &filetype) >= 0)
-		execute 'h '.expand('<cword>')
-	else
-		call CocAction('doHover')
-	endif
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    else
+        call CocAction('doHover')
+    endif
 endfunction
 
-" Highlight symbol under cursor on CursorHold.
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+xmap <leader>f <Plug>(coc-format-selected)
+nmap <leader>f <Plug>(coc-format-selected)
+
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+
+" auto close scratch/preview window after completion
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Go Settings
