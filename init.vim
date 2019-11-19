@@ -88,53 +88,10 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 colorscheme dracula
 
 " Airline
-let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#ale#error_symbol = 'E:'
-let g:airline#extensions#ale#warning_symbol = 'W:'
 let g:airline_theme = 'dracula'
 
 " True Color Support
 set termguicolors
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ale
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let g:ale_completion_enabled = 0
-" let g:ale_sign_column_always = 1
-" let g:ale_fix_on_save = 1
-" let g:ale_set_quickfix = 1
-" let g:ale_virtualtext_cursor = 1
-" let g:ale_warn_about_trailing_blank_lines = 0
-" 
-" let g:ale_linters = {
-"                 \ 'python': ['flake8']
-"                 \ }
-" 
-" let g:ale_fixers = {
-"             \ '*': ['trim_whitespace'],
-"             \ 'c': ['trim_whitespace', 'clang-format', 'clangtidy'],
-"             \ 'python': ['black', 'isort'],
-"             \ }
-" 
-" let g:ale_python_flake8_options    = '--max-line-length=120'
-" let g:ale_python_black_options     = '--line-length 120'
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Python Settings
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" JEDI
-" let g:jedi#use_splits_not_buffers = "winwidth"
-" let g:jedi#popup_on_dot = 0
-" let g:jedi#smart_auto_mappings = 1
-" 
-" " Syntax
-" let g:python_highlight_builtins = 1
-" let g:python_highlight_exceptions = 1
-" let g:python_highlight_string_formatting = 1
-" let g:python_highlight_string_format = 1
-" let g:python_highlight_string_templates = 1
-" let g:python_highlight_class_vars = 1
-" let g:python_highlight_operators = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COC NVIM
