@@ -64,6 +64,10 @@ command! -nargs=0 Json :exe "norm :%!jq\<Return>"
 inoremap fd <ESC>
 vnoremap fd <ESC>
 
+" switch buffers
+nnoremap <silent> gb :bp<CR>
+nnoremap <silent> gB :bn<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -115,7 +119,7 @@ let g:ale_linters = {
 let g:ale_fixers = {
             \ '*': ['trim_whitespace'],
             \ 'c': ['trim_whitespace', 'clang-format', 'clangtidy'],
-            \ 'go': ['trim whitespace', 'goimports'],
+            \ 'go': ['trim_whitespace', 'goimports'],
             \ 'python': ['black', 'isort'],
             \ }
 
@@ -209,6 +213,11 @@ augroup docker_files
     autocmd!
     au BufRead,BufNewFile Dockerfile.* set syntax=Dockerfile
 augroup END
+
+au FileType sql setl formatprg=/usr/local/bin/pg_format\ -
+
+" Map toggle
+nnoremap <LEADER>pg <ESC>gq<S-G>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FZF
