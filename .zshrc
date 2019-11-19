@@ -3,6 +3,7 @@
 ###################################################
 # Gopath
 export GOPATH=$HOME/go
+export PATH=~/Library/Python/3.7/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/jasonadam/.oh-my-zsh"
