@@ -14,7 +14,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-Plug 'w0rp/ale'
 Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --bin'}
@@ -171,6 +170,10 @@ let g:go_highlight_generate_tags     = 1
 let g:go_highlight_debug             = 1
 let g:go_fmt_command = 'goimports'
 let g:go_auto_type_info = 1
+
+" Map GoLint and GoVet
+nmap <LEADER>gl :GoLint <CR>
+nmap <LEADER>gv :GoVet <CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " File Formatting
