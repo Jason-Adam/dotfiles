@@ -29,6 +29,7 @@ alias lst='exa --group-directories-first --tree'
 alias llt='exa --group-directories-first --long --tree'
 
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
+export FZF_DEFAULT_OPTS='--preview "bat {}"'
 alias vimfzf='vim $(fzf)'
 
 # Syntax highlighting
