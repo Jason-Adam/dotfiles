@@ -1,0 +1,59 @@
+{
+  "coc.source.file.enable": true,
+  "coc.preferences.hoverTarget": "echo",
+  "coc.preferences.formatOnType": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "c",
+    "cpp",
+    "go",
+    "py",
+    "sh"
+  ],
+  "languageserver": {
+    "bash": {
+      "command": "bash-language-server",
+      "args": [
+        "start"
+      ],
+      "filetypes": [
+        "sh"
+      ],
+      "ignoredRootPaths": [
+        "~"
+      ]
+    },
+    "dockerfile": {
+      "command": "docker-langserver",
+      "filetypes": [
+        "dockerfile"
+      ],
+      "args": [
+        "--stdio"
+      ]
+    },
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": [
+        "go.mod",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "filetypes": [
+        "go"
+      ],
+      "settings": {
+        "gopls": {
+          "usePlaceholders": true,
+          "completeUnimported": true
+        }
+      }
+    }
+  },
+  "suggest.autoTrigger": "always",
+  "suggest.noselect": true,
+  "suggest.minTriggerInputLength": 1,
+  "suggest.enablePreview": false,
+  "suggest.fixInsertedWord": true,
+  "suggest.removeDuplicateItems": true
+}
