@@ -30,24 +30,6 @@
       "args": [
         "--stdio"
       ]
-    },
-    "golang": {
-      "command": "gopls",
-      "rootPatterns": [
-        "go.mod",
-        ".vim/",
-        ".git/",
-        ".hg/"
-      ],
-      "filetypes": [
-        "go"
-      ],
-      "settings": {
-        "gopls": {
-          "usePlaceholders": true,
-          "completeUnimported": true
-        }
-      }
     }
   },
   "suggest.autoTrigger": "always",
