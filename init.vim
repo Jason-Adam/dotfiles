@@ -171,10 +171,6 @@ let g:go_highlight_debug             = 1
 let g:go_fmt_command = 'goimports'
 let g:go_auto_type_info = 1
 
-" Map GoLint and GoVet
-nmap <LEADER>gl :GoLint <CR>
-nmap <LEADER>gv :GoVet <CR>
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " File Formatting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
