@@ -25,9 +25,6 @@ call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Misc Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" This ensures all virtual envs have access to flake8 & black
-" let g:python3_host_prog = '/Users/jasonadam/.local/share/virtualenvs/nvim-kCTaSSN-/bin/python'
-
 syntax on
 set number
 set encoding=utf-8
@@ -114,6 +111,7 @@ set nowritebackup
 set shortmess+=c
 set signcolumn=yes
 
+" Trigger autocompletion on tab
 inoremap <silent> <expr><Tab>
             \ pumvisible() ? "\<C-n>" :
             \ <SID>check_back_space() ? "\<TAB>" :

@@ -29,6 +29,15 @@ alias lst='exa --group-directories-first --tree'
 alias llt='exa --group-directories-first --long --tree'
 
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
+export FZF_DEFAULT_OPTS='--preview "bat {}"'
+export FZF_DEFAULT_OPTS='--preview "[[ $(file --mime {}) =~ binary ]] &&
+                 echo {} is a binary file ||
+                 (bat --style=numbers --color=always {} ||
+                  highlight -O ansi -l {} ||
+                  coderay {} ||
+                  rougify {} ||
+                  cat {}) 2> /dev/null | head -500"'
+
 alias vimfzf='vim $(fzf)'
 
 # Syntax highlighting
