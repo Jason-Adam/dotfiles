@@ -6,7 +6,7 @@
     "c",
     "cpp",
     "go",
-    "py",
+    "python",
     "sh"
   ],
   "languageserver": {
@@ -37,5 +37,15 @@
   "suggest.minTriggerInputLength": 1,
   "suggest.enablePreview": false,
   "suggest.fixInsertedWord": true,
-  "suggest.removeDuplicateItems": true
+  "suggest.removeDuplicateItems": true,
+  "python.linting.enabled": true,
+  "python.linting.flake8Enabled": true,
+  "python.linting.mypyEnabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.linting.flake8Path": "/usr/local/bin/flake8",
+  "python.linting.pylintPath": "/usr/local/bin/pylint",
+  "python.linting.mypyPath": "/usr/local/bin/mypy",
+  "python.formatting.provider": "black",
+  "python.formatting.blackPath": "/usr/local/bin/black",
+  "python.sortImports.path": "/usr/local/bin/isort"
 }

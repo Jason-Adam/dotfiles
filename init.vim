@@ -16,6 +16,7 @@ Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'tpope/vim-fugitive'
+Plug 'jpalardy/vim-slime'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --bin'}
 Plug 'junegunn/fzf.vim'
 
@@ -24,6 +25,9 @@ call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Misc Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" This ensures all virtual envs have access to flake8 & black
+" let g:python3_host_prog = '/Users/jasonadam/.local/share/virtualenvs/nvim-kCTaSSN-/bin/python'
+
 syntax on
 set number
 set encoding=utf-8
@@ -77,31 +81,6 @@ let g:airline#extensions#coc#enabled     = 1
 set termguicolors
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ale
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ale_completion_enabled = 0
-let g:ale_sign_column_always = 1
-let g:ale_fix_on_save = 1
-let g:ale_set_quickfix = 1
-let g:ale_virtualtext_cursor = 1
-let g:ale_warn_about_trailing_blank_lines = 0
-
-let g:ale_linters = {
-                \ 'python': ['flake8', 'mypy'],
-                \ 'sh': ['language_server'],
-                \ }
-
-let g:ale_fixers = {
-            \ '*': ['trim_whitespace'],
-            \ 'c': ['trim_whitespace', 'clang-format', 'clangtidy'],
-            \ 'go': ['trim_whitespace', 'goimports'],
-            \ 'python': ['black', 'isort'],
-            \ }
-
-let g:ale_python_flake8_options    = '--max-line-length=120'
-let g:ale_python_black_options     = '--line-length 120'
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Coc Nvim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set hidden
@@ -110,7 +89,6 @@ set nowritebackup
 set shortmess+=c
 set signcolumn=yes
 
-" Trigger autocompletion on tab
 inoremap <silent> <expr><Tab>
             \ pumvisible() ? "\<C-n>" :
             \ <SID>check_back_space() ? "\<TAB>" :
@@ -152,6 +130,9 @@ command! -nargs=0 Format :call CocAction('format')
 
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+
+" use `:Sort` for organize python imports isort
+command! -nargs=0 Sort :call CocAction('runCommand', 'python.sortImports'
 
 " auto close scratch/preview window after completion
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
@@ -220,3 +201,9 @@ nmap <LEADER>fr :Rg <CR>
 
 " another alias for ripgrep
 nmap <LEADER>rg :Rg <CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-slime
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:slime_target = 'screen'
+let g:slime_python_ipython = 1
