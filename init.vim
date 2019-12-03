@@ -17,17 +17,16 @@ Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'tpope/vim-fugitive'
 Plug 'jpalardy/vim-slime'
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --bin'}
 Plug 'junegunn/fzf.vim'
+Plug 'tomtom/tcomment_vim'
 
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Misc Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" This ensures all virtual envs have access to flake8 & black
-" let g:python3_host_prog = '/Users/jasonadam/.local/share/virtualenvs/nvim-kCTaSSN-/bin/python'
-
 syntax on
 set number
 set encoding=utf-8
@@ -71,6 +70,7 @@ nnoremap <silent> gB :bn<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Dracula
 colorscheme dracula
+set background=dark
 
 " Airline
 let g:airline_theme = 'dracula'
@@ -79,6 +79,7 @@ let g:airline#extensions#coc#enabled     = 1
 
 " True Color Support
 set termguicolors
+set t_Co=256
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Coc Nvim
@@ -205,5 +206,6 @@ nmap <LEADER>rg :Rg <CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-slime
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:slime_target = 'screen'
+let g:slime_target = "tmux"
 let g:slime_python_ipython = 1
+let g:slime_default_config = {"socket_name": "default", "target_pane": "{right-of}"}
