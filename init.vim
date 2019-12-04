@@ -93,10 +93,9 @@ let g:ale_linters = {
                 \ }
 
 let g:ale_fixers = {
-            \ '*': ['trim_whitespace'],
             \ 'c': ['trim_whitespace', 'clang-format', 'clangtidy'],
             \ 'go': ['trim_whitespace', 'goimports'],
-            \ 'python': ['black', 'isort'],
+            \ 'python': ['trim_whitespace', 'black', 'isort'],
             \ }
 
 let g:ale_python_flake8_options    = '--max-line-length=120'
