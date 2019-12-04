@@ -16,9 +16,11 @@ Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'tpope/vim-fugitive'
-Plug 'w0rp/ale'
+Plug 'jpalardy/vim-slime'
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --bin'}
 Plug 'junegunn/fzf.vim'
+Plug 'tomtom/tcomment_vim'
 
 call plug#end()
 
@@ -68,6 +70,7 @@ nnoremap <silent> gB :bn<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Dracula
 colorscheme dracula
+set background=dark
 
 " Airline
 let g:airline_theme = 'dracula'
@@ -110,7 +113,6 @@ set nowritebackup
 set shortmess+=c
 set signcolumn=yes
 
-" Trigger autocompletion on tab
 inoremap <silent> <expr><Tab>
             \ pumvisible() ? "\<C-n>" :
             \ <SID>check_back_space() ? "\<TAB>" :
@@ -152,6 +154,9 @@ command! -nargs=0 Format :call CocAction('format')
 
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+
+" use `:Sort` for organize python imports isort
+command! -nargs=0 Sort :call CocAction('runCommand', 'python.sortImports'
 
 " auto close scratch/preview window after completion
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
@@ -220,3 +225,10 @@ nmap <LEADER>fr :Rg <CR>
 
 " another alias for ripgrep
 nmap <LEADER>rg :Rg <CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-slime
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:slime_target = "tmux"
+let g:slime_python_ipython = 1
+let g:slime_default_config = {"socket_name": "default", "target_pane": "{right-of}"}
