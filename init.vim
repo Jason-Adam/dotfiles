@@ -81,6 +81,30 @@ let g:airline#extensions#coc#enabled     = 1
 set termguicolors
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ale
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ale_completion_enabled = 0
+let g:ale_sign_column_always = 1
+let g:ale_fix_on_save = 1
+let g:ale_set_quickfix = 1
+let g:ale_virtualtext_cursor = 1
+let g:ale_warn_about_trailing_blank_lines = 0
+
+let g:ale_linters = {
+                \ 'python': ['flake8', 'mypy'],
+                \ 'sh': ['language_server'],
+                \ }
+
+let g:ale_fixers = {
+            \ 'c': ['trim_whitespace', 'clang-format', 'clangtidy'],
+            \ 'go': ['trim_whitespace', 'goimports'],
+            \ 'python': ['trim_whitespace', 'black', 'isort'],
+            \ }
+
+let g:ale_python_flake8_options    = '--max-line-length=120'
+let g:ale_python_black_options     = '--line-length 120'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Coc Nvim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set hidden
