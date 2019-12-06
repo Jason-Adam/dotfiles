@@ -79,7 +79,6 @@ let g:airline#extensions#coc#enabled     = 1
 
 " True Color Support
 set termguicolors
-set t_Co=256
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Coc Nvim

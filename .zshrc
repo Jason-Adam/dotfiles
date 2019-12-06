@@ -3,7 +3,6 @@
 ###################################################
 # Gopath
 export GOPATH=$HOME/go
-export PATH=~/Library/Python/3.7/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/jasonadam/.oh-my-zsh"
@@ -11,8 +10,21 @@ export ZSH="/Users/jasonadam/.oh-my-zsh"
 ###################################################
 # Misc
 ###################################################
+# vim mode
+set -o vi
+
 # Theme
-ZSH_THEME="agnoster"
+ZSH_THEME="spaceship"
+SPACESHIP_CHAR_SYMBOL=":: " 
+SPACESHIP_DIR_TRUNC=1
+SPACESHIP_DIR_TRUNC_PREFIX=
+SPACESHIP_DIR_TRUNC_REPO=false
+SPACESHIP_GIT_PREFIX=
+SPACESHIP_PROMPT_ORDER=(
+  dir
+  git
+  char
+)
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -21,7 +33,6 @@ COMPLETION_WAITING_DOTS="true"
 alias reload!='clear && source ~/.zshrc'
 alias cat='bat'
 alias vim='nvim'
-
 alias ls='exa --group-directories-first'
 alias la='exa --group-directories-first --all'
 alias ll='exa --group-directories-first --long'
@@ -30,18 +41,14 @@ alias llt='exa --group-directories-first --long --tree'
 
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
 export FZF_DEFAULT_OPTS='--preview "bat {}"'
-export FZF_DEFAULT_OPTS='--preview "[[ $(file --mime {}) =~ binary ]] &&
-                 echo {} is a binary file ||
-                 (bat --style=numbers --color=always {} ||
-                  highlight -O ansi -l {} ||
-                  coderay {} ||
-                  rougify {} ||
-                  cat {}) 2> /dev/null | head -500"'
-
 alias vimfzf='vim $(fzf)'
+
+# Make myndshft repo private
+GOPRIVATE="bitbucket.org/myndshft/*"
 
 # Syntax highlighting
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 ###################################################
 # Plugins
 ###################################################
@@ -54,5 +61,6 @@ source <(kubectl completion zsh)
 # gcloud autocomplete
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/jasonadam/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/jasonadam/google-cloud-sdk/path.zsh.inc'; fi
+
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/jasonadam/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/jasonadam/google-cloud-sdk/completion.zsh.inc'; fi
