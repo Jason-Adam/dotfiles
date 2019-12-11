@@ -69,16 +69,20 @@ nnoremap <silent> gB :bn<CR>
 " Visual Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Dracula
+let g:dracula_italic = 0
 colorscheme dracula
-set background=dark
+highlight Normal ctermbg=None
+
+if exists('$TMUX')
+    let g:dracula_colorterm = 0
+endif
 
 " Airline
 let g:airline_theme = 'dracula'
-let g:airline#extensions#ale#enabled     = 1
 let g:airline#extensions#coc#enabled     = 1
 
-" True Color Support
-set termguicolors
+" " True Color Support
+" set termguicolors
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Coc Nvim
