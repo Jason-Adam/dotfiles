@@ -26,7 +26,8 @@ call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Misc Settings
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set clipboard=unnamed
 syntax on
 set number
 set encoding=utf-8
@@ -48,7 +49,6 @@ set smartcase
 " General Usability
 set scrolloff=5
 set autoindent
-set clipboard=unnamedplus
 
 " Search will center on line if found
 nnoremap n nzzzv
