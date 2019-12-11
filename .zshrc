@@ -20,8 +20,11 @@ SPACESHIP_DIR_TRUNC=1
 SPACESHIP_DIR_TRUNC_PREFIX=
 SPACESHIP_DIR_TRUNC_REPO=false
 SPACESHIP_GIT_PREFIX=
+SPACESHIP_VENV_PREFIX="["
+SPACESHIP_VENV_SUFFIX="] "
 SPACESHIP_PROMPT_ORDER=(
   dir
+  venv
   git
   char
 )
@@ -32,7 +35,6 @@ COMPLETION_WAITING_DOTS="true"
 # Aliases
 alias reload!='clear && source ~/.zshrc'
 alias cat='bat'
-alias vim='nvim'
 alias ls='exa --group-directories-first'
 alias la='exa --group-directories-first --all'
 alias ll='exa --group-directories-first --long'

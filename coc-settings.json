@@ -37,7 +37,6 @@
   "suggest.minTriggerInputLength": 1,
   "suggest.enablePreview": false,
   "suggest.fixInsertedWord": true,
-  "suggest.removeDuplicateItems": true,
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": true,
   "python.linting.mypyEnabled": true,
@@ -47,5 +46,7 @@
   "python.linting.mypyPath": "/usr/local/bin/mypy",
   "python.formatting.provider": "black",
   "python.formatting.blackPath": "/usr/local/bin/black",
-  "python.sortImports.path": "/usr/local/bin/isort"
+  "python.sortImports.path": "/usr/local/bin/isort",
+  "python.jediPath": "/usr/local/lib/python3.7/site-packages",
+  "python.linting.pylintArgs": ["--init-hook", "import pylint_venv; pylint_venv.inithook()"]
 }
