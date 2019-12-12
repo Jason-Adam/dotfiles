@@ -21,6 +21,8 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --bin'}
 Plug 'junegunn/fzf.vim'
 Plug 'tomtom/tcomment_vim'
+Plug 'heavenshell/vim-pydocstring'
+Plug 'vim-python/python-syntax'
 
 call plug#end()
 
@@ -28,6 +30,7 @@ call plug#end()
 " Misc Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set clipboard=unnamed
+let g:python_highlight_all = 1
 syntax on
 set number
 set encoding=utf-8
