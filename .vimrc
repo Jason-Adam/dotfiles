@@ -24,6 +24,7 @@ Plug 'tomtom/tcomment_vim'
 Plug 'heavenshell/vim-pydocstring'
 Plug 'vim-python/python-syntax'
 Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'dense-analysis/ale'
 
 call plug#end()
 
@@ -97,7 +98,8 @@ endif
 
 " Airline
 let g:airline_theme = 'dracula'
-let g:airline#extensions#coc#enabled     = 1
+let g:airline#extensions#coc#enabled = 1
+let g:airline#extensions#ale#enabled = 1
 
 " " True Color Support
 " set termguicolors
@@ -158,6 +160,51 @@ command! -nargs=0 Sort :call CocAction('runCommand', 'python.sortImports'
 
 " auto close scratch/preview window after completion
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ALE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ale_completion_enabled              = 0
+let g:ale_sign_column_always              = 1
+let g:ale_fix_on_save                     = 1
+let g:ale_set_quickfix                    = 1
+let g:ale_virtualtext_cursor              = 1
+let g:ale_warn_about_trailing_blank_lines = 0
+let g:ale_linters = {
+            \ 'c': ['clang', 'clangd'],
+            \ 'cpp': ['clang', 'clangd'],
+            \ 'python': ['flake8', 'mypy', 'pylint'],
+            \ }
+let g:ale_fixers = {
+            \ '*': ['trim_whitespace'],
+            \ 'c': ['trim_whitespace', 'clang-format', 'clangtidy'],
+            \ 'cpp': ['trim_whitespace', 'clang-format', 'clangtidy'],
+            \ 'go': ['trim_whitespace', 'goimports'],
+            \ 'python': ['black', 'isort'],
+            \ }
+let g:ale_c_parse_makefile         = 0
+let g:ale_c_parse_compile_commands = 1
+let g:ale_c_clang_executable       = '/usr/local/opt/llvm/bin/clang'
+let g:ale_c_clangd_executable      = '/usr/local/opt/llvm/bin/clangd'
+let g:ale_cpp_clang_executable     = '/usr/local/opt/llvm/bin/clang'
+let g:ale_cpp_clangd_executable    = '/usr/local/opt/llvm/bin/clangd'
+let g:ale_c_clang_options          = '-std=c11 -Wall -Wextra -I/usr/local/include -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk'
+let g:ale_cpp_clang_options        = '-std=c++17 -Wall -Wextra -I/usr/local/include -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk'
+let g:ale_c_clangd_options         = '-function-arg-placeholders -all-scopes-completion -pch-storage=memory -limit-results=50 -completion-style=detailed'
+let g:ale_cpp_clangd_options       = '-function-arg-placeholders -all-scopes-completion -pch-storage=memory -limit-results=50 -completion-style=detailed'
+" Python Settings
+let g:ale_python_black_use_global = 1
+let g:ale_python_flake8_use_global = 1
+let g:ale_python_pylint_use_global = 1
+let g:ale_python_mypy_use_global = 1
+let g:ale_python_isort_use_global = 1
+let g:ale_python_black_executable = '/usr/local/bin/black'
+let g:ale_python_flake8_executable = '/usr/local/bin/flake8'
+let g:ale_python_pylint_executable = '/usr/local/bin/pylint'
+let g:ale_python_mypy_executable = '/usr/local/bin/mypy'
+let g:ale_python_isort_executable = '/usr/local/bin/isort'
+let g:ale_python_flake8_options    = '--max-line-length=120'
+let g:ale_python_black_options     = '--line-length 120'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Go Settings

@@ -22,6 +22,27 @@
         "~"
       ]
     },
+    "ccls": {
+      "command": "ccls",
+      "filetypes": [
+        "c",
+        "cpp",
+        "objc",
+        "objcpp"
+      ],
+      "rootPatterns": [
+        ".ccls",
+        "compile_commands.json",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/ccls"
+        }
+      }
+    },
     "dockerfile": {
       "command": "docker-langserver",
       "filetypes": [
@@ -37,16 +58,6 @@
   "suggest.minTriggerInputLength": 1,
   "suggest.enablePreview": false,
   "suggest.fixInsertedWord": true,
-  "python.linting.enabled": true,
-  "python.linting.flake8Enabled": true,
-  "python.linting.mypyEnabled": true,
-  "python.linting.pylintEnabled": true,
-  "python.linting.flake8Path": "/usr/local/bin/flake8",
-  "python.linting.pylintPath": "/usr/local/bin/pylint",
-  "python.linting.mypyPath": "/usr/local/bin/mypy",
-  "python.formatting.provider": "black",
-  "python.formatting.blackPath": "/usr/local/bin/black",
-  "python.sortImports.path": "/usr/local/bin/isort",
+  "python.linting.enabled": false,
   "python.jediPath": "/usr/local/lib/python3.7/site-packages",
-  "python.linting.pylintArgs": ["--init-hook", "import pylint_venv; pylint_venv.inithook()"]
 }
