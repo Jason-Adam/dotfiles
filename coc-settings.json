@@ -3,11 +3,10 @@
   "coc.preferences.hoverTarget": "echo",
   "coc.preferences.formatOnType": true,
   "coc.preferences.formatOnSaveFiletypes": [
-    "c",
-    "cpp",
     "go",
-    "python",
-    "sh"
+    "sh",
+    "cpp",
+    "c"
   ],
   "languageserver": {
     "bash": {
@@ -22,27 +21,12 @@
         "~"
       ]
     },
-    "ccls": {
-      "command": "ccls",
-      "filetypes": [
-        "c",
-        "cpp",
-        "objc",
-        "objcpp"
-      ],
-      "rootPatterns": [
-        ".ccls",
-        "compile_commands.json",
-        ".vim/",
-        ".git/",
-        ".hg/"
-      ],
-      "initializationOptions": {
-        "cache": {
-          "directory": "/tmp/ccls"
-        }
-      }
-    },
+    "clangd": {
+        "command": "clangd",
+        "args": ["--background-index"],
+        "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+        "filetypes": ["c", "cpp", "objc", "objcpp"]
+      },
     "dockerfile": {
       "command": "docker-langserver",
       "filetypes": [
@@ -58,6 +42,5 @@
   "suggest.minTriggerInputLength": 1,
   "suggest.enablePreview": false,
   "suggest.fixInsertedWord": true,
-  "python.linting.enabled": false,
-  "python.jediPath": "/usr/local/lib/python3.7/site-packages",
+  "python.jediPath": "/usr/local/lib/python3.7/site-packages"
 }

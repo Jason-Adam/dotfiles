@@ -164,34 +164,40 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ALE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ale_cache_executable_check_failures = 1
 let g:ale_completion_enabled              = 0
 let g:ale_sign_column_always              = 1
 let g:ale_fix_on_save                     = 1
 let g:ale_set_quickfix                    = 1
 let g:ale_virtualtext_cursor              = 1
 let g:ale_warn_about_trailing_blank_lines = 0
+let g:ale_list_vertical                   = 1
+let g:ale_sign_priority                   = 999
+let g:ale_sign_highlight_linenrs          = 1
 let g:ale_linters = {
-            \ 'c': ['clang', 'clangd'],
-            \ 'cpp': ['clang', 'clangd'],
+            \ 'c': ['clangd'],
+            \ 'cpp': ['clangd'],
             \ 'python': ['flake8', 'mypy', 'pylint'],
             \ }
 let g:ale_fixers = {
             \ '*': ['trim_whitespace'],
             \ 'c': ['trim_whitespace', 'clang-format', 'clangtidy'],
-            \ 'cpp': ['trim_whitespace', 'clang-format', 'clangtidy'],
+            \ 'cpp': ['trim_whitespace', 'clang-format'],
             \ 'go': ['trim_whitespace', 'goimports'],
             \ 'python': ['black', 'isort'],
             \ }
-let g:ale_c_parse_makefile         = 0
-let g:ale_c_parse_compile_commands = 1
-let g:ale_c_clang_executable       = '/usr/local/opt/llvm/bin/clang'
-let g:ale_c_clangd_executable      = '/usr/local/opt/llvm/bin/clangd'
-let g:ale_cpp_clang_executable     = '/usr/local/opt/llvm/bin/clang'
-let g:ale_cpp_clangd_executable    = '/usr/local/opt/llvm/bin/clangd'
-let g:ale_c_clang_options          = '-std=c11 -Wall -Wextra -I/usr/local/include -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk'
-let g:ale_cpp_clang_options        = '-std=c++17 -Wall -Wextra -I/usr/local/include -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk'
-let g:ale_c_clangd_options         = '-function-arg-placeholders -all-scopes-completion -pch-storage=memory -limit-results=50 -completion-style=detailed'
-let g:ale_cpp_clangd_options       = '-function-arg-placeholders -all-scopes-completion -pch-storage=memory -limit-results=50 -completion-style=detailed'
+let g:ale_c_parse_makefile           = 0
+let g:ale_c_parse_compile_commands   = 1
+let g:ale_c_clang_executable         = '/usr/local/opt/llvm/bin/clang'
+let g:ale_c_clangd_executable        = '/usr/local/opt/llvm/bin/clangd'
+let g:ale_c_clangformat_executable   = '/usr/local/opt/llvm/bin/clang-format'
+let g:ale_cpp_clang_executable       = '/usr/local/opt/llvm/bin/clang'
+let g:ale_cpp_clangd_executable      = '/usr/local/opt/llvm/bin/clangd'
+let g:ale_cpp_clangformat_executable = '/usr/local/opt/llvm/bin/clang-format'
+let g:ale_c_clang_options            = '-std=c11 -Wall -Wextra -I/usr/local/include -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk'
+let g:ale_cpp_clang_options          = '-std=c++2a -Wall -Wextra -I/usr/local/include -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk'
+let g:ale_c_clangd_options           = '-function-arg-placeholders -all-scopes-completion -pch-storage=memory -limit-results=50 -completion-style=detailed'
+let g:ale_cpp_clangd_options         = '-function-arg-placeholders -all-scopes-completion -pch-storage=memory -limit-results=50 -completion-style=detailed'
 " Python Settings
 let g:ale_python_black_use_global = 1
 let g:ale_python_flake8_use_global = 1
@@ -241,6 +247,14 @@ augroup docker_files
 augroup END
 
 au FileType sql setl formatprg=/usr/local/bin/pg_format\ -
+
+augroup cpp_files
+    autocmd!
+    au BufRead,BufNewFile *.tpp setfiletype cpp
+    au FileType c,cpp nnoremap gd :ALEGoToDefinitionInTab<CR>
+    let b:ale_linters = {'cpp': ['clangd']}
+    let b:ale_fixers = {'cpp': ['trim_whitespace', 'clang-format']}
+augroup END
 
 " Map toggle
 nnoremap <LEADER>pg <ESC>gq<S-G>
