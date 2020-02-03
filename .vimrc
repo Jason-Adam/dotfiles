@@ -21,7 +21,6 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --bin'}
 Plug 'junegunn/fzf.vim'
 Plug 'tomtom/tcomment_vim'
-Plug 'heavenshell/vim-pydocstring'
 Plug 'vim-python/python-syntax'
 Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'dense-analysis/ale'
@@ -50,6 +49,7 @@ set expandtab
 " Ignore case when searching
 set ignorecase
 set smartcase
+set hlsearch
 
 " General Usability
 set scrolloff=5
@@ -177,14 +177,13 @@ let g:ale_sign_highlight_linenrs          = 1
 let g:ale_linters = {
             \ 'c': ['clangd'],
             \ 'cpp': ['clangd'],
-            \ 'python': ['flake8', 'mypy', 'pylint'],
             \ }
 let g:ale_fixers = {
             \ '*': ['trim_whitespace'],
             \ 'c': ['trim_whitespace', 'clang-format', 'clangtidy'],
             \ 'cpp': ['trim_whitespace', 'clang-format'],
             \ 'go': ['trim_whitespace', 'goimports'],
-            \ 'python': ['black', 'isort'],
+            \ 'py': ['trim_whitespace', 'black', 'isort'],
             \ }
 let g:ale_c_parse_makefile           = 0
 let g:ale_c_parse_compile_commands   = 1
@@ -198,6 +197,7 @@ let g:ale_c_clang_options            = '-std=c11 -Wall -Wextra -I/usr/local/incl
 let g:ale_cpp_clang_options          = '-std=c++2a -Wall -Wextra -I/usr/local/include -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk'
 let g:ale_c_clangd_options           = '-function-arg-placeholders -all-scopes-completion -pch-storage=memory -limit-results=50 -completion-style=detailed'
 let g:ale_cpp_clangd_options         = '-function-arg-placeholders -all-scopes-completion -pch-storage=memory -limit-results=50 -completion-style=detailed'
+
 " Python Settings
 let g:ale_python_black_use_global = 1
 let g:ale_python_flake8_use_global = 1

@@ -1,12 +1,13 @@
 {
   "coc.source.file.enable": true,
   "coc.preferences.hoverTarget": "echo",
-  "coc.preferences.formatOnType": true,
+  "coc.preferences.formatOnType": false,
   "coc.preferences.formatOnSaveFiletypes": [
     "go",
     "sh",
     "cpp",
-    "c"
+    "c",
+    "py"
   ],
   "languageserver": {
     "bash": {
@@ -42,5 +43,9 @@
   "suggest.minTriggerInputLength": 1,
   "suggest.enablePreview": false,
   "suggest.fixInsertedWord": true,
-  "python.jediPath": "/usr/local/lib/python3.7/site-packages"
+  "python.linting.enabled": false,
+  "python.linting.flake8Enabled": false,
+  "python.linting.mypyEnabled": false,
+  "python.linting.pylintEnabled": false,
+  "python.autoComplete.addBrackets": true
 }

@@ -15,7 +15,7 @@ set -o vi
 
 # Theme
 ZSH_THEME="spaceship"
-SPACESHIP_CHAR_SYMBOL=":: " 
+SPACESHIP_CHAR_SYMBOL=":: "
 SPACESHIP_DIR_TRUNC=1
 SPACESHIP_DIR_TRUNC_PREFIX=
 SPACESHIP_DIR_TRUNC_REPO=false
@@ -66,3 +66,10 @@ if [ -f '/Users/jasonadam/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/jason
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/jasonadam/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/jasonadam/google-cloud-sdk/completion.zsh.inc'; fi
+
+export PATH=/usr/local/opt/llvm/bin:$PATH
+export PATH=$PATH:"$GOPATH/bin"
+export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+
+# Gitignore creation function
+function gi() { curl -sLw n https://www.gitignore.io/api/$@ ;}
