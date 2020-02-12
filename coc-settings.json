@@ -1,14 +1,23 @@
 {
   "coc.source.file.enable": true,
   "coc.preferences.hoverTarget": "echo",
-  "coc.preferences.formatOnType": false,
   "coc.preferences.formatOnSaveFiletypes": [
-    "go",
-    "sh",
-    "cpp",
-    "c",
-    "py"
+          "json",
+          "c",
+          "cpp",
+          "go",
+          "sh",
+          "py"
   ],
+  "diagnostic.enable": false,
+  "diagnostic.checkCurrentLine": false,
+  "diagnostic.virtualText": false,
+  "diagnostic.virtualTextPrefix": "> ",
+  "diagnostic.errorSign": "E",
+  "diagnostic.warningSign": "W",
+  "diagnostic.infoSign": "I",
+  "diagnostic.hintSign": "H",
+  "coc.preferences.formatOnType": false,
   "languageserver": {
     "bash": {
       "command": "bash-language-server",
@@ -43,9 +52,9 @@
   "suggest.minTriggerInputLength": 1,
   "suggest.enablePreview": false,
   "suggest.fixInsertedWord": true,
+  "json.enable": true,
+  "json.format.enable": true,
+  "python.autoComplete.addBrackets": true,
   "python.linting.enabled": false,
-  "python.linting.flake8Enabled": false,
-  "python.linting.mypyEnabled": false,
-  "python.linting.pylintEnabled": false,
-  "python.autoComplete.addBrackets": true
+  "diagnostic.displayByAle": true
 }

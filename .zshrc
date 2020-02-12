@@ -31,16 +31,6 @@ SPACESHIP_PROMPT_ORDER=(
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
-
-# Aliases
-alias reload!='clear && source ~/.zshrc'
-alias cat='bat'
-alias ls='exa --group-directories-first'
-alias la='exa --group-directories-first --all'
-alias ll='exa --group-directories-first --long'
-alias lst='exa --group-directories-first --tree'
-alias llt='exa --group-directories-first --long --tree'
-
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
 export FZF_DEFAULT_OPTS='--preview "bat {}"'
 alias vimfzf='vim $(fzf)'
@@ -60,6 +50,15 @@ plugins=(git vi-mode zsh-autosuggestions docker kubectl web-search)
 source $ZSH/oh-my-zsh.sh
 source <(kubectl completion zsh)
 
+# Aliases
+alias reload!='clear && source ~/.zshrc'
+alias cat='bat'
+alias ls='exa --group-directories-first'
+alias la='exa --group-directories-first --all'
+alias ll='exa --group-directories-first --long'
+alias lst='exa --group-directories-first --tree'
+alias llt='exa --group-directories-first --long --tree'
+
 # gcloud autocomplete
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/jasonadam/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/jasonadam/google-cloud-sdk/path.zsh.inc'; fi
@@ -73,3 +72,7 @@ export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 
 # Gitignore creation function
 function gi() { curl -sLw n https://www.gitignore.io/api/$@ ;}
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/jasonadam/.sdkman"
+[[ -s "/Users/jasonadam/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/jasonadam/.sdkman/bin/sdkman-init.sh"

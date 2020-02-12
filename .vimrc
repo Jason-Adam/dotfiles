@@ -24,13 +24,22 @@ Plug 'tomtom/tcomment_vim'
 Plug 'vim-python/python-syntax'
 Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'dense-analysis/ale'
+Plug 'hashivim/vim-terraform'
+Plug 'psf/black'
+Plug 'fisadev/vim-isort'
 
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Misc Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Ignore case when searching
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
 set clipboard=unnamed
+
 let g:python_highlight_all = 1
 syntax on
 set number
@@ -45,11 +54,6 @@ set tabstop=4
 set softtabstop=0
 set shiftwidth=4
 set expandtab
-
-" Ignore case when searching
-set ignorecase
-set smartcase
-set hlsearch
 
 " General Usability
 set scrolloff=5
@@ -87,6 +91,11 @@ let vim_markdown_preview_toggle=2
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Visual Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:terraform_fmt_on_save = 1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Visual Settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Dracula
 let g:dracula_italic = 0
 colorscheme dracula
@@ -96,13 +105,6 @@ if exists('$TMUX')
     let g:dracula_colorterm = 0
 endif
 
-" Airline
-let g:airline_theme = 'dracula'
-let g:airline#extensions#coc#enabled = 1
-let g:airline#extensions#ale#enabled = 1
-
-" " True Color Support
-" set termguicolors
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Coc Nvim
@@ -165,11 +167,37 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 " ALE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ale_cache_executable_check_failures = 1
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
 let g:ale_completion_enabled              = 0
 let g:ale_sign_column_always              = 1
+
+" Python Settings
+let g:ale_python_black_use_global = 1
+let g:ale_python_isort_use_global = 1
+let g:ale_python_flake8_use_global = 1
+let g:ale_python_pylint_use_global = 1
+let g:ale_python_mypy_use_global = 1
+let g:ale_python_bandit_use_global = 1
+let g:ale_python_bandit_executable = '/usr/local/bin/bandit'
+let g:ale_python_flake8_executable = '/usr/local/bin/flake8'
+let g:ale_python_pylint_executable = '/usr/local/bin/pylint'
+let g:ale_python_mypy_executable = '/usr/local/bin/mypy'
+let g:ale_python_isort_executable = "/usr/local/bin/isort"
+let g:ale_python_black_executable = "/usr/local/bin/black"
+let g:ale_python_flake8_options    = '--max-line-length=120'
+let g:ale_python_black_options = '--line-length 120'
+
+let g:ale_fixers = {
+            \ '*': ['trim_whitespace'],
+            \ 'c': ['trim_whitespace', 'clang-format', 'clangtidy'],
+            \ 'cpp': ['trim_whitespace', 'clang-format'],
+            \ 'go': ['trim_whitespace', 'goimports'],
+            \ 'python': ['trim_whitespace', 'black', 'isort'],
+            \ }
+
 let g:ale_fix_on_save                     = 1
-let g:ale_set_quickfix                    = 1
-let g:ale_virtualtext_cursor              = 1
+let g:ale_set_quickfix                    = 0
 let g:ale_warn_about_trailing_blank_lines = 0
 let g:ale_list_vertical                   = 1
 let g:ale_sign_priority                   = 999
@@ -177,13 +205,7 @@ let g:ale_sign_highlight_linenrs          = 1
 let g:ale_linters = {
             \ 'c': ['clangd'],
             \ 'cpp': ['clangd'],
-            \ }
-let g:ale_fixers = {
-            \ '*': ['trim_whitespace'],
-            \ 'c': ['trim_whitespace', 'clang-format', 'clangtidy'],
-            \ 'cpp': ['trim_whitespace', 'clang-format'],
-            \ 'go': ['trim_whitespace', 'goimports'],
-            \ 'py': ['trim_whitespace', 'black', 'isort'],
+            \ 'python': ['pylint', 'flake8', 'mypy', 'bandit']
             \ }
 let g:ale_c_parse_makefile           = 0
 let g:ale_c_parse_compile_commands   = 1
@@ -198,19 +220,9 @@ let g:ale_cpp_clang_options          = '-std=c++2a -Wall -Wextra -I/usr/local/in
 let g:ale_c_clangd_options           = '-function-arg-placeholders -all-scopes-completion -pch-storage=memory -limit-results=50 -completion-style=detailed'
 let g:ale_cpp_clangd_options         = '-function-arg-placeholders -all-scopes-completion -pch-storage=memory -limit-results=50 -completion-style=detailed'
 
-" Python Settings
-let g:ale_python_black_use_global = 1
-let g:ale_python_flake8_use_global = 1
-let g:ale_python_pylint_use_global = 1
-let g:ale_python_mypy_use_global = 1
-let g:ale_python_isort_use_global = 1
-let g:ale_python_black_executable = '/usr/local/bin/black'
-let g:ale_python_flake8_executable = '/usr/local/bin/flake8'
-let g:ale_python_pylint_executable = '/usr/local/bin/pylint'
-let g:ale_python_mypy_executable = '/usr/local/bin/mypy'
-let g:ale_python_isort_executable = '/usr/local/bin/isort'
-let g:ale_python_flake8_options    = '--max-line-length=120'
-let g:ale_python_black_options     = '--line-length 120'
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Go Settings
@@ -226,6 +238,11 @@ let g:go_highlight_generate_tags     = 1
 let g:go_highlight_debug             = 1
 let g:go_fmt_command = 'goimports'
 let g:go_auto_type_info = 1
+
+" Airline
+let g:airline#extensions#coc#enabled = 0
+let g:airline#extensions#ale#enabled = 1
+let g:airline_theme = 'dracula'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " File Formatting
@@ -291,3 +308,8 @@ nmap <LEADER>rg :Rg <CR>
 let g:slime_target = "tmux"
 let g:slime_python_ipython = 1
 let g:slime_default_config = {"socket_name": "default", "target_pane": "{right-of}"}
+
+" Python Format on Save
+autocmd BufWritePost *.py silent! execute ':Black'
+autocmd BufWritePost *.py silent! execute ':Isort'
+
