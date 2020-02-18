@@ -1,6 +1,6 @@
 {
   "coc.source.file.enable": true,
-  "coc.preferences.hoverTarget": "echo",
+  "coc.preferences.hoverTarget": "float",
   "coc.preferences.formatOnSaveFiletypes": [
           "json",
           "c",
@@ -9,15 +9,6 @@
           "sh",
           "py"
   ],
-  "diagnostic.enable": false,
-  "diagnostic.checkCurrentLine": false,
-  "diagnostic.virtualText": false,
-  "diagnostic.virtualTextPrefix": "> ",
-  "diagnostic.errorSign": "E",
-  "diagnostic.warningSign": "W",
-  "diagnostic.infoSign": "I",
-  "diagnostic.hintSign": "H",
-  "coc.preferences.formatOnType": false,
   "languageserver": {
     "bash": {
       "command": "bash-language-server",
@@ -55,6 +46,14 @@
   "json.enable": true,
   "json.format.enable": true,
   "python.autoComplete.addBrackets": true,
-  "python.linting.enabled": false,
-  "diagnostic.displayByAle": true
+  "python.formatting.provider": "black",
+  "python.formatting.blackPath": "/usr/local/bin/black",
+  "python.sortImports.path": "/usr/loca/bin/isort",
+  "python.jediEnabled": false,
+  "python.linting.enabled": true,
+  "python.linting.flake8Enabled": true,
+  "python.linting.lintOnSave": true,
+  "python.linting.banditEnabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.linting.mypyEnabled": true
 }
