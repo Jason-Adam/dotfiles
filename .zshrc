@@ -69,9 +69,17 @@ if [ -f '/Users/jasonadam/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users
 export PATH=/usr/local/opt/llvm/bin:$PATH
 export PATH=$PATH:"$GOPATH/bin"
 export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+export PATH=$PATH:$HOME/scripts
 
 # Gitignore creation function
 function gi() { curl -sLw n https://www.gitignore.io/api/$@ ;}
+
+# Load Env Function
+load-env() {
+    set -o allexport;
+    source $1;
+    set +o allexport;
+}
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/jasonadam/.sdkman"
