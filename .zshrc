@@ -74,6 +74,13 @@ export PATH=$PATH:$HOME/scripts
 # Gitignore creation function
 function gi() { curl -sLw n https://www.gitignore.io/api/$@ ;}
 
+# Load Env Function
+load-env() {
+    set -o allexport;
+    source $1;
+    set +o allexport;
+}
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/jasonadam/.sdkman"
 [[ -s "/Users/jasonadam/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/jasonadam/.sdkman/bin/sdkman-init.sh"
