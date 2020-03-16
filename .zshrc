@@ -81,6 +81,22 @@ load-env() {
     set +o allexport;
 }
 
+# Load python linters in virtual env
+load-linters() {
+    py_dev=("pylint" "flake8" "bandit" "mypy" "black" "isort")
+    if [ "$PIPENV_ACTIVE" ]; then
+        for i in "${py_dev[@]}"; do
+            pipenv install "$i" --dev --skip-lock
+        done;
+    elif [ "$POETRY_ACTIVE" ]; then
+        for i in "${py_dev[@]}"; do
+            poetry add "$i" --dev 
+        done;
+    else
+        echo "please activate a virtualenv and rerun"
+    fi;
+}
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/jasonadam/.sdkman"
 [[ -s "/Users/jasonadam/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/jasonadam/.sdkman/bin/sdkman-init.sh"
