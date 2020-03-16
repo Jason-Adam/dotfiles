@@ -23,10 +23,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'vim-python/python-syntax'
 Plug 'JamshedVesuna/vim-markdown-preview'
-" Plug 'dense-analysis/ale'
 Plug 'hashivim/vim-terraform'
-" Plug 'psf/black'
-" Plug 'fisadev/vim-isort'
 
 call plug#end()
 

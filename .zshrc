@@ -69,6 +69,7 @@ if [ -f '/Users/jasonadam/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users
 export PATH=/usr/local/opt/llvm/bin:$PATH
 export PATH=$PATH:"$GOPATH/bin"
 export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+export PATH=$PATH:$HOME/scripts
 
 # Gitignore creation function
 function gi() { curl -sLw n https://www.gitignore.io/api/$@ ;}
