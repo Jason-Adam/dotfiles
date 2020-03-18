@@ -47,8 +47,6 @@
   "json.format.enable": true,
   "python.autoComplete.addBrackets": true,
   "python.formatting.provider": "black",
-  "python.formatting.blackPath": "/usr/local/bin/black",
-  "python.sortImports.path": "/usr/loca/bin/isort",
   "python.jediEnabled": false,
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": true,
