@@ -5,6 +5,7 @@
 export GOPATH=$HOME/go
 
 # Path to your oh-my-zsh installation.
+ZSH_DISABLE_COMPFIX=true
 export ZSH="/Users/jasonadam/.oh-my-zsh"
 
 ###################################################
@@ -66,10 +67,11 @@ if [ -f '/Users/jasonadam/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/jason
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/jasonadam/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/jasonadam/google-cloud-sdk/completion.zsh.inc'; fi
 
-export PATH=/usr/local/opt/llvm/bin:$PATH
 export PATH=$PATH:"$GOPATH/bin"
-export PATH="/usr/local/opt/python@3.8/bin:$PATH"
-export PATH=$PATH:$HOME/scripts
+export PATH="/Users/jasonadam/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # Gitignore creation function
 function gi() { curl -sLw n https://www.gitignore.io/api/$@ ;}
