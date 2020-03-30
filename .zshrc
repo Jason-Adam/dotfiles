@@ -36,16 +36,20 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
 export FZF_DEFAULT_OPTS='--preview "bat {}"'
 alias vimfzf='vim $(fzf)'
 
-# Make myndshft repo private
-GOPRIVATE="bitbucket.org/myndshft/*"
-
 # Syntax highlighting
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 ###################################################
 # Plugins
 ###################################################
-plugins=(git vi-mode zsh-autosuggestions docker kubectl web-search)
+plugins=(
+    git 
+    vi-mode 
+    zsh-autosuggestions 
+    docker 
+    kubectl 
+    web-search 
+)
 
 # K8 autocomplete
 source $ZSH/oh-my-zsh.sh
@@ -72,6 +76,7 @@ export PATH="/Users/jasonadam/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$PATH:$HOME/.poetry/bin"
 
 # Gitignore creation function
 function gi() { curl -sLw n https://www.gitignore.io/api/$@ ;}
@@ -84,8 +89,17 @@ load-env() {
 }
 
 # Load python linters in virtual env
-load-linters() {
-    py_dev=("pylint" "flake8" "bandit" "mypy" "black" "isort")
+load-py-deps() {
+    py_dev=(
+        "pylint" 
+        "flake8" 
+        "bandit" 
+        "mypy" 
+        "black" 
+        "isort" 
+        "pytest" 
+        "ipykernel"
+    )
     if [ "$PIPENV_ACTIVE" ]; then
         for i in "${py_dev[@]}"; do
             pipenv install "$i" --dev --skip-lock
@@ -97,6 +111,20 @@ load-linters() {
     else
         echo "please activate a virtualenv and rerun"
     fi;
+}
+
+# Python Gitignore
+py-gitignore() {
+    gi python,macos,vim,venv,visualstudiocode,jupyternotebooks,jetbrains > .gitignore
+}
+
+py-makefile() {
+    curl -s https://gist.githubusercontent.com/jadamaptive/3aac96c32b462fdbb1e13c8ac12f9b0b/raw/8dfa720a4f376297234c407e7015b6b59f7ba282/Makefile > Makefile
+}
+
+py-repo() {
+    py-gitignore
+    py-makefile
 }
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
