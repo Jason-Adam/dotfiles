@@ -47,6 +47,7 @@ plugins=(
     vi-mode 
     zsh-autosuggestions 
     docker 
+    docker-compose
     kubectl 
     web-search 
 )
@@ -116,6 +117,8 @@ load-py-deps() {
 # Python Gitignore
 py-gitignore() {
     gi python,macos,vim,venv,visualstudiocode,jupyternotebooks,jetbrains > .gitignore
+    echo ".python-version/" >> .gitignore
+    echo ".vscode/" >> .gitignore
 }
 
 py-makefile() {
