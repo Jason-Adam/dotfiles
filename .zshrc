@@ -130,10 +130,6 @@ py-repo() {
     py-makefile
 }
 
-# Terraform
-terraform-docs completion zsh > /usr/local/share/zsh/site-functions/_terraform-docs
-autoload -U compinit && compinit
-
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/jasonadam/.sdkman"
 [[ -s "/Users/jasonadam/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/jasonadam/.sdkman/bin/sdkman-init.sh"
