@@ -1,51 +1,71 @@
 {
-  "coc.source.file.enable": true,
-  "coc.preferences.hoverTarget": "float",
-  "coc.preferences.formatOnSaveFiletypes": [
-          "json",
-          "c",
-          "cpp",
-          "go",
-          "sh",
-          "py"
-  ],
-  "languageserver": {
-    "bash": {
-      "command": "bash-language-server",
-      "args": [
-        "start"
-      ],
-      "filetypes": [
-        "sh"
-      ],
-      "ignoredRootPaths": [
-        "~"
-      ]
+    "coc.source.file.enable": true,
+    "coc.preferences.hoverTarget": "float",
+    "coc.preferences.formatOnSaveFiletypes": [
+        "json",
+        "c",
+        "cpp",
+        "go",
+        "sh",
+        "py"
+    ],
+    "languageserver": {
+        "bash": {
+            "command": "bash-language-server",
+            "args": [
+                "start"
+            ],
+            "filetypes": [
+                "sh"
+            ],
+            "ignoredRootPaths": [
+                "~"
+            ]
+        },
+        "dockerfile": {
+            "command": "docker-langserver",
+            "filetypes": [
+                "dockerfile"
+            ],
+            "args": [
+                "--stdio"
+            ]
+        },
+        "ccls": {
+            "command": "ccls",
+            "filetypes": [
+                "c",
+                "cpp",
+                "objc",
+                "objcpp"
+            ],
+            "rootPatterns": [
+                ".ccls",
+                "compile_commands.json",
+                ".git/",
+                ".hg/"
+            ],
+            "initializationOptions": {
+                "cache": {
+                    "directory": "/tmp/ccls"
+                }
+            }
+        }
     },
-    "dockerfile": {
-      "command": "docker-langserver",
-      "filetypes": [
-        "dockerfile"
-      ],
-      "args": [
-        "--stdio"
-      ]
-    }
-  },
-  "suggest.autoTrigger": "always",
-  "suggest.noselect": true,
-  "suggest.minTriggerInputLength": 1,
-  "suggest.enablePreview": false,
-  "suggest.fixInsertedWord": true,
-  "json.enable": true,
-  "json.format.enable": true,
-  "python.autoComplete.addBrackets": true,
-  "python.formatting.provider": "black",
-  "python.jediEnabled": false,
-  "python.linting.enabled": true,
-  "python.linting.flake8Enabled": true,
-  "python.linting.lintOnSave": true,
-  "python.linting.banditEnabled": true,
-  "python.linting.pylintEnabled": true,
-  "python.linting.mypyEnabled": true
+    "suggest.autoTrigger": "always",
+    "suggest.noselect": true,
+    "suggest.minTriggerInputLength": 1,
+    "suggest.enablePreview": false,
+    "suggest.fixInsertedWord": true,
+    "json.enable": true,
+    "json.format.enable": true,
+    "python.autoComplete.addBrackets": true,
+    "python.formatting.provider": "black",
+    "python.jediEnabled": false,
+    "python.linting.enabled": true,
+    "python.linting.flake8Enabled": true,
+    "python.linting.lintOnSave": true,
+    "python.linting.banditEnabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.mypyEnabled": true
 }
