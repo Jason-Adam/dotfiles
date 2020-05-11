@@ -75,8 +75,6 @@ if [ -f '/Users/jasonadam/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 export PATH=$PATH:"$GOPATH/bin"
 export PATH="/Users/jasonadam/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$PATH:$HOME/.poetry/bin"
 
