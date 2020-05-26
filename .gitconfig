@@ -1,0 +1,10 @@
+[user]
+    name = Jason Adam
+    email = 22adamj22@gmail.com
+    username = Jason-Adam
+
+[core]
+    editor = vim
+
+[web]
+    browser = google-chrome
