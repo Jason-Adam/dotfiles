@@ -1,10 +1,6 @@
-.PHONY: main homebrew cli_tools dotfiles
+.PHONY: main homebrew cli_tools dotfiles apps
 
-main:
-	homebrew
-	terminal
-	cli_tools
-	dotfiles
+main: homebrew terminal cli dotfiles apps
 
 homebrew:
 	cd
@@ -17,7 +13,7 @@ terminal:
 	ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
 	git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-cli_tools:
+cli:
 	brew install tmux
 	brew install pyenv
 	brew install zsh-syntanx-highlighting
@@ -26,6 +22,13 @@ cli_tools:
 	brew install node
 	brew install ctags
 	brew install bat
+
+apps:
+	brew cask install slack
+	brew cask install keeper-password-manager
+	brew cask install alfred
+	brew cask install spectacle
+	brew cask install docker
 
 dotfiles:
 	mkdir code && cd code
