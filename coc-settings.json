@@ -3,9 +3,7 @@
     "coc.preferences.hoverTarget": "float",
     "coc.preferences.formatOnSaveFiletypes": [
         "json",
-        "c",
-        "cpp",
-        "go",
+        "c", "cpp", "go",
         "sh",
         "py"
     ],
@@ -30,26 +28,6 @@
             "args": [
                 "--stdio"
             ]
-        },
-        "ccls": {
-            "command": "ccls",
-            "filetypes": [
-                "c",
-                "cpp",
-                "objc",
-                "objcpp"
-            ],
-            "rootPatterns": [
-                ".ccls",
-                "compile_commands.json",
-                ".git/",
-                ".hg/"
-            ],
-            "initializationOptions": {
-                "cache": {
-                    "directory": "/tmp/ccls"
-                }
-            }
         }
     },
     "suggest.autoTrigger": "always",

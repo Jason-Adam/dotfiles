@@ -22,7 +22,6 @@ Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --bin'}
 Plug 'junegunn/fzf.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'vim-python/python-syntax'
-Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'hashivim/vim-terraform'
 
 call plug#end()
@@ -79,11 +78,6 @@ else
   let &t_SI = "\<Esc>]50;CursorShape=1\x7"
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Markdown Preview
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let vim_markdown_preview_toggle=2
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Visual Settings
