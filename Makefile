@@ -29,6 +29,8 @@ apps:
 	brew cask install alfred
 	brew cask install spectacle
 	brew cask install docker
+	brew cask install r
+	brew cask install rstudio
 
 dotfiles:
 	mkdir code && cd code
