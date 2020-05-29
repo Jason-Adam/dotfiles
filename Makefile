@@ -1,4 +1,6 @@
-.PHONY: main homebrew cli_tools dotfiles apps
+PYTHON_VERSION := 3.8.2
+
+.PHONY: homebrew terminal cli apps dotfiles language_servers gcloud_sdk
 
 homebrew:
 	cd
@@ -15,7 +17,6 @@ terminal:
 cli:
 	brew install tmux
 	brew install pyenv
-	brew install zsh-syntanx-highlighting
 	brew install kubectl
 	brew install kubectx
 	brew install helm
@@ -77,3 +78,7 @@ language_servers:
 
 gcloud_sdk:
 	curl https://sdk.cloud.google.com | bash
+
+setup_pyenv:
+	pyenv install -v $(PYTHON_VERSION)
+	pyenv global $(PYTHON_VERSION)

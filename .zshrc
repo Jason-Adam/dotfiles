@@ -75,9 +75,10 @@ if [ -f '/Users/jasonadam/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users
 
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 export PATH=$PATH:"$GOPATH/bin"
-export PATH="/Users/jasonadam/.pyenv/bin:$PATH"
+export PATH="$HOME/.pyenv/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$PATH:$HOME/.poetry/bin"
+eval "$(pyenv init -)"
 
 # Gitignore creation function
 function gi() { curl -sLw n https://www.gitignore.io/api/$@ ;}
