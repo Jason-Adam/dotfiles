@@ -45,6 +45,37 @@ cli:
 	brew install rust
 	brew install xsv
 
+cli_update:
+	brew upgrade tmux
+	brew upgrade pyenv
+	brew upgrade kubectl
+	brew upgrade kubectx
+	brew upgrade helm
+	brew upgrade exa
+	brew upgrade node
+	brew upgrade npm
+	brew upgrade ctags
+	brew upgrade bat
+	brew upgrade openjdk
+	brew upgrade rg
+	brew upgrade cmake
+	brew upgrade opencv
+	brew upgrade terraform
+	brew upgrade terraform-docs
+	brew upgrade ansible
+	brew upgrade gradle
+	brew upgrade gradle-completion
+	brew upgrade bazel
+	brew upgrade awk
+	brew upgrade go
+	brew upgrade jq
+	brew upgrade llvm
+	brew upgrade pandoc
+	brew upgrade redis
+	brew upgrade shellcheck
+	brew upgrade rust
+	brew upgrade xsv
+
 apps:
 	brew cask install iterm2
 	brew cask install slack
