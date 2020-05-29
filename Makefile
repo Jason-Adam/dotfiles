@@ -45,7 +45,7 @@ cli:
 	brew install rust
 	brew install xsv
 
-cli_update:
+cli_upgrade:
 	brew upgrade tmux
 	brew upgrade pyenv
 	brew upgrade kubectl
