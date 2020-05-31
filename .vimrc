@@ -23,6 +23,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'vim-python/python-syntax'
 Plug 'hashivim/vim-terraform'
+Plug 'octol/vim-cpp-enhanced-highlight'
 
 call plug#end()
 
@@ -83,6 +84,14 @@ endif
 " Visual Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:terraform_fmt_on_save = 1
+
+" C++
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_posix_standard = 1
+let g:cpp_experimental_template_highlight = 1
+let g:cpp_concepts_highlight = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Visual Settings
@@ -191,11 +200,6 @@ augroup docker_files
     autocmd!
     au BufRead,BufNewFile Dockerfile.* set syntax=Dockerfile
 augroup END
-
-au FileType sql setl formatprg=/usr/local/bin/pg_format\ -
-
-" Map toggle
-nnoremap <LEADER>pg <ESC>gq<S-G>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FZF
