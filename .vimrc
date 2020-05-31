@@ -3,7 +3,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " get plugin manager if we don't already have it
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+ Filessilent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
@@ -60,26 +60,9 @@ set autoindent
 " Highlight current line
 set cursorline
 
-" Display text width column
-set colorcolumn=81
-
 " New splits will be at bottom or to the right
 set splitbelow
 set splitright
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Netrw Settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 3
-let g:netrw_altv = 1
-let g:netrw_winsize = 15
-
-augroup ProjectDrawer
-    autocmd!
-    autocmd VimEnter * :Vexplore
-augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Search Settings
@@ -234,7 +217,7 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FZF
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:fzf_layout = {'down': '20%'}
+let g:fzf_layout = {'down': '25%'}
 
 " search filenames
 nmap <LEADER>ff :Files <CR>
@@ -256,6 +239,23 @@ nmap <LEADER>fr :Rg <CR>
 
 " another alias for ripgrep
 nmap <LEADER>rg :Rg <CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Netrw Settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 3
+let g:netrw_altv = 1
+let g:netrw_winsize = 15
+
+augroup ProjectDrawer
+    autocmd!
+    autocmd VimEnter * :Vexplore
+augroup END
+
+" Shortcut Vexplore
+nmap <LEADER>vn :Vexplore<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Misc Utils
