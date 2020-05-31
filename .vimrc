@@ -10,82 +10,113 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+" Cosmetic
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'dracula/vim', {'as': 'dracula'}
+Plug 'vim-python/python-syntax'
+Plug 'octol/vim-cpp-enhanced-highlight'
+" Language Servers
 Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'dracula/vim', {'as': 'dracula'}
-Plug 'tpope/vim-fugitive'
-Plug 'jpalardy/vim-slime'
+Plug 'hashivim/vim-terraform'
+" Utils
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --bin'}
 Plug 'junegunn/fzf.vim'
 Plug 'tomtom/tcomment_vim'
-Plug 'vim-python/python-syntax'
-Plug 'hashivim/vim-terraform'
-Plug 'octol/vim-cpp-enhanced-highlight'
 
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Misc Settings
+" Main Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Ignore case when searching
-set ignorecase
-set smartcase
-set hlsearch
-set incsearch
+set nocompatible
+
+" Yank into system clipboard
 set clipboard=unnamed
 
-let g:python_highlight_all = 1
-syntax on
+" Show line numbers
 set number
+
+" Encodings
 set encoding=utf-8
 set fileencoding=utf-8
-set backspace=indent,eol,start
-set mouse=a
-let mapleader = " "
 
-" Tab & Indent Config
+" Fix backspace
+set backspace=indent,eol,start
+
+" Enable the mouse
+set mouse=a
+
+" Tabs & Indents
 set tabstop=4
 set softtabstop=0
 set shiftwidth=4
 set expandtab
-
-" General Usability
 set scrolloff=5
 set autoindent
+
+" Highlight current line
+set cursorline
+
+" Display text width column
+set colorcolumn=81
+
+" New splits will be at bottom or to the right
+set splitbelow
+set splitright
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Netrw Settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 3
+let g:netrw_altv = 1
+let g:netrw_winsize = 15
+
+augroup ProjectDrawer
+    autocmd!
+    autocmd VimEnter * :Vexplore
+augroup END
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Search Settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
 
 " Search will center on line if found
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
-" JSON formatting
-command! -nargs=0 Json :exe "norm :%!jq\<Return>"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Handy Remaps
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Remap leader
+let mapleader = " "
 
-" escape from the home row
+" Remap escape key
 inoremap fd <ESC>
 vnoremap fd <ESC>
 
-" switch buffers
+" Switch buffers
 nnoremap <silent> gb :bp<CR>
 nnoremap <silent> gB :bn<CR>
 
-" Change cursor between insert and normal mode
-if exists('$TMUX')
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Visual Settings
+" Syntax Highlighting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:terraform_fmt_on_save = 1
+" Enhanded python highlighting (needs to be before syntax)
+let g:python_highlight_all = 1
 
-" C++
+" Syntax highlighting
+syntax on
+
+" C++ Enhanced Highlighting
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
 let g:cpp_class_decl_highlight = 1
@@ -94,7 +125,7 @@ let g:cpp_experimental_template_highlight = 1
 let g:cpp_concepts_highlight = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Visual Settings
+" Color Scheme
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Dracula
 let g:dracula_italic = 0
@@ -105,6 +136,9 @@ if exists('$TMUX')
     let g:dracula_colorterm = 0
 endif
 
+" Airline
+let g:airline#extensions#coc#enabled = 1
+let g:airline_theme = 'dracula'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Coc Nvim
@@ -164,7 +198,7 @@ command! -nargs=0 Sort :call CocAction('runCommand', 'python.sortImports'
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Go Settings
+" GO
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:go_highlight_functions         = 1
 let g:go_highlight_function_calls    = 1
@@ -177,10 +211,6 @@ let g:go_highlight_generate_tags     = 1
 let g:go_highlight_debug             = 1
 let g:go_fmt_command = 'goimports'
 let g:go_auto_type_info = 1
-
-" Airline
-let g:airline#extensions#coc#enabled = 1
-let g:airline_theme = 'dracula'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " File Formatting
@@ -228,8 +258,19 @@ nmap <LEADER>fr :Rg <CR>
 nmap <LEADER>rg :Rg <CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-slime
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:slime_target = "tmux"
-let g:slime_python_ipython = 1
-let g:slime_default_config = {"socket_name": "default", "target_pane": "{right-of}"}
+" Misc Utils
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" JSON formatting
+command! -nargs=0 Json :exe "norm :%!jq\<Return>"
+
+" Change cursor between insert and normal mode
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+
+" Terraform autoformat
+let g:terraform_fmt_on_save = 1
