@@ -90,6 +90,10 @@ vnoremap fd <ESC>
 nnoremap <silent> gb :bp<CR>
 nnoremap <silent> gB :bn<CR>
 
+" Visual Mode Indenting
+vnoremap < <gv
+vnoremap > >gv
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntax Highlighting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -247,15 +251,21 @@ let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 3
 let g:netrw_altv = 1
-let g:netrw_winsize = 15
+let g:netrw_winsize = 20 
 
 augroup ProjectDrawer
     autocmd!
     autocmd VimEnter * :Vexplore
 augroup END
 
+" Unbind <C-l> so it doesn't interfere with split navigation
+nmap <LEADER>rr <Plug>NetrwRefresh
+
 " Shortcut Vexplore
-nmap <LEADER>vn :Vexplore<CR>
+nmap <LEADER>vv :Vexplore<CR>
+
+" Delete netrw buffer once it's hidden
+autocmd FileType netrw setl bufhidden=delete
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Misc Utils
