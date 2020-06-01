@@ -44,6 +44,8 @@ cli:
 	brew install shellcheck
 	brew install rust
 	brew install xsv
+	brew install graphviz
+	brew install xdot
 
 cli_upgrade:
 	brew upgrade tmux
@@ -75,6 +77,8 @@ cli_upgrade:
 	brew upgrade shellcheck
 	brew upgrade rust
 	brew upgrade xsv
+	brew upgrade graphviz
+	brew upgrade xdot
 
 apps:
 	brew cask install iterm2
