@@ -64,6 +64,12 @@ set cursorline
 set splitbelow
 set splitright
 
+" Visual autocomplete for command menu
+set wildmenu
+
+" Highlight matching brackets, parens, etc.
+set showmatch
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Search Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -93,6 +99,9 @@ nnoremap <silent> gB :bn<CR>
 " Visual Mode Indenting
 vnoremap < <gv
 vnoremap > >gv
+
+" Rurn off search highlight
+nnoremap <leader><space> :nohlsearch<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntax Highlighting
