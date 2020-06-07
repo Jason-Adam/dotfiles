@@ -1,6 +1,6 @@
 PYTHON_VERSION := 3.8.2
 
-.PHONY: homebrew terminal cli apps dotfiles language_servers gcloud_sdk
+.PHONY: homebrew terminal cli cli_upgrade apps dotfiles language_servers gcloud_sdk setup_pyenv apple
 
 homebrew:
 	cd
@@ -118,16 +118,3 @@ gcloud_sdk:
 setup_pyenv:
 	pyenv install -v $(PYTHON_VERSION)
 	pyenv global $(PYTHON_VERSION)
-
-apple:
-	# TextEdit - Use Plain Text Mode as default
-	defaults write come.apple.TextEdit RichText -int 0
-	# Dock - enable auto-hide
-	defaults write com.apple.dock autohide -bool true && killall dock
-	# Finder - allow command+q to quit
-	defaults write com.apple.finder QuitMenuItem -bool true && killall Finder
-	# Printing - expand print panel by default
-	defaults write -g PMPrintingExpandedStateForPrint -bool true
-	defaults write -g PMPrintingExpandedStateForPrint2 -bool true
-	# Printing - quit printer app after job completes
-	defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
