@@ -107,6 +107,7 @@ dotfiles:
 	ln -s -f ~/code/dotfiles/coc-settings.json ~/.vim/coc-settings.json
 	ln -s -f ~/code/dotfiles/.gitconfig ~/.gitconfig
 	ln -s -f ~/code/dotfiles/Makevars ~/.R/Makevars
+	ln -s -f ~/code/dotfiles/.vimrc ~/.ideavimrc
 
 language_servers:
 	npm install -g dockerfile-language-server-nodejs
