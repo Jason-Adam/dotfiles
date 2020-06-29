@@ -78,6 +78,7 @@ export PATH=$PATH:"$GOPATH/bin"
 export PATH="$HOME/.pyenv/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$PATH:$HOME/.poetry/bin"
+export PATH="$PATH:$HOME/.cargo/bin"
 eval "$(pyenv init -)"
 
 # Gitignore creation function
@@ -130,7 +131,3 @@ py-repo() {
     py-gitignore
     py-makefile
 }
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/jasonadam/.sdkman"
-[[ -s "/Users/jasonadam/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/jasonadam/.sdkman/bin/sdkman-init.sh"
