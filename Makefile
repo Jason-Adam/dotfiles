@@ -1,6 +1,6 @@
 PYTHON_VERSION := 3.8.2
 
-.PHONY: homebrew terminal cli cli_upgrade apps dotfiles language_servers gcloud_sdk setup_pyenv apple
+.PHONY: homebrew terminal cli cli_upgrade apps dotfiles language_servers setup_rust gcloud_sdk setup_pyenv
 
 homebrew:
 	cd
@@ -34,7 +34,6 @@ cli:
 	brew install ansible
 	brew install gradle
 	brew install gradle-completion
-	brew install bazel
 	brew install awk
 	brew install go
 	brew install jq
@@ -42,10 +41,6 @@ cli:
 	brew install pandoc
 	brew install redis
 	brew install shellcheck
-	brew install rust
-	brew install xsv
-	brew install graphviz
-	brew install xdot
 
 cli_upgrade:
 	brew upgrade tmux
@@ -67,7 +62,6 @@ cli_upgrade:
 	brew upgrade ansible
 	brew upgrade gradle
 	brew upgrade gradle-completion
-	brew upgrade bazel
 	brew upgrade awk
 	brew upgrade go
 	brew upgrade jq
@@ -75,10 +69,6 @@ cli_upgrade:
 	brew upgrade pandoc
 	brew upgrade redis
 	brew upgrade shellcheck
-	brew upgrade rust
-	brew upgrade xsv
-	brew upgrade graphviz
-	brew upgrade xdot
 
 apps:
 	brew cask install iterm2
@@ -107,10 +97,14 @@ dotfiles:
 	ln -s -f ~/code/dotfiles/coc-settings.json ~/.vim/coc-settings.json
 	ln -s -f ~/code/dotfiles/.gitconfig ~/.gitconfig
 	ln -s -f ~/code/dotfiles/Makevars ~/.R/Makevars
+	ln -s -f ~/code/dotfiles/.vimrc ~/.ideavimrc
 
 language_servers:
 	npm install -g dockerfile-language-server-nodejs
 	npm i -g bash-language-server
+
+setup_rust:
+	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 gcloud_sdk:
 	curl https://sdk.cloud.google.com | bash
