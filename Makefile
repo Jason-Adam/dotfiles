@@ -39,7 +39,6 @@ cli:
 	brew install jq
 	brew install llvm
 	brew install pandoc
-	brew install redis
 	brew install shellcheck
 
 cli_upgrade:
@@ -67,7 +66,6 @@ cli_upgrade:
 	brew upgrade jq
 	brew upgrade llvm
 	brew upgrade pandoc
-	brew upgrade redis
 	brew upgrade shellcheck
 
 apps:
