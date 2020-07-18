@@ -3,9 +3,12 @@
     "coc.preferences.hoverTarget": "float",
     "coc.preferences.formatOnSaveFiletypes": [
         "json",
-        "c", "cpp", "go",
+        "c",
+        "cpp",
+        "go",
         "sh",
-        "py"
+        "py",
+        "rust"
     ],
     "languageserver": {
         "bash": {

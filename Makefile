@@ -18,7 +18,6 @@ cli:
 	brew install tmux
 	brew install pyenv
 	brew install kubectl
-	brew install kubectx
 	brew install helm
 	brew install exa
 	brew install node
@@ -31,7 +30,6 @@ cli:
 	brew install opencv
 	brew install terraform
 	brew install terraform-docs
-	brew install ansible
 	brew install gradle
 	brew install gradle-completion
 	brew install awk
@@ -45,7 +43,6 @@ cli_upgrade:
 	brew upgrade tmux
 	brew upgrade pyenv
 	brew upgrade kubectl
-	brew upgrade kubectx
 	brew upgrade helm
 	brew upgrade exa
 	brew upgrade node
@@ -58,7 +55,6 @@ cli_upgrade:
 	brew upgrade opencv
 	brew upgrade terraform
 	brew upgrade terraform-docs
-	brew upgrade ansible
 	brew upgrade gradle
 	brew upgrade gradle-completion
 	brew upgrade awk
@@ -103,6 +99,7 @@ language_servers:
 
 setup_rust:
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+	rustup component add rls rust-analysis rust-src
 
 gcloud_sdk:
 	curl https://sdk.cloud.google.com | bash
