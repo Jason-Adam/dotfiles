@@ -282,14 +282,5 @@ autocmd FileType netrw setl bufhidden=delete
 " JSON formatting
 command! -nargs=0 Json :exe "norm :%!jq\<Return>"
 
-" Change cursor between insert and normal mode
-if exists('$TMUX')
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
-
 " Terraform autoformat
 let g:terraform_fmt_on_save = 1
