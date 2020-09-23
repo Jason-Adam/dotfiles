@@ -45,6 +45,9 @@
     "python.jediEnabled": false,
     "python.linting.enabled": true,
     "python.linting.flake8Enabled": true,
+    "python.linting.flake8Args": [
+        "--extend-ignore=E501"
+    ],
     "python.linting.lintOnSave": true,
     "python.linting.banditEnabled": true,
     "python.linting.pylintEnabled": true,
