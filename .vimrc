@@ -142,10 +142,11 @@ let g:airline_theme = 'dracula'
 set hidden
 set nobackup
 set nowritebackup
+set cmdheight=2
 set shortmess+=c
 set signcolumn=yes
 
-inoremap <silent> <expr><Tab>
+inoremap <silent><expr> <Tab>
             \ pumvisible() ? "\<C-n>" :
             \ <SID>check_back_space() ? "\<TAB>" :
             \ coc#refresh()
