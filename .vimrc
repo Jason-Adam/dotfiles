@@ -288,6 +288,3 @@ command! -nargs=0 Json :exe "norm :%!jq\<Return>"
 
 " Terraform autoformat
 let g:terraform_fmt_on_save = 1
-
-" ctags
-alias ctags="`brew --prefix`/bin/ctags"
