@@ -231,7 +231,10 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FZF
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:fzf_layout = {'down': '25%'}
+" let g:fzf_layout = {'down': '25%'}
+
+let g:fzf_preview_window = 'right:50%'
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6  }  }
 
 " search filenames
 nmap <LEADER>ff :Files <CR>
@@ -285,3 +288,6 @@ command! -nargs=0 Json :exe "norm :%!jq\<Return>"
 
 " Terraform autoformat
 let g:terraform_fmt_on_save = 1
+
+" ctags
+alias ctags="`brew --prefix`/bin/ctags"
