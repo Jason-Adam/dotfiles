@@ -36,6 +36,12 @@ set nocompatible
 " Yank into system clipboard
 set clipboard=unnamed
 
+" Don't wrap lines
+set nowrap
+
+" No swap files
+set noswapfile
+
 " Show line numbers
 set number
 
@@ -264,7 +270,7 @@ let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 3
 let g:netrw_altv = 1
-let g:netrw_winsize = 20 
+let g:netrw_winsize = 20
 
 augroup ProjectDrawer
     autocmd!
