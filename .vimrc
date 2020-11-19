@@ -25,6 +25,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --bin'}
 Plug 'junegunn/fzf.vim'
 Plug 'tomtom/tcomment_vim'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
@@ -150,15 +151,7 @@ set nobackup
 set nowritebackup
 set cmdheight=2
 set shortmess+=c
-
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-if has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
+set signcolumn=auto
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
