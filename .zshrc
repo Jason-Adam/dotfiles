@@ -39,6 +39,9 @@ alias vimfzf='vim $(fzf)'
 # Syntax highlighting
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# Completion for kitty
+kitty + complete setup zsh | source /dev/stdin
+
 ###################################################
 # Plugins
 ###################################################
