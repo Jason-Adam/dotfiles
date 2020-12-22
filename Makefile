@@ -92,6 +92,7 @@ dotfiles:
 	ln -s -f ~/code/dotfiles/.gitconfig ~/.gitconfig
 	ln -s -f ~/code/dotfiles/Makevars ~/.R/Makevars
 	ln -s -f ~/code/dotfiles/.vimrc ~/.ideavimrc
+	ln -s -f ~/code/dotfiles/kitty.conf ~/.config/kitty/kitty.conf
 
 language_servers:
 	npm install -g dockerfile-language-server-nodejs
