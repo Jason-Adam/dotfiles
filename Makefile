@@ -1,11 +1,11 @@
 PYTHON_VERSION := 3.8.2
 
-.PHONY: homebrew terminal cli cli_upgrade apps dotfiles language_servers setup_rust gcloud_sdk setup_pyenv
-
+.PHONY: homebrew
 homebrew:
 	cd
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
+.PHONY: terminal
 terminal:
 	cd
 	xcode-select --install
@@ -14,11 +14,11 @@ terminal:
 	ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
 	git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
+.PHONY: cli
 cli:
 	brew install tmux
 	brew install pyenv
 	brew install kubectl
-	brew install helm
 	brew install exa
 	brew install node
 	brew install npm
@@ -26,62 +26,38 @@ cli:
 	brew install bat
 	brew install openjdk
 	brew install rg
-	brew install cmake
-	brew install opencv
-	brew install terraform
-	brew install terraform-docs
 	brew install gradle
-	brew install gradle-completion
 	brew install awk
 	brew install go
 	brew install jq
 	brew install llvm
 	brew install pandoc
 	brew install shellcheck
+	brew install k9s
+	brew install tmux-mem-cpu-load
+	brew install mongodb-community
+	brew install mongodb-compass
+	brew install dbeaver-community
+	brew install kitty
+	brew install slack
+	brew install keeper-password-manager
+	brew install alfred
+	brew install spectacle
+	brew install docker
+	brew install r
+	brew install rstudio
+	brew install google-chrome
+	brew install intellij-idea-ce
+	brew install google-backup-and-sync
+	brew install gpg-suite-no-mail
+	brew install spotify
+	brew install visual-studio-code
 
+.PHONY: cli_upgrade
 cli_upgrade:
-	brew upgrade tmux
-	brew upgrade pyenv
-	brew upgrade kubectl
-	brew upgrade helm
-	brew upgrade exa
-	brew upgrade node
-	brew upgrade npm
-	brew upgrade ctags
-	brew upgrade bat
-	brew upgrade openjdk
-	brew upgrade rg
-	brew upgrade cmake
-	brew upgrade opencv
-	brew upgrade terraform
-	brew upgrade terraform-docs
-	brew upgrade gradle
-	brew upgrade gradle-completion
-	brew upgrade awk
-	brew upgrade go
-	brew upgrade jq
-	brew upgrade llvm
-	brew upgrade pandoc
-	brew upgrade shellcheck
+	brew upgrade
 
-apps:
-	brew cask install iterm2
-	brew cask install slack
-	brew cask install keeper-password-manager
-	brew cask install alfred
-	brew cask install spectacle
-	brew cask install docker
-	brew cask install r
-	brew cask install rstudio
-	brew cask install google-chrome
-	brew cask install intellij-idea
-	brew cask install clion
-	brew cask install google-backup-and-sync
-	brew cask install gpg-suite-no-mail
-	brew cask install spotify
-	brew cask install visual-studio-code
-	brew cask install zoom
-
+.PHONY: dotfiles
 dotfiles:
 	mkdir code && cd code
 	git clone https://github.com/Jason-Adam/dotfiles.git
@@ -93,18 +69,23 @@ dotfiles:
 	ln -s -f ~/code/dotfiles/Makevars ~/.R/Makevars
 	ln -s -f ~/code/dotfiles/.vimrc ~/.ideavimrc
 	ln -s -f ~/code/dotfiles/kitty.conf ~/.config/kitty/kitty.conf
+	ln -s -f ~/code/dotfiles/.k9s/skin.yml ~/.k9s/skin.yml
 
+.PHONY: language_servers
 language_servers:
 	npm install -g dockerfile-language-server-nodejs
 	npm i -g bash-language-server
 
+.PHONY: setup_rust
 setup_rust:
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 	rustup component add rls rust-analysis rust-src
 
+.PHONY: gcloud_sdk
 gcloud_sdk:
 	curl https://sdk.cloud.google.com | bash
 
+.PHONY: setup_pyenv
 setup_pyenv:
 	pyenv install -v $(PYTHON_VERSION)
 	pyenv global $(PYTHON_VERSION)
