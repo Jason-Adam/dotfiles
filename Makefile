@@ -34,6 +34,7 @@ cli:
 	brew install pandoc
 	brew install shellcheck
 	brew install k9s
+	brew install gh
 	brew install tmux-mem-cpu-load
 	brew install mongodb-community
 	brew install mongodb-compass
