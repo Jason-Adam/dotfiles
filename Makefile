@@ -2,12 +2,10 @@ PYTHON_VERSION := 3.8.2
 
 .PHONY: homebrew
 homebrew:
-	cd
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 .PHONY: terminal
 terminal:
-	cd
 	xcode-select --install
 	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
@@ -60,8 +58,8 @@ cli_upgrade:
 
 .PHONY: dotfiles
 dotfiles:
-	mkdir ~/code && cd ~/code
-	git clone https://github.com/Jason-Adam/dotfiles.git
+	mkdir ~/code
+	git clone https://github.com/Jason-Adam/dotfiles.git ~/code
 	ln -s -f ~/code/dotfiles/.vimrc ~/.vimrc
 	ln -s -f ~/code/dotfiles/.zshrc ~/.zshrc
 	ln -s -f ~/code/dotfiles/.tmux.conf ~/.tmux.conf
@@ -93,9 +91,7 @@ setup_pyenv:
 
 .PHONY: sh_scripts
 sh_scripts:
-	cd ~/code
-	git clone https://github.com/Jason-Adam/sh-scripts.git
-	cd ~/code/sh-scripts
+	git clone https://github.com/Jason-Adam/sh-scripts.git ~/code
 	mkdir ~/bin
 	ln -s -f ~/code/sh-scripts/py-deps.sh ~/bin/py-deps
 	ln -s -f ~/code/sh-scripts/py-gitignore.sh ~/bin/py-gitignore
