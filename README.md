@@ -6,7 +6,7 @@ You can install everything at once by running the following command:
 
 ```bash  
 mkdir -p ~/code \
-    && git clone https://github.com/Jason-Adam/dotfiles.git \
+    && git clone https://github.com/Jason-Adam/dotfiles.git ~/code \
     && . ~/code/dotfiles/_install.sh
 ```  
 
