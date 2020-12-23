@@ -60,7 +60,7 @@ cli_upgrade:
 
 .PHONY: dotfiles
 dotfiles:
-	mkdir code && cd code
+	mkdir ~/code && cd ~/code
 	git clone https://github.com/Jason-Adam/dotfiles.git
 	ln -s -f ~/code/dotfiles/.vimrc ~/.vimrc
 	ln -s -f ~/code/dotfiles/.zshrc ~/.zshrc
@@ -90,3 +90,13 @@ gcloud_sdk:
 setup_pyenv:
 	pyenv install -v $(PYTHON_VERSION)
 	pyenv global $(PYTHON_VERSION)
+
+.PHONY: sh_scripts
+sh_scripts:
+	cd ~/code
+	git clone https://github.com/Jason-Adam/sh-scripts.git
+	cd ~/code/sh-scripts
+	mkdir ~/bin
+	ln -s -f ~/code/sh-scripts/py-deps.sh ~/bin/py-deps
+	ln -s -f ~/code/sh-scripts/py-gitignore.sh ~/bin/py-gitignore
+	ln -s -f ~/code/sh-scripts/load-env.sh ~/bin/load-env

@@ -76,58 +76,8 @@ if [ -f '/Users/jasonadam/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 export PATH=$PATH:"$GOPATH/bin"
 export PATH="$HOME/.pyenv/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$PATH:$HOME/.poetry/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
 eval "$(pyenv init -)"
-
-# Gitignore creation function
-function gi() { curl -sLw n https://www.gitignore.io/api/$@ ;}
-
-# Load Env Function
-load-env() {
-    set -o allexport;
-    source $1;
-    set +o allexport;
-}
-
-# Load python linters in virtual env
-load-py-deps() {
-    py_dev=(
-        "pylint" 
-        "flake8" 
-        "bandit" 
-        "mypy" 
-        "black" 
-        "isort" 
-        "pytest" 
-        "ipykernel"
-    )
-    if [ "$PIPENV_ACTIVE" ]; then
-        for i in "${py_dev[@]}"; do
-            pipenv install "$i" --dev --skip-lock
-        done;
-    elif [ "$POETRY_ACTIVE" ]; then
-        for i in "${py_dev[@]}"; do
-            poetry add "$i" --dev 
-        done;
-    else
-        echo "please activate a virtualenv and rerun"
-    fi;
-}
-
-# Python Gitignore
-py-gitignore() {
-    gi python,macos,vim,venv,visualstudiocode,jupyternotebooks,jetbrains > .gitignore
-    echo ".python-version/" >> .gitignore
-    echo ".vscode/" >> .gitignore
-}
-
-py-makefile() {
-    curl -s https://gist.githubusercontent.com/jadamaptive/3aac96c32b462fdbb1e13c8ac12f9b0b/raw/8dfa720a4f376297234c407e7015b6b59f7ba282/Makefile > Makefile
-}
-
-py-repo() {
-    py-gitignore
-    py-makefile
-}
