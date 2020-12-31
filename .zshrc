@@ -50,6 +50,7 @@ plugins=(
     docker-compose
     kubectl 
     web-search 
+    python
 )
 
 # K8 autocomplete
