@@ -288,6 +288,11 @@ augroup docker_files
     au BufRead,BufNewFile Dockerfile.* set syntax=Dockerfile
 augroup END
 
+augroup Markdown
+  autocmd!
+  autocmd FileType markdown set wrap
+augroup END
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FZF
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
