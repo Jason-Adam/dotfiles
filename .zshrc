@@ -79,6 +79,14 @@ export PATH=$PATH:"$GOPATH/bin"
 export PATH="$HOME/.pyenv/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-export PATH="$PATH:$HOME/.poetry/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
 eval "$(pyenv init -)"
+
+# Load Environment variable file for python virtual envs
+load-env() {
+    set -o allexport && \
+        source "$1" && \
+        set +o allexport;
+}
+
+export PATH="$HOME/.poetry/bin:$PATH"
