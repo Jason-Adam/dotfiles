@@ -37,6 +37,10 @@ set nocompatible
 " Yank into system clipboard
 set clipboard=unnamed
 
+" Persistent undo
+set undodir=~/.vim/undodir
+set undofile
+
 " Don't wrap lines
 set nowrap
 
