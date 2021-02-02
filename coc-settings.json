@@ -8,7 +8,10 @@
         "go",
         "sh",
         "py",
-        "rust"
+        "rust",
+        "js",
+        "ts",
+        "html"
     ],
     "languageserver": {
         "dockerfile": {
