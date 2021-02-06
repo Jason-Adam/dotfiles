@@ -13,6 +13,7 @@ dotfiles() {
 	ln -s -f ~/code/dotfiles/.vimrc ~/.ideavimrc;
 	ln -s -f ~/code/dotfiles/kitty.conf ~/.config/kitty/kitty.conf;
 	ln -s -f ~/code/dotfiles/.k9s/skin.yml ~/.k9s/skin.yml;
+    ln -s -f ~/code/dotfiles/.ctags ~/.ctags;
 }
 
 dotfiles;

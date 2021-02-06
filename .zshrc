@@ -35,6 +35,7 @@ COMPLETION_WAITING_DOTS="true"
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
 export FZF_DEFAULT_OPTS='--preview "bat {}"'
 alias vimfzf='vim $(fzf)'
+alias ctags="`brew --prefix`/bin/ctags"
 
 # Syntax highlighting
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -81,6 +82,7 @@ export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$PATH:$HOME/.cargo/bin"
 eval "$(pyenv init -)"
+export PATH="$HOME/.poetry/bin:$PATH"
 
 # Load Environment variable file for python virtual envs
 load-env() {
@@ -88,5 +90,3 @@ load-env() {
         source "$1" && \
         set +o allexport;
 }
-
-export PATH="$HOME/.poetry/bin:$PATH"
