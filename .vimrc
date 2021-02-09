@@ -16,10 +16,11 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'vim-python/python-syntax'
 Plug 'octol/vim-cpp-enhanced-highlight'
-" Language Servers
-Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
+
+" Language Servers & Linting
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'hashivim/vim-terraform'
+Plug 'dense-analysis/ale'
+
 " Utils
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --bin'}
@@ -28,6 +29,89 @@ Plug 'tomtom/tcomment_vim'
 Plug 'airblade/vim-gitgutter'
 
 call plug#end()
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ALE
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ale_disable_lsp = 1
+let g:ale_sign_column_always = 1
+let g:airline#extensions#ale#enabled = 1
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_save = 1
+let g:ale_fix_on_save = 1
+let g:ale_linters_explicit = 1
+
+let g:ale_fixers = {
+\    "python": [
+\        "add_blank_lines_for_python_control_statements",
+\        "black",
+\        "isort",
+\        "remove_trailing_lines",
+\        "trim_whitespace"
+\    ],
+\    "sh": [
+\        "remove_trailing_lines",
+\        "trim_whitespace"
+\    ],
+\    "c": [
+\        "clangtidy",
+\        "remove_trailing_lines",
+\        "trim_whitespace"
+\    ],
+\    "cpp": [
+\        "clangtidy",
+\        "remove_trailing_lines",
+\        "trim_whitespace"
+\    ],
+\    "go": [
+\        "gofmt",
+\        "goimports",
+\        "trim_whitespace",
+\        "remove_trailing_lines"
+\    ],
+\   "rust": [
+\        "rustfmt", 
+\        "trim_whitespace", 
+\        "remove_trailing_lines"
+\   ]
+\}
+
+let g:ale_linters = {
+\    "python": [
+\        "flake8", 
+\        "bandit", 
+\        "pylint",
+\        "mypy"
+\    ],
+\    "sh": ["shellcheck"],
+\    "c": [
+\        "cc",
+\        "ccls",
+\        "cppcheck"
+\    ],
+\    "cpp": [
+\        "cc",
+\        "ccls",
+\        "cppcheck"
+\    ],
+\    "go": [
+\        "gotype",
+\        "golint",
+\        "gofmt",
+\        "gopls",
+\        "gobuild",
+\        "govet"
+\    ],
+\   "rust": [
+\        "cargo", 
+\        "rls", 
+\        "rustc"
+\   ]
+\}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Main Settings
@@ -232,48 +316,6 @@ command! -nargs=0 Sort :call CocAction('runCommand', 'python.sortImports'
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" GO
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_generate_tags = 1
-let g:go_highlight_debug = 1
-let g:go_highlight_extra_types = 1
-let g:go_fmt_command = 'goimports'
-let g:go_auto_type_info = 1
-let g:go_list_type = 'quickfix'
-let g:go_def_mapping_enabled = 0
-set updatetime=100
-
-" run :GoBuild or :GoTestCompile based on the go file
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#test#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
-
-autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
-
-" easier test running
-autocmd FileType go nmap <leader>t <Plug>(go-test)
-
-" easier code coverage check
-autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
-
-" Move through quickfix list
-map <C-n> :cnext<CR>
-map <C-m> :cprevious<CR>
-nnoremap <leader>a :cclose<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " File Formatting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup yaml_files
@@ -354,6 +396,3 @@ autocmd FileType netrw setl bufhidden=delete
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " JSON formatting
 command! -nargs=0 Json :exe "norm :%!jq\<Return>"
-
-" Terraform autoformat
-let g:terraform_fmt_on_save = 1

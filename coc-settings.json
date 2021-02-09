@@ -14,6 +14,106 @@
         "html"
     ],
     "languageserver": {
+        "python": {
+            "command": "python",
+            "args": [
+                "-mpyls",
+                "-vv",
+                "--log-file",
+                "/tmp/lsp_python.log"
+            ],
+            "trace.server": "verbose",
+            "filetypes": [
+                "python"
+            ],
+            "settings": {
+                "pyls": {
+                    "enable": true,
+                    "trace": {
+                        "server": "verbose"
+                    },
+                    "commandPath": "",
+                    "configurationSources": [
+                        "pycodestyle"
+                    ],
+                    "plugins": {
+                        "jedi_completion": {
+                            "enabled": true
+                        },
+                        "jedi_hover": {
+                            "enabled": true
+                        },
+                        "jedi_references": {
+                            "enabled": true
+                        },
+                        "jedi_signature_help": {
+                            "enabled": true
+                        },
+                        "jedi_symbols": {
+                            "enabled": true,
+                            "all_scopes": true
+                        },
+                        "mccabe": {
+                            "enabled": false,
+                            "threshold": 15
+                        },
+                        "preload": {
+                            "enabled": true
+                        },
+                        "pycodestyle": {
+                            "enabled": false
+                        },
+                        "pydocstyle": {
+                            "enabled": false,
+                            "match": "(?!test_).*\\.py",
+                            "matchDir": "[^\\.].*"
+                        },
+                        "pyflakes": {
+                            "enabled": false
+                        },
+                        "rope_completion": {
+                            "enabled": false
+                        },
+                        "yapf": {
+                            "enabled": false
+                        }
+                    }
+                }
+            }
+        },
+        "ccls": {
+            "command": "ccls",
+            "args": [
+                "--log-file=/tmp/ccls.log",
+                "-v=1"
+            ],
+            "filetypes": [
+                "c",
+                "cc",
+                "cpp",
+                "c++",
+                "objc",
+                "objcpp"
+            ],
+            "rootPatterns": [
+                ".ccls",
+                "compile_commands.json"
+            ],
+            "initializationOptions": {
+                "cache": {
+                    "directory": "/tmp/ccls"
+                },
+                "client": {
+                    "snippetSupport": true
+                },
+                "index": {
+                    "onChange": true
+                },
+                "highlight": {
+                    "lsRanges": true
+                }
+            }
+        },
         "dockerfile": {
             "command": "docker-langserver",
             "filetypes": [
@@ -34,23 +134,12 @@
             ]
         }
     },
+    "diagnostic.displayByAle": true,
     "suggest.autoTrigger": "always",
     "suggest.noselect": true,
     "suggest.minTriggerInputLength": 1,
     "suggest.enablePreview": false,
     "suggest.fixInsertedWord": true,
     "json.enable": true,
-    "json.format.enable": true,
-    "python.autoComplete.addBrackets": true,
-    "python.formatting.provider": "black",
-    "python.jediEnabled": false,
-    "python.linting.enabled": true,
-    "python.linting.flake8Enabled": true,
-    "python.linting.flake8Args": [
-        "--extend-ignore=E501"
-    ],
-    "python.linting.lintOnSave": true,
-    "python.linting.banditEnabled": true,
-    "python.linting.pylintEnabled": true,
-    "python.linting.mypyEnabled": true
+    "json.format.enable": true
 }
