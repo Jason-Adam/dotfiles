@@ -54,6 +54,7 @@ let g:ale_fixers = {
 \        "trim_whitespace"
 \    ],
 \    "sh": [
+\        "shfmt",
 \        "remove_trailing_lines",
 \        "trim_whitespace"
 \    ],
