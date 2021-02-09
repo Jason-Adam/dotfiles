@@ -20,6 +20,7 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 " Language Servers & Linting
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " Utils
 Plug 'christoomey/vim-tmux-navigator'
@@ -113,6 +114,32 @@ let g:ale_linters = {
 \        "rustc"
 \   ]
 \}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Go
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Turn off gopls (coc.nvim already running)
+let g:go_gopls_enabled = 0
+let g:go_code_completion_enabled = 0
+let g:go_auto_type_info = 0
+let g:go_jump_to_error = 0
+let g:go_fmt_autosave = 0
+let g:go_mod_fmt_autosave = 0
+let g:go_doc_keywordprg_enabled = 0
+
+" Extra Syntax Highlighting
+let g:go_highlight_extra_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_parameters = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_variable_declarations = 1
+let g:go_highlight_variable_assignments = 1
+let g:go_highlight_diagnostic_errors = 0
+let g:go_highlight_diagnostic_warnings = 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Main Settings
