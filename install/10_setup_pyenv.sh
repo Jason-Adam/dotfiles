@@ -1,13 +1,9 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-set -e;
+set -e
 
 # Install Python Version
 PYTHON_VERSION=3.8.2
 
-setup_pyenv() {
-	pyenv install -v "$PYTHON_VERSION";
-	pyenv global "$PYTHON_VERSION";
-}
-
-setup_pyenv;
+pyenv install -v "$PYTHON_VERSION" &&
+    pyenv global "$PYTHON_VERSION"

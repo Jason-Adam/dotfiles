@@ -1,11 +1,7 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-set -e;
+set -e
 
 # Create directories needed for additional install steps
-dirs() {
-    mkdir -p ~/code;
-    mkdir -p ~/bin;
-}
-
-dirs;
+mkdir -p "$HOME"/code
+mkdir -p "$HOME"/bin

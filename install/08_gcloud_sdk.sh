@@ -1,10 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-set -e;
+set -e
 
 # Install Gcloud SDK
-gcloud_sdk() {
-	curl https://sdk.cloud.google.com | bash;
-}
-
-gcloud_sdk;
+curl https://sdk.cloud.google.com | bash

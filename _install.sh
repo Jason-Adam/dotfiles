@@ -1,8 +1,8 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-set -e;
+set -e
 
 # Run All Install Scripts
-for f in $(ls ~/code/dotfiles/install); do
-    . ~/code/dotfiles/install/"$f";
-done;
+for file in install/*.sh; do
+    ./install/"$file"
+done
