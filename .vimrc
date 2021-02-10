@@ -53,7 +53,11 @@ let g:ale_fixers = {
 \    "cpp": ["clangtidy", "remove_trailing_lines", "trim_whitespace"],
 \    "go": ["gofmt", "goimports", "trim_whitespace", "remove_trailing_lines"],
 \    "rust": ["rustfmt", "trim_whitespace", "remove_trailing_lines"],
-\    "json": ["jq", "remove_trailing_lines", "trim_whitespace"]
+\    "json": ["jq", "remove_trailing_lines", "trim_whitespace"],
+\    "javascript": ["prettier", "remove_trailing_lines", "trim_whitespace"],
+\    "typescript": ["prettier", "remove_trailing_lines", "trim_whitespace"],
+\    "html": ["prettier", "remove_trailing_lines", "trim_whitespace"],
+\    "sql": ["pgformatter", "remove_trailing_lines", "trim_whitespace"]
 \}
 
 let g:ale_linters = {
@@ -63,7 +67,10 @@ let g:ale_linters = {
 \    "cpp": ["cc", "ccls", "cppcheck"],
 \    "go": ["gotype", "golint", "gofmt", "gopls", "gobuild", "govet"],
 \    "rust": ["cargo", "rls", "rustc"],
-\    "json": ["jq"]
+\    "json": ["jq"],
+\    "javascript": ["eslint", "tsserver"],
+\    "typescript": ["eslint", "tsserver"],
+\    "html": ["alex"]
 \}
 
 let g:ale_python_pylint_options = "--disable=C0111,C0112,C0301,C0302"
