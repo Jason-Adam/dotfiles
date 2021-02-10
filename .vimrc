@@ -47,73 +47,28 @@ let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 1
 
 let g:ale_fixers = {
-\    "python": [
-\        "add_blank_lines_for_python_control_statements",
-\        "black",
-\        "isort",
-\        "remove_trailing_lines",
-\        "trim_whitespace"
-\    ],
-\    "sh": [
-\        "shfmt",
-\        "remove_trailing_lines",
-\        "trim_whitespace"
-\    ],
-\    "c": [
-\        "clangtidy",
-\        "remove_trailing_lines",
-\        "trim_whitespace"
-\    ],
-\    "cpp": [
-\        "clangtidy",
-\        "remove_trailing_lines",
-\        "trim_whitespace"
-\    ],
-\    "go": [
-\        "gofmt",
-\        "goimports",
-\        "trim_whitespace",
-\        "remove_trailing_lines"
-\    ],
-\   "rust": [
-\        "rustfmt", 
-\        "trim_whitespace", 
-\        "remove_trailing_lines"
-\   ]
+\    "python": ["add_blank_lines_for_python_control_statements", "black", "isort", "remove_trailing_lines", "trim_whitespace"],
+\    "sh": ["shfmt", "remove_trailing_lines", "trim_whitespace"],
+\    "c": ["clangtidy", "remove_trailing_lines", "trim_whitespace"],
+\    "cpp": ["clangtidy", "remove_trailing_lines", "trim_whitespace"],
+\    "go": ["gofmt", "goimports", "trim_whitespace", "remove_trailing_lines"],
+\    "rust": ["rustfmt", "trim_whitespace", "remove_trailing_lines"],
+\    "json": ["jq", "remove_trailing_lines", "trim_whitespace"]
 \}
 
 let g:ale_linters = {
-\    "python": [
-\        "flake8", 
-\        "bandit", 
-\        "pylint",
-\        "mypy"
-\    ],
+\    "python": ["flake8", "bandit", "pylint", "mypy"],
 \    "sh": ["shellcheck"],
-\    "c": [
-\        "cc",
-\        "ccls",
-\        "cppcheck"
-\    ],
-\    "cpp": [
-\        "cc",
-\        "ccls",
-\        "cppcheck"
-\    ],
-\    "go": [
-\        "gotype",
-\        "golint",
-\        "gofmt",
-\        "gopls",
-\        "gobuild",
-\        "govet"
-\    ],
-\   "rust": [
-\        "cargo", 
-\        "rls", 
-\        "rustc"
-\   ]
+\    "c": ["cc", "ccls", "cppcheck"],
+\    "cpp": ["cc", "ccls", "cppcheck"],
+\    "go": ["gotype", "golint", "gofmt", "gopls", "gobuild", "govet"],
+\    "rust": ["cargo", "rls", "rustc"],
+\    "json": ["jq"]
 \}
+
+let g:ale_python_pylint_options = "--disable=C0111,C0112,C0301,C0302"
+let g:ale_python_flake8_options = "--ignore=E501"
+let g:ale_python_mypy_options = "--ignore-missing-imports"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Go
@@ -223,7 +178,7 @@ nnoremap <silent> gB :bn<CR>
 vnoremap < <gv
 vnoremap > >gv
 
-" Rurn off search highlight
+" Turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -370,8 +325,6 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FZF
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let g:fzf_layout = {'down': '25%'}
-
 let g:fzf_preview_window = 'right:50%'
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6  }  }
 
@@ -418,9 +371,3 @@ nmap <LEADER>vv :Vexplore<CR>
 
 " Delete netrw buffer once it's hidden
 autocmd FileType netrw setl bufhidden=delete
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Misc Utils
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" JSON formatting
-command! -nargs=0 Json :exe "norm :%!jq\<Return>"
