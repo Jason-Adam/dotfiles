@@ -139,6 +139,5 @@
   "suggest.noselect": true,
   "suggest.minTriggerInputLength": 1,
   "suggest.enablePreview": false,
-  "suggest.fixInsertedWord": true,
-  "json.enable": true
+  "suggest.fixInsertedWord": true
 }
