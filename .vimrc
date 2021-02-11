@@ -49,8 +49,8 @@ let g:ale_linters_explicit = 1
 let g:ale_fixers = {
 \    "python": ["add_blank_lines_for_python_control_statements", "black", "isort", "remove_trailing_lines", "trim_whitespace"],
 \    "sh": ["shfmt", "remove_trailing_lines", "trim_whitespace"],
-\    "c": ["clangtidy", "remove_trailing_lines", "trim_whitespace"],
-\    "cpp": ["clangtidy", "remove_trailing_lines", "trim_whitespace"],
+\    "c": ["clang-format", "clangtidy", "remove_trailing_lines", "trim_whitespace"],
+\    "cpp": ["clang-format","clangtidy", "remove_trailing_lines", "trim_whitespace"],
 \    "go": ["gofmt", "goimports", "trim_whitespace", "remove_trailing_lines"],
 \    "rust": ["rustfmt", "trim_whitespace", "remove_trailing_lines"],
 \    "json": ["jq", "remove_trailing_lines", "trim_whitespace"],
