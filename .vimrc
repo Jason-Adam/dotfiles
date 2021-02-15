@@ -82,6 +82,7 @@ let g:ale_python_mypy_options = "--ignore-missing-imports"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Turn off gopls (coc.nvim already running)
 let g:go_gopls_enabled = 0
+let g:go_def_mapping_enabled = 0
 let g:go_code_completion_enabled = 0
 let g:go_auto_type_info = 0
 let g:go_jump_to_error = 0
