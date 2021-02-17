@@ -3,6 +3,7 @@
 ###################################################
 # Gopath
 export GOPATH=$HOME/go
+export PATH="$PATH:$(go env GOPATH)/bin"
 
 # Path to your oh-my-zsh installation.
 ZSH_DISABLE_COMPFIX=true
