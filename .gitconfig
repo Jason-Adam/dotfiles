@@ -7,7 +7,7 @@
     editor = vim
 
 [web]
-    browser = google-chrome
+    browser = brave-browser
 
 [alias]
     br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
