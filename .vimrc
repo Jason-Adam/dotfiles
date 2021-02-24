@@ -21,6 +21,7 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'jpalardy/vim-slime', { 'branch': 'main' }
 
 " Utils
 Plug 'christoomey/vim-tmux-navigator'
@@ -359,7 +360,7 @@ nmap <LEADER>rg :Rg <CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Netrw Settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 3
@@ -379,3 +380,9 @@ nmap <LEADER>vv :Vexplore<CR>
 
 " Delete netrw buffer once it's hidden
 autocmd FileType netrw setl bufhidden=delete
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim-Slime
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:slime_target = "tmux"
+let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
