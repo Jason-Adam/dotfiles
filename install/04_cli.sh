@@ -28,7 +28,6 @@ tools="
     mongodb-compass
     dbeaver-community
     kitty
-    slack
     keeper-password-manager
     alfred
     spectacle
@@ -42,6 +41,8 @@ tools="
     spotify
     visual-studio-code
     shfmt
+    scala
+    sbt
 "
 
 for tool in $tools; do
