@@ -43,6 +43,7 @@ tools="
     shfmt
     scala
     sbt
+    htop
 "
 
 for tool in $tools; do
