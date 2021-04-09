@@ -2,9 +2,14 @@
     name = Jason Adam
     email = 22adamj22@gmail.com
     username = Jason-Adam
+    signingKey = E8E0CE80BA41321B
+
+[credential "https://github.com"]
+    username = Jason-Adam
 
 [core]
     editor = vim
+    excludesFile = ~/.gitignore_global
 
 [web]
     browser = brave-browser
@@ -12,6 +17,7 @@
 [alias]
     br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
     lg = !git log --pretty=format:\"%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(dim green)(%cr) [%an]\" --abbrev-commit -30
-	ctags = !.git/hooks/ctags
+    ctags = !.git/hooks/ctags
+
 [init]
-	templatedir = /Users/jasonadam/.git_template
+    templatedir = /Users/jasonadam/.git_template
