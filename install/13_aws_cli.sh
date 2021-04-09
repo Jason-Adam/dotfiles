@@ -2,9 +2,8 @@
 
 set -e
 
-cd "$HOME" &&
-    curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg" &&
-    sudo installer -pkg AWSCLIV2.pkg -target /
+curl https://awscli.amazonaws.com/AWSCLIV2.pkg -o "$HOME"/AWSCLIV2.pkg &&
+    sudo installer -pkg "$HOME"/AWSCLIV2.pkg -target "$HOME"/
 
 which aws
 aws --version
