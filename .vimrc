@@ -1,7 +1,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" get plugin manager if we don't already have it
+" Get plugin manager if we don't already have it
 if empty(glob('~/.vim/autoload/plug.vim'))
  Filessilent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -48,30 +48,113 @@ let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 1
 
 let g:ale_fixers = {
-\    "python": ["add_blank_lines_for_python_control_statements", "black", "isort", "remove_trailing_lines", "trim_whitespace"],
-\    "sh": ["shfmt", "remove_trailing_lines", "trim_whitespace"],
-\    "c": ["clang-format", "clangtidy", "remove_trailing_lines", "trim_whitespace"],
-\    "cpp": ["clang-format","clangtidy", "remove_trailing_lines", "trim_whitespace"],
-\    "go": ["gofmt", "goimports", "trim_whitespace", "remove_trailing_lines"],
-\    "rust": ["rustfmt", "trim_whitespace", "remove_trailing_lines"],
-\    "json": ["jq", "remove_trailing_lines", "trim_whitespace"],
-\    "javascript": ["prettier", "remove_trailing_lines", "trim_whitespace"],
-\    "typescript": ["prettier", "remove_trailing_lines", "trim_whitespace"],
-\    "html": ["prettier", "remove_trailing_lines", "trim_whitespace"],
-\    "sql": ["pgformatter", "remove_trailing_lines", "trim_whitespace"]
+    \"python": [
+        \"add_blank_lines_for_python_control_statements", 
+        \"black", 
+        \"isort", 
+        \"remove_trailing_lines", 
+        \"trim_whitespace"
+    \],
+    \"sh": [
+        \"shfmt",
+        \"remove_trailing_lines",
+        \"trim_whitespace"
+    \],
+    \"c": [
+        \"clang-format",
+        \"clangtidy",
+        \"remove_trailing_lines",
+        \"trim_whitespace"
+    \],
+    \"cpp": [
+        \"clang-format",
+        \"clangtidy",
+        \"remove_trailing_lines",
+        \"trim_whitespace"
+    \],
+    \"go": [
+        \"gofmt",
+        \"goimports",
+        \"trim_whitespace",
+        \"remove_trailing_lines"
+    \],
+    \"rust": [
+        \"rustfmt",
+        \"trim_whitespace",
+        \"remove_trailing_lines"
+    \],
+    \"json": [
+        \"jq",
+        \"remove_trailing_lines",
+        \"trim_whitespace"
+    \],
+    \"javascript": [
+        \"prettier",
+        \"remove_trailing_lines",
+        \"trim_whitespace"
+    \],
+    \"typescript": [
+        \"prettier",
+        \"remove_trailing_lines",
+        \"trim_whitespace",
+        \"tslint"
+    \],
+    \"html": [
+        \"prettier",
+        \"remove_trailing_lines",
+        \"trim_whitespace"
+    \],
+    \"sql": [
+        \"pgformatter",
+        \"remove_trailing_lines",
+        \"trim_whitespace"
+    \]
 \}
 
 let g:ale_linters = {
-\    "python": ["flake8", "bandit", "pylint", "mypy"],
-\    "sh": ["shellcheck"],
-\    "c": ["cc", "ccls", "cppcheck"],
-\    "cpp": ["cc", "ccls", "cppcheck"],
-\    "go": ["gotype", "golint", "gofmt", "gopls", "gobuild", "govet"],
-\    "rust": ["cargo", "rls", "rustc"],
-\    "json": ["jq"],
-\    "javascript": ["eslint", "tsserver"],
-\    "typescript": ["eslint", "tsserver"],
-\    "html": ["alex"]
+    \"python": [
+        \"flake8",
+        \"bandit",
+        \"pylint",
+        \"mypy"
+    \],
+    \"sh": [
+        \"shellcheck"
+    \],
+    \"c": [
+        \"cc",
+        \"ccls",
+        \"cppcheck"
+    \],
+    \"cpp": [
+        \"cc",
+        \"ccls",
+        \"cppcheck"
+    \],
+    \"go": [
+        \"gotype",
+        \"golint",
+        \"gofmt",
+        \"gopls",
+        \"gobuild",
+        \"govet"
+    \],
+    \"rust": [
+        \"cargo",
+        \"rls",
+        \"rustc"
+    \],
+    \"json": [
+        \"jq"
+    \],
+    \"javascript": [
+        \"eslint",
+        \"prettier"
+    \],
+    \"typescript": [
+        \"tslint",
+        \"prettier"
+    \]
 \}
 
 let g:ale_python_pylint_options = "--disable=C0111,C0112,C0301,C0302"
@@ -326,9 +409,38 @@ augroup docker_files
     au BufRead,BufNewFile Dockerfile.* set syntax=Dockerfile
 augroup END
 
-augroup Markdown
-  autocmd!
-  autocmd FileType markdown set wrap
+augroup go_files
+    autocmd!
+    au BufRead,BufNewFile go.mod set filetype=gomod
+
+augroup html_files
+    autocmd!
+    au FileType html setlocal tabstop=2 softtabstop=2 shiftwidth=2
+augroup END
+
+augroup markdown_files
+    autocmd!
+    autocmd FileType markdown set wrap
+augroup END
+
+augroup json_files
+    autocmd!
+    au FileType json setlocal tabstop=2 softtabstop=2 shiftwidth=2
+augroup END
+
+augroup typescript_files
+    autocmd!
+    au FileType typescript setlocal tabstop=2 softtabstop=2 shiftwidth=2
+augroup END
+
+augroup xml_files
+    autocmd!
+    au FileType xml setlocal tabstop=2 softtabstop=2 shiftwidth=2
+augroup END
+
+augroup html_files
+    autocmd!
+    au FileType html setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
