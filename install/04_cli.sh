@@ -34,7 +34,6 @@ tools="
     docker
     r
     rstudio
-    google-chrome
     intellij-idea-ce
     google-backup-and-sync
     gpg-suite-no-mail
@@ -44,6 +43,7 @@ tools="
     scala
     sbt
     htop
+    brave-browser
 "
 
 for tool in $tools; do

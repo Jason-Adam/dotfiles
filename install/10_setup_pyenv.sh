@@ -2,8 +2,13 @@
 
 set -e
 
-# Install Python Version
-PYTHON_VERSION=3.8.2
+# Install Python Versions (currently only last 3)
+PYTHON_VERSIONS="$(pyenv install --list | grep ' 3\.[89]\.' | tail -3 | awk '{$1=$1};1')"
 
-pyenv install -v "$PYTHON_VERSION" &&
-    pyenv global "$PYTHON_VERSION"
+for version in $PYTHON_VERSIONS; do
+    pyenv install -v "$version"
+done
+
+# Set Global versio to latest
+GLOBAL_VERSION="$(echo "$PYTHON_VERSIONS" | tail -1)"
+pyenv global "$GLOBAL_VERSION"
