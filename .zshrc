@@ -39,7 +39,7 @@ alias vimfzf='vim $(fzf)'
 alias ctags="`brew --prefix`/bin/ctags"
 
 # Syntax highlighting
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 ###################################################
 # Plugins
@@ -53,6 +53,7 @@ plugins=(
     kubectl 
     web-search 
     python
+    zsh-syntax-highlighting
 )
 
 # K8 autocomplete
