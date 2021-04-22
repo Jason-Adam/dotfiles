@@ -29,6 +29,7 @@ Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --bin'}
 Plug 'junegunn/fzf.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'airblade/vim-gitgutter'
+Plug 'heavenshell/vim-pydocstring', { 'do': 'make install' }
 
 call plug#end()
 
@@ -272,6 +273,12 @@ vnoremap > >gv
 
 " Turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Pydocstring
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <silent> ss <Plug>(pydocstring)
+let g:pydocstring_formatter = "numpy"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntax Highlighting
