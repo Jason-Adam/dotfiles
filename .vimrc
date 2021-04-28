@@ -105,7 +105,6 @@ let g:ale_fixers = {
         \"trim_whitespace"
     \],
     \"sql": [
-        \"pgformatter",
         \"remove_trailing_lines",
         \"trim_whitespace"
     \]
@@ -419,11 +418,6 @@ augroup go_files
     autocmd!
     au BufRead,BufNewFile go.mod set filetype=gomod
 
-augroup html_files
-    autocmd!
-    au FileType html setlocal tabstop=2 softtabstop=2 shiftwidth=2
-augroup END
-
 augroup markdown_files
     autocmd!
     autocmd FileType markdown set wrap
@@ -448,6 +442,8 @@ augroup html_files
     autocmd!
     au FileType html setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
+
+autocmd bufwritepost *.sql silent %!sqlfluff fix --dialect=snowflake --force -
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FZF
