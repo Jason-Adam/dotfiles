@@ -97,8 +97,7 @@ let g:ale_fixers = {
     \"typescript": [
         \"prettier",
         \"remove_trailing_lines",
-        \"trim_whitespace",
-        \"tslint"
+        \"trim_whitespace"
     \],
     \"html": [
         \"prettier",
@@ -153,7 +152,7 @@ let g:ale_linters = {
         \"prettier"
     \],
     \"typescript": [
-        \"tslint",
+        \"eslint",
         \"prettier"
     \]
 \}
