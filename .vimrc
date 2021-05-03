@@ -21,7 +21,9 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'jpalardy/vim-slime', { 'branch': 'main' }
+
+" Forked VIM slime
+Plug 'Jason-Adam/vim-slime', { 'branch': 'main' }
 
 " Utils
 Plug 'christoomey/vim-tmux-navigator'
