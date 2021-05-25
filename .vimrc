@@ -22,8 +22,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
-" Forked VIM slime
-Plug 'Jason-Adam/vim-slime', { 'branch': 'main' }
+" VIM slime
+Plug 'jpalardy/vim-slime', { 'branch': 'main' }
 
 " Utils
 Plug 'christoomey/vim-tmux-navigator'
@@ -123,14 +123,10 @@ let g:ale_linters = {
         \"shellcheck"
     \],
     \"c": [
-        \"cc",
-        \"ccls",
-        \"cppcheck"
+        \"clangd",
     \],
     \"cpp": [
-        \"cc",
-        \"ccls",
-        \"cppcheck"
+        \"clangd",
     \],
     \"go": [
         \"gotype",

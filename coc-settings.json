@@ -81,11 +81,11 @@
         }
       }
     },
-    "ccls": {
-      "command": "ccls",
-      "args": [
-        "--log-file=/tmp/ccls.log",
-        "-v=1"
+    "clangd": {
+      "command": "clangd",
+      "rootPatterns": [
+        "compile_flags.txt",
+        "compile_commands.json"
       ],
       "filetypes": [
         "c",
@@ -94,25 +94,7 @@
         "c++",
         "objc",
         "objcpp"
-      ],
-      "rootPatterns": [
-        ".ccls",
-        "compile_commands.json"
-      ],
-      "initializationOptions": {
-        "cache": {
-          "directory": "/tmp/ccls"
-        },
-        "client": {
-          "snippetSupport": true
-        },
-        "index": {
-          "onChange": true
-        },
-        "highlight": {
-          "lsRanges": true
-        }
-      }
+      ]
     },
     "dockerfile": {
       "command": "docker-langserver",
