@@ -14,73 +14,6 @@
     "html"
   ],
   "languageserver": {
-    "python": {
-      "command": "python",
-      "args": [
-        "-mpyls",
-        "-vv",
-        "--log-file",
-        "/tmp/lsp_python.log"
-      ],
-      "trace.server": "verbose",
-      "filetypes": [
-        "python"
-      ],
-      "settings": {
-        "pyls": {
-          "enable": true,
-          "trace": {
-            "server": "verbose"
-          },
-          "commandPath": "",
-          "configurationSources": [
-            "pycodestyle"
-          ],
-          "plugins": {
-            "jedi_completion": {
-              "enabled": true
-            },
-            "jedi_hover": {
-              "enabled": true
-            },
-            "jedi_references": {
-              "enabled": true
-            },
-            "jedi_signature_help": {
-              "enabled": true
-            },
-            "jedi_symbols": {
-              "enabled": true,
-              "all_scopes": true
-            },
-            "mccabe": {
-              "enabled": false,
-              "threshold": 15
-            },
-            "preload": {
-              "enabled": true
-            },
-            "pycodestyle": {
-              "enabled": false
-            },
-            "pydocstyle": {
-              "enabled": false,
-              "match": "(?!test_).*\\.py",
-              "matchDir": "[^\\.].*"
-            },
-            "pyflakes": {
-              "enabled": false
-            },
-            "rope_completion": {
-              "enabled": false
-            },
-            "yapf": {
-              "enabled": false
-            }
-          }
-        }
-      }
-    },
     "clangd": {
       "command": "clangd",
       "rootPatterns": [
@@ -121,5 +54,6 @@
   "suggest.noselect": true,
   "suggest.minTriggerInputLength": 1,
   "suggest.enablePreview": false,
-  "suggest.fixInsertedWord": true
+  "suggest.fixInsertedWord": true,
+  "python.linting.enabled": false
 }

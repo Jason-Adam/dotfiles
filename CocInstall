@@ -4,3 +4,4 @@ coc-tsserver
 coc-html
 coc-rls
 coc-sh
+coc-pyright
