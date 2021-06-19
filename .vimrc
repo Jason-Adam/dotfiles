@@ -53,7 +53,7 @@ let g:ale_linters_explicit = 1
 let g:ale_fixers = {
     \"python": [
         \"add_blank_lines_for_python_control_statements", 
-        \"black", 
+        \"yapf", 
         \"isort", 
         \"remove_trailing_lines", 
         \"trim_whitespace"
@@ -116,8 +116,7 @@ let g:ale_linters = {
     \"python": [
         \"flake8",
         \"bandit",
-        \"pylint",
-        \"mypy"
+        \"pylint"
     \],
     \"sh": [
         \"shellcheck"
