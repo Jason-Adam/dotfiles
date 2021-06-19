@@ -79,11 +79,18 @@ if [ -f '/Users/jasonadam/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users
 
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 export PATH=$PATH:"$GOPATH/bin"
-export PATH="$HOME/.pyenv/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# Pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+
+# Rust
 export PATH="$PATH:$HOME/.cargo/bin"
-eval "$(pyenv init -)"
+
+# Poetry
 export PATH="$HOME/.poetry/bin:$PATH"
 
 # Load Environment variable file for python virtual envs
