@@ -184,6 +184,12 @@ let g:go_highlight_variable_assignments = 1
 let g:go_highlight_diagnostic_errors = 0
 let g:go_highlight_diagnostic_warnings = 0
 
+" Easier test file opening
+autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Main Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -268,6 +274,18 @@ vnoremap > >gv
 
 " Turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
+
+" Vertical Split resizing
+nmap <C-W>< <C-W><<SID>ws
+nmap <C-W>> <C-W>><SID>ws
+nn <script> <SID>ws< <C-W><<SID>ws
+nn <script> <SID>ws> <C-W>><SID>ws
+
+" Horizontal Split resizing
+nmap <C-W>+ <C-W>+<SID>ws
+nmap <C-W>- <C-W>-<SID>ws
+nn <script> <SID>ws+ <C-W>+<SID>ws
+nn <script> <SID>ws- <C-W>-<SID>ws
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Pydocstring
