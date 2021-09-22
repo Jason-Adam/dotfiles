@@ -419,6 +419,11 @@ augroup yaml_files
     au FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
+augroup c_files
+    autocmd!
+    au FileType c setlocal tabstop=2 softtabstop=2 shiftwidth=2
+augroup END
+
 augroup make_files
     autocmd!
     au FileType make setlocal noexpandtab
@@ -432,6 +437,7 @@ augroup END
 augroup go_files
     autocmd!
     au BufRead,BufNewFile go.mod set filetype=gomod
+augroup END
 
 augroup markdown_files
     autocmd!
