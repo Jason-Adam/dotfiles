@@ -21,6 +21,7 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'hashivim/vim-terraform'
 
 " VIM slime
 Plug 'jpalardy/vim-slime', { 'branch': 'main' }
@@ -522,3 +523,8 @@ autocmd FileType netrw setl bufhidden=delete
 let g:slime_target = "tmux"
 let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
 let g:slime_dont_ask_default = 1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-terraform
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:terraform_fmt_on_save = 1
