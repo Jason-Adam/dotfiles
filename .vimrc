@@ -34,6 +34,9 @@ Plug 'tomtom/tcomment_vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'heavenshell/vim-pydocstring', { 'do': 'make install' }
 
+" MQL4
+Plug 'vobornik/vim-mql4'
+
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -108,6 +111,11 @@ let g:ale_fixers = {
         \"trim_whitespace"
     \],
     \"sql": [
+        \"remove_trailing_lines",
+        \"trim_whitespace"
+    \],
+    \"php": [
+        \"phpcbf",
         \"remove_trailing_lines",
         \"trim_whitespace"
     \]

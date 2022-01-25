@@ -93,6 +93,9 @@ export PATH="$PATH:$HOME/.cargo/bin"
 # Poetry
 export PATH="$HOME/.poetry/bin:$PATH"
 
+# PHP
+export PATH="/usr/local/Cellar/php/8.0.12/bin:$PATH"
+
 # Load Environment variable file for python virtual envs
 load-env() {
     set -o allexport && \
