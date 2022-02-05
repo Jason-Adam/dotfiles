@@ -34,9 +34,6 @@ Plug 'tomtom/tcomment_vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'heavenshell/vim-pydocstring', { 'do': 'make install' }
 
-" MQL4
-Plug 'vobornik/vim-mql4'
-
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
