@@ -142,9 +142,7 @@ let g:ale_linters = {
         \"govet"
     \],
     \"rust": [
-        \"cargo",
-        \"rls",
-        \"rustc"
+        \"analyzer"
     \],
     \"json": [
         \"jq"
