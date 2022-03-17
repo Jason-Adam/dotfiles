@@ -108,6 +108,7 @@ let g:ale_fixers = {
         \"trim_whitespace"
     \],
     \"sql": [
+        \"pgformatter",
         \"remove_trailing_lines",
         \"trim_whitespace"
     \],
@@ -160,6 +161,7 @@ let g:ale_linters = {
 let g:ale_python_pylint_options = "--disable=C0111,C0112,C0301,C0302"
 let g:ale_python_flake8_options = "--ignore=E501"
 let g:ale_python_mypy_options = "--ignore-missing-imports"
+let g:ale_sql_pgformatter_options = "--comma-break"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Go
@@ -467,8 +469,6 @@ augroup html_files
     autocmd!
     au FileType html setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
-
-autocmd bufwritepost *.sql silent %!sqlfluff fix --dialect=snowflake --force -
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FZF
