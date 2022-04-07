@@ -11,21 +11,10 @@
     "rust",
     "js",
     "ts",
-    "html"
+    "html",
+    "nix"
   ],
   "languageserver": {
-    "intelephense": {
-      "command": "intelephense",
-      "args": [
-        "--stdio"
-      ],
-      "filetypes": [
-        "php"
-      ],
-      "initializationOptions": {
-        "storagePath": "/tmp/intelephense"
-      }
-    },
     "terraform": {
       "command": "terraform-ls",
       "args": [
@@ -71,6 +60,12 @@
         "go"
       ]
     }
+  },
+  "nix": {
+    "command": "rnix-lsp",
+    "filetypes": [
+      "nix"
+    ]
   },
   "diagnostic.displayByAle": true,
   "suggest.autoTrigger": "always",
