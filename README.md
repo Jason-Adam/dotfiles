@@ -9,4 +9,9 @@ curl -sSL https://raw.githubusercontent.com/Jason-Adam/dotfiles/master/_install.
 ```  
 
 ## Future  
-Make Linux compatible
+Make Linux compatible  
+
+## Manual Installs  
+* Keeper Password  
+* Alfred  
+* Rectangle  
