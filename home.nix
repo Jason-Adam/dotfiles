@@ -285,7 +285,7 @@
         set nocompatible
 
         " Yank into system clipboard
-        set clipboard=unnamed
+        set clipboard^=unnamed,unnamedplus
 
         " Don't wrap lines
         set nowrap
