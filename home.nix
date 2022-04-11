@@ -25,6 +25,8 @@
       terraform-ls
       fd
       tree
+      nodejs
+      powerline-symbols
     ];
 
     stateVersion = "22.05";
@@ -684,10 +686,10 @@
         ".DS_Store"
       ];
 
-      signing = {
-        key = "E8E0CE80BA41321B";
-        signByDefault = true;
-      };
+      # signing = {
+      #   key = "E8E0CE80BA41321B";
+      #   signByDefault = true;
+      # };
 
       extraConfig = {
         core = { editor = "vim"; };
