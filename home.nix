@@ -615,8 +615,6 @@ in {
       sensibleOnTop = false;
 
       extraConfig = ''
-        set -g focus-events on
-
         # Pane Borders
         set -g pane-border-style bg=default,fg=colour238
         set -g pane-active-border-style bg=black,fg=colour141
