@@ -27,12 +27,16 @@
       tree
       nodejs
       powerline-symbols
+      gopls
+      nodePackages.dockerfile-language-server-nodejs
     ];
 
     stateVersion = "22.05";
   };
 
   programs = {
+    direnv = { enable = true; };
+
     zsh = {
       enable = true;
       enableAutosuggestions = true;
@@ -285,7 +289,7 @@
         set nocompatible
 
         " Yank into system clipboard
-        set clipboard^=unnamed,unnamedplus
+        " set clipboard^=unnamed,unnamedplus
 
         " Don't wrap lines
         set nowrap
