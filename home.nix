@@ -98,7 +98,6 @@
         coc-html
         coc-json
         vim-go
-        vim-tmux-navigator
         fzf-vim
         tcomment_vim
         dracula-vim
@@ -122,7 +121,7 @@
       };
 
       extraConfig = ''
-        set clipboard+=unnamed
+        " set clipboard=unnamed
 
         let g:ale_disable_lsp = 1
         let g:ale_sign_column_always = 1
@@ -608,7 +607,7 @@
     tmux = {
       enable = true;
 
-      plugins = with pkgs.tmuxPlugins; [ vim-tmux-navigator yank ];
+      plugins = with pkgs.tmuxPlugins; [ yank ];
 
       keyMode = "vi";
       baseIndex = 1;
@@ -652,12 +651,6 @@
         bind -n C-k select-pane -U
         bind -n C-l select-pane -R
 
-        # `Ctrl+[` to enter access the scrollback buffer in vi-mode.
-        # `v` to enter visual mode.
-        # `y` to tank selection.
-        # bind-key -T copy-mode-vi 'v' send -X begin-selection
-        # bind-key -T copy-mode-vi 'y' send -X copy-selection
-
         # Resize panes
         bind -r C-H resize-pane -L 10
         bind -r C-J resize-pane -D 10
@@ -690,11 +683,6 @@
         ".idea/"
         ".DS_Store"
       ];
-
-      # signing = {
-      #   key = "E8E0CE80BA41321B";
-      #   signByDefault = true;
-      # };
 
       extraConfig = {
         core = { editor = "vim"; };
