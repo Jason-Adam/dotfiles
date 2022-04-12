@@ -107,6 +107,7 @@
         vim-gitgutter
         vim-terraform
         vim-slime
+        vim-tmux-clipboard
       ];
 
       settings = {
@@ -121,6 +122,8 @@
       };
 
       extraConfig = ''
+        set clipboard+=unnamed
+
         let g:ale_disable_lsp = 1
         let g:ale_sign_column_always = 1
         let g:airline#extensions#ale#enabled = 1
@@ -611,10 +614,11 @@
       baseIndex = 1;
       escapeTime = 0;
       historyLimit = 5000;
+      terminal = "xterm-256color";
+      sensibleOnTop = false;
 
       extraConfig = ''
-        # Enable 256-color terminal.
-        set -g default-terminal xterm-256color
+        set -g focus-events on
 
         # Pane Borders
         set -g pane-border-style bg=default,fg=colour238
@@ -651,8 +655,8 @@
         # `Ctrl+[` to enter access the scrollback buffer in vi-mode.
         # `v` to enter visual mode.
         # `y` to tank selection.
-        bind-key -T copy-mode-vi 'v' send -X begin-selection
-        bind-key -T copy-mode-vi 'y' send -X copy-selection
+        # bind-key -T copy-mode-vi 'v' send -X begin-selection
+        # bind-key -T copy-mode-vi 'y' send -X copy-selection
 
         # Resize panes
         bind -r C-H resize-pane -L 10
