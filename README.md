@@ -21,12 +21,14 @@ nix-channel --update
 Clone the repo:  
 
 ```sh
-git clone https://github.com/Jason-Adam/dotfiles.git
+mkdir -p "$HOME"/code
+git clone https://github.com/Jason-Adam/dotfiles.git "$HOME"/code
 ```
 
 From within the `dotfiles` folder:
 
 ```sh
+cd "$HOME"/code/dotfiles
 ./syms.sh
 ./hooks.sh
 ```
