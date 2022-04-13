@@ -1,7 +1,0 @@
-# List of CocInstall commands to run
-
-coc-tsserver
-coc-html
-coc-rls
-coc-sh
-coc-pyright

@@ -178,6 +178,10 @@ let
           """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
           set nocompatible
 
+          " Persistent Undo
+          set undodir="$HOME"/.vim/undodir
+          set undofile
+
           " Don't wrap lines
           set nowrap
 
@@ -194,8 +198,14 @@ let
           " Fix backspace
           set backspace=indent,eol,start
 
+          " Enable the mouse
+          set mouse=a
+
           " Tabs & Indents
+          set tabstop=4
+          set shiftwidth=4
           set softtabstop=0
+          set expandtab
           set scrolloff=5
           set autoindent
 
