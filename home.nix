@@ -9,8 +9,71 @@ let
       name = "vim";
       vimrcConfig = {
         customRC = ''
+          """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+          " Main Settings
+          """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+          " System clipboard
           set clipboard^=unnamed,unnamedplus
 
+          " Enable vim features
+          set nocompatible
+
+          " Reset filetype detection
+          filetype off
+
+          " Enable it
+          filetype plugin indent on
+
+          " Automatically read changed file
+          set autoread
+
+          " Persistent Undo
+          set undodir="$HOME"/.vim/undodir
+          set undofile
+
+          " Don't wrap lines
+          set nowrap
+
+          " No swap files
+          set noswapfile
+
+          " Show line numbers
+          set number
+
+          " Encodings
+          set encoding=utf-8
+          set fileencoding=utf-8
+
+          " Fix backspace
+          set backspace=indent,eol,start
+
+          " Enable the mouse
+          set mouse=a
+
+          " Tabs & Indents
+          set tabstop=4
+          set shiftwidth=4
+          set softtabstop=0
+          set expandtab
+          set scrolloff=5
+          set autoindent
+
+          " Highlight current line
+          set cursorline
+
+          " New splits will be at bottom or to the right
+          set splitbelow
+          set splitright
+
+          " Visual autocomplete for command menu
+          set wildmenu
+
+          " Highlight matching brackets, parens, etc.
+          set showmatch
+
+          """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+          " ALE
+          """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
           let g:ale_disable_lsp = 1
           let g:ale_sign_column_always = 1
           let g:airline#extensions#ale#enabled = 1
@@ -110,7 +173,6 @@ let
               \"go": [
                   \"gotype",
                   \"golint",
-                  \"gofmt",
                   \"gopls",
                   \"gobuild",
                   \"govet"
@@ -173,54 +235,6 @@ let
           autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
           autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
 
-          """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-          " Main Settings
-          """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-          set nocompatible
-
-          " Persistent Undo
-          set undodir="$HOME"/.vim/undodir
-          set undofile
-
-          " Don't wrap lines
-          set nowrap
-
-          " No swap files
-          set noswapfile
-
-          " Show line numbers
-          set number
-
-          " Encodings
-          set encoding=utf-8
-          set fileencoding=utf-8
-
-          " Fix backspace
-          set backspace=indent,eol,start
-
-          " Enable the mouse
-          set mouse=a
-
-          " Tabs & Indents
-          set tabstop=4
-          set shiftwidth=4
-          set softtabstop=0
-          set expandtab
-          set scrolloff=5
-          set autoindent
-
-          " Highlight current line
-          set cursorline
-
-          " New splits will be at bottom or to the right
-          set splitbelow
-          set splitright
-
-          " Visual autocomplete for command menu
-          set wildmenu
-
-          " Highlight matching brackets, parens, etc.
-          set showmatch
 
           """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
           " Search Settings
@@ -393,9 +407,9 @@ let
               au BufRead,BufNewFile Dockerfile.* set syntax=Dockerfile
           augroup END
 
-          augroup go_files
+          augroup go
               autocmd!
-              au BufRead,BufNewFile go.mod set filetype=gomod
+              autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=8 shiftwidth=8
           augroup END
 
           augroup markdown_files
@@ -692,7 +706,12 @@ in {
 
       extraConfig = {
         core = { editor = "vim"; };
-        init = { defaultBranch = "main"; };
+
+        init = {
+          defaultBranch = "main";
+          templatedir = "$HOME/.git_template";
+        };
+
         web = { browser = "brave-browser"; };
       };
     };
