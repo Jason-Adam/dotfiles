@@ -518,6 +518,7 @@ let
             vim-gitgutter
             vim-terraform
             vim-slime
+            vim-fugitive
           ];
         };
       };
