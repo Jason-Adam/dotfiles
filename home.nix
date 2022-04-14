@@ -530,7 +530,6 @@ in {
 
     packages = with pkgs; [
       htop
-      bat
       kubectl
       exa
       ctags
@@ -551,6 +550,7 @@ in {
       nodejs
       powerline-symbols
       gopls
+      gotests
       nodePackages.dockerfile-language-server-nodejs
       myConfiguredVim
     ];
@@ -587,6 +587,12 @@ in {
         ZSH_DISABLE_COMPFIX = true;
         COMPLETION_WAITING_DOTS = true;
       };
+    };
+
+    bat = {
+      enable = true;
+
+      config = { theme = "Dracula"; };
     };
 
     starship = {
