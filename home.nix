@@ -122,11 +122,6 @@ let
                   \"trim_whitespace",
                   \"remove_trailing_lines"
               \],
-              \"json": [
-                  \"jq",
-                  \"remove_trailing_lines",
-                  \"trim_whitespace"
-              \],
               \"javascript": [
                   \"prettier",
                   \"remove_trailing_lines",
@@ -151,7 +146,12 @@ let
                   \"nixfmt",
                   \"statix",
                   \"remove_trailing_lines",
-                  \"trim_whitespace",
+                  \"trim_whitespace"
+              \],
+              \"json": [
+                  \"jq",
+                  \"remove_trailing_lines",
+                  \"trim_whitespace"
               \]
           \}
 
@@ -241,6 +241,8 @@ let
           """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
           set hlsearch
           set incsearch
+          set ignorecase
+          set smartcase
 
           " Search will center on line if found
           nnoremap n nzzzv
@@ -552,6 +554,7 @@ in {
       powerline-symbols
       gopls
       gotests
+      pgformatter
       nodePackages.dockerfile-language-server-nodejs
       myConfiguredVim
     ];
