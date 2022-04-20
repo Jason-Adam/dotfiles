@@ -557,6 +557,7 @@ in {
       pgformatter
       nodePackages.dockerfile-language-server-nodejs
       myConfiguredVim
+      awscli2
     ];
 
     stateVersion = "22.05";
