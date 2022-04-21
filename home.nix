@@ -695,6 +695,11 @@ in {
       userName = "Jason Adam";
       userEmail = "22adamj22@gmail.com";
 
+      signing = {
+        key = "5F524B7FEA850D30";
+        signByDefault = true;
+      };
+
       aliases = {
         br =
           "branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate";
