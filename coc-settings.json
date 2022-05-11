@@ -55,17 +55,16 @@
       "rootPatterns": [
         "go.mod"
       ],
-      "disableWorkspaceFolders": true,
       "filetypes": [
         "go"
       ]
+    },
+    "nix": {
+      "command": "rnix-lsp",
+      "filetypes": [
+        "nix"
+      ]
     }
-  },
-  "nix": {
-    "command": "rnix-lsp",
-    "filetypes": [
-      "nix"
-    ]
   },
   "diagnostic.displayByAle": true,
   "suggest.autoTrigger": "always",

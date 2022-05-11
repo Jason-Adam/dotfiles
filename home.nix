@@ -205,7 +205,6 @@ let
           """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
           " Go
           """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-          " Turn off gopls (coc.nvim already running)
           let g:go_gopls_enabled = 0
           let g:go_def_mapping_enabled = 0
           let g:go_code_completion_enabled = 0
@@ -703,7 +702,7 @@ in {
       aliases = {
         br =
           "branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate";
-        log =
+        lg =
           "!git log --pretty=format:'%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(dim green)(%cr) [%an]' --abbrev-commit -30";
         ctags = "!.git/hooks/ctags";
       };
@@ -725,7 +724,7 @@ in {
 
         init = {
           defaultBranch = "main";
-          templatedir = "$HOME/.git_template";
+          templatedir = "/Users/jasonadam/.git_template";
         };
 
         web = { browser = "brave-browser"; };
