@@ -555,6 +555,7 @@ in {
       gotests
       pgformatter
       shellcheck
+      shfmt
       nodePackages.dockerfile-language-server-nodejs
       myConfiguredVim
       awscli2
