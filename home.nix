@@ -89,7 +89,7 @@ let
           let g:ale_fixers = {
               \"python": [
                   \"add_blank_lines_for_python_control_statements",
-                  \"yapf",
+                  \"black",
                   \"isort",
                   \"remove_trailing_lines",
                   \"trim_whitespace"
