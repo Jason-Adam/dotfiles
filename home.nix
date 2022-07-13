@@ -553,6 +553,7 @@ in {
       powerline-symbols
       gopls
       gotests
+      delve
       pgformatter
       shellcheck
       shfmt
