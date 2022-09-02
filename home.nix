@@ -725,6 +725,8 @@ in {
       extraConfig = {
         core = { editor = "vim"; };
 
+        url."ssh://git@github.com/".insteadOf = "https://github.com/";
+
         init = {
           defaultBranch = "main";
           templatedir = "/Users/jasonadam/.git_template";

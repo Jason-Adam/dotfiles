@@ -2,7 +2,7 @@
     name = Jason Adam
     email = 22adamj22@gmail.com
     username = Jason-Adam
-    signingKey = E8E0CE80BA41321B
+    signingKey = 5F524B7FEA850D30
 
 [credential "https://github.com"]
     username = Jason-Adam
