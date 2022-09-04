@@ -21,3 +21,6 @@
 
 [init]
     templatedir = /Users/jasonadam/.git_template
+
+[commit]
+	gpgsign = true
