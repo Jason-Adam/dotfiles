@@ -1,7 +1,9 @@
-# Dot Files  
+# Dot Files
+
 Repository for setting up my development enviornment on a new Mac.  
 
-## Install  
+## Install
+
 Clone the repo:  
 
 ```sh
@@ -17,7 +19,8 @@ cd "$HOME"/code/dotfiles
 ./hooks.sh
 ```
 
-## Manual Installs Still to Automate  
+## Manual Installs Still to Automate
+
 * Keeper Password  
 * Alfred  
 * Rectangle  
