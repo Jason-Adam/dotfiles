@@ -11,8 +11,7 @@
     "rust",
     "js",
     "ts",
-    "html",
-    "nix"
+    "html"
   ],
   "languageserver": {
     "terraform": {
