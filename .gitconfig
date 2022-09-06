@@ -21,3 +21,6 @@
 
 [init]
     templatedir = /Users/jasonadam/.git_template
+
+[url "git@github.com:future-research"]
+	insteadOf = https://github.com/future-research

@@ -17,7 +17,7 @@ export ZSH=$HOME/.oh-my-zsh
 set -o vi
 
 # Theme
-ZSH_THEME="robbyrussell"
+ZSH_THEME="minimal"
 
 COMPLETION_WAITING_DOTS="true"
 
