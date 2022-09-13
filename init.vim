@@ -406,54 +406,59 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 " File Formatting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup yaml_files
-autocmd!
-au BufRead,BufNewFile *.yml setfiletype yaml
-au FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd!
+    au BufRead,BufNewFile *.yml setfiletype yaml
+    au FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
 augroup c_files
-autocmd!
-au FileType c setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd!
+    au FileType c setlocal tabstop=2 softtabstop=2 shiftwidth=2
+augroup END
+
+augroup cpp_files
+    autocmd!
+    au FileType cpp setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
 augroup make_files
-autocmd!
-au FileType make setlocal noexpandtab
+    autocmd!
+    au FileType make setlocal noexpandtab
 augroup END
 
 augroup docker_files
-autocmd!
-au BufRead,BufNewFile Dockerfile.* set syntax=Dockerfile
+    autocmd!
+    au BufRead,BufNewFile Dockerfile.* set syntax=Dockerfile
 augroup END
 
 augroup go
-autocmd!
-autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=8 shiftwidth=8
+    autocmd!
+    autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=8 shiftwidth=8
 augroup END
 
 augroup markdown_files
-autocmd!
-autocmd FileType markdown set wrap
+    autocmd!
+    autocmd FileType markdown set wrap
 augroup END
 
 augroup json_files
-autocmd!
-au FileType json setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd!
+    au FileType json setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
 augroup typescript_files
-autocmd!
-au FileType typescript setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd!
+    au FileType typescript setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
 augroup xml_files
-autocmd!
-au FileType xml setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd!
+    au FileType xml setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
 augroup html_files
-autocmd!
-au FileType html setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd!
+    au FileType html setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
