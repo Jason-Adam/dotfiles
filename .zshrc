@@ -73,6 +73,9 @@ export PATH="$PATH:$HOME/.cargo/bin"
 # Poetry
 export PATH="$HOME/.poetry/bin:$PATH"
 
+# Node@16
+export PATH="/usr/local/opt/node@16/bin:$PATH"
+
 # Load Environment variable file for python virtual envs
 load-env() {
     set -o allexport && \
