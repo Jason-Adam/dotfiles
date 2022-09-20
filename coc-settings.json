@@ -50,5 +50,8 @@
   "suggest.minTriggerInputLength": 1,
   "suggest.enablePreview": false,
   "suggest.fixInsertedWord": true,
-  "python.linting.enabled": false
+  "python.linting.enabled": false,
+  "clangd.fallbackFlags": [
+    "-std=c++17"
+  ]
 }
