@@ -24,6 +24,9 @@ Plug 'tomtom/tcomment_vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
+" Github Copilot
+Plug 'github/copilot.vim'
+
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -55,7 +58,8 @@ set nowrap
 set noswapfile
 
 " Show line numbers
-set number
+set number relativenumber
+set nu rnu
 
 " Encodings
 set encoding=utf-8

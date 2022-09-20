@@ -73,7 +73,8 @@ export PATH="$PATH:$HOME/.cargo/bin"
 # Poetry
 export PATH="$HOME/.poetry/bin:$PATH"
 
-export GPG_TTY=$(tty)
+# Node@16
+export PATH="/usr/local/opt/node@16/bin:$PATH"
 
 # Load Environment variable file for python virtual envs
 load-env() {
