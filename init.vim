@@ -522,3 +522,9 @@ let g:slime_dont_ask_default = 1
 " vim-terraform
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:terraform_fmt_on_save = 1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Copilot
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+imap <silent><script><expr> <C-a> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
