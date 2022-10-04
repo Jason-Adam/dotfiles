@@ -2,7 +2,7 @@
     name = Jason Adam
     email = 22adamj22@gmail.com
     username = Jason-Adam
-    signingKey = 5F524B7FEA850D30
+	signingkey = 97CE138B76E75529
 
 [credential "https://github.com"]
     username = Jason-Adam
@@ -21,3 +21,6 @@
 
 [init]
     templatedir = /Users/jasonadam/.git_template
+
+[commit]
+	gpgsign = true

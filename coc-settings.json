@@ -11,8 +11,7 @@
     "rust",
     "js",
     "ts",
-    "html",
-    "nix"
+    "html"
   ],
   "languageserver": {
     "terraform": {
@@ -25,21 +24,6 @@
         "tf"
       ],
       "initializationOptions": {}
-    },
-    "clangd": {
-      "command": "clangd",
-      "rootPatterns": [
-        "compile_flags.txt",
-        "compile_commands.json"
-      ],
-      "filetypes": [
-        "c",
-        "cc",
-        "cpp",
-        "c++",
-        "objc",
-        "objcpp"
-      ]
     },
     "dockerfile": {
       "command": "docker-langserver",
@@ -58,12 +42,6 @@
       "filetypes": [
         "go"
       ]
-    },
-    "nix": {
-      "command": "rnix-lsp",
-      "filetypes": [
-        "nix"
-      ]
     }
   },
   "diagnostic.displayByAle": true,
@@ -72,5 +50,8 @@
   "suggest.minTriggerInputLength": 1,
   "suggest.enablePreview": false,
   "suggest.fixInsertedWord": true,
-  "python.linting.enabled": false
+  "python.linting.enabled": false,
+  "clangd.fallbackFlags": [
+    "-std=c++17"
+  ]
 }

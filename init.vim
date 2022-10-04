@@ -24,13 +24,16 @@ Plug 'tomtom/tcomment_vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
+" Github Copilot
+Plug 'github/copilot.vim'
+
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Main Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " System clipboard
-set clipboard^=unnamed,unnamedplus
+set clipboard+=unnamedplus
 
 " Enable vim features
 set nocompatible
@@ -55,7 +58,8 @@ set nowrap
 set noswapfile
 
 " Show line numbers
-set number
+set number relativenumber
+set nu rnu
 
 " Encodings
 set encoding=utf-8
@@ -309,7 +313,7 @@ colorscheme dracula
 highlight Normal ctermbg=None
 
 if exists('$TMUX')
-let g:dracula_colorterm = 0
+    let g:dracula_colorterm = 0
 endif
 
 " Airline
@@ -326,24 +330,31 @@ set cmdheight=2
 set shortmess+=c
 set signcolumn=auto
 
-inoremap <silent><expr> <C-n> coc#pum#visible() ? coc#pum#next(1) : "\<C-n>"
-inoremap <silent><expr> <C-p> coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>"
-inoremap <silent><expr> <down> coc#pum#visible() ? coc#pum#next(0) : "\<down>"
-inoremap <silent><expr> <up> coc#pum#visible() ? coc#pum#prev(0) : "\<up>"
-
-inoremap <silent><expr> <C-e> coc#pum#visible() ? coc#pum#cancel() : "\<C-e>"
-inoremap <silent><expr> <C-y> coc#pum#visible() ? coc#pum#confirm() : "\<C-y>"
-
-function! s:check_back_space() abort
-let col = col('.') - 1
-return !col || getline('.')[col - 1]  =~# '\s'
+function! CheckBackSpace() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
+
+" Insert <tab> when previous text is space, refresh completion if not.
+inoremap <silent><expr> <TAB>
+    \ coc#pum#visible() ? coc#pum#next(1):
+    \ CheckBackSpace() ? "\<Tab>" :
+    \ coc#refresh()
+
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+inoremap <expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<CR>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use <c-space> to trigger completion.
 if has('nvim')
-inoremap <silent><expr> <c-space> coc#refresh()
+    inoremap <silent><expr> <c-space> coc#refresh()
 else
-inoremap <silent><expr> <c-@> coc#refresh()
+    inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
 " Use `[g` and `]g` to navigate diagnostics
@@ -361,11 +372,11 @@ nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
-if (index(['vim','help'], &filetype) >= 0)
-  execute 'h '.expand('<cword>')
-else
-  call CocAction('doHover')
-endif
+    if (index(['vim','help'], &filetype) >= 0)
+      execute 'h '.expand('<cword>')
+    else
+      call CocAction('doHover')
+    endif
 endfunction
 
 " Remap for rename current word
@@ -398,54 +409,59 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 " File Formatting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup yaml_files
-autocmd!
-au BufRead,BufNewFile *.yml setfiletype yaml
-au FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd!
+    au BufRead,BufNewFile *.yml setfiletype yaml
+    au FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
 augroup c_files
-autocmd!
-au FileType c setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd!
+    au FileType c setlocal tabstop=2 softtabstop=2 shiftwidth=2
+augroup END
+
+augroup cpp_files
+    autocmd!
+    au FileType cpp setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
 augroup make_files
-autocmd!
-au FileType make setlocal noexpandtab
+    autocmd!
+    au FileType make setlocal noexpandtab
 augroup END
 
 augroup docker_files
-autocmd!
-au BufRead,BufNewFile Dockerfile.* set syntax=Dockerfile
+    autocmd!
+    au BufRead,BufNewFile Dockerfile.* set syntax=Dockerfile
 augroup END
 
 augroup go
-autocmd!
-autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=8 shiftwidth=8
+    autocmd!
+    autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=8 shiftwidth=8
 augroup END
 
 augroup markdown_files
-autocmd!
-autocmd FileType markdown set wrap
+    autocmd!
+    autocmd FileType markdown set wrap
 augroup END
 
 augroup json_files
-autocmd!
-au FileType json setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd!
+    au FileType json setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
 augroup typescript_files
-autocmd!
-au FileType typescript setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd!
+    au FileType typescript setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
 augroup xml_files
-autocmd!
-au FileType xml setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd!
+    au FileType xml setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
 augroup html_files
-autocmd!
-au FileType html setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd!
+    au FileType html setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -482,8 +498,8 @@ let g:netrw_altv = 1
 let g:netrw_winsize = 20
 
 augroup ProjectDrawer
-autocmd!
-autocmd VimEnter * :Vexplore
+    autocmd!
+    autocmd VimEnter * :Vexplore
 augroup END
 
 " Unbind <C-l> so it doesn't interfere with split navigation
@@ -506,3 +522,9 @@ let g:slime_dont_ask_default = 1
 " vim-terraform
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:terraform_fmt_on_save = 1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Copilot
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+imap <silent><script><expr> <C-a> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
