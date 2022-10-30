@@ -122,13 +122,11 @@ let g:ale_fixers = {
 \],
 \"c": [
   \"clang-format",
-  \"clangtidy",
   \"remove_trailing_lines",
   \"trim_whitespace"
 \],
 \"cpp": [
   \"clang-format",
-  \"clangtidy",
   \"remove_trailing_lines",
   \"trim_whitespace"
 \],
@@ -187,9 +185,11 @@ let g:ale_linters = {
 \],
 \"c": [
   \"clangd",
+  \"cppcheck"
 \],
 \"cpp": [
   \"clangd",
+  \"cppcheck"
 \],
 \"go": [
   \"gotype",
