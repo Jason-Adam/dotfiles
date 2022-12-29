@@ -52,6 +52,7 @@
   "suggest.fixInsertedWord": true,
   "python.linting.enabled": false,
   "clangd.fallbackFlags": [
-    "-std=c++17"
+    "-std=c++17",
+    "-std=c2x"
   ]
 }
