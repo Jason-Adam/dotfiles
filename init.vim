@@ -13,6 +13,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
 Plug 'hashivim/vim-terraform'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'ziglang/zig.vim'
 
 " VIM slime
 Plug 'jpalardy/vim-slime', { 'branch': 'main' }
