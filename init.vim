@@ -172,7 +172,12 @@ let g:ale_fixers = {
   \"jq",
   \"remove_trailing_lines",
   \"trim_whitespace"
-\]
+\],
+\"zig": [
+  \"zigfmt",
+  \"trim_whitespace",
+  \"remove_trailing_lines"
+\],
 \}
 
 let g:ale_linters = {
@@ -216,6 +221,9 @@ let g:ale_linters = {
 \"nix": [
   \"rnix_lsp",
   \"statix",
+\],
+\"zig": [
+  \"zls",
 \]
 \}
 
