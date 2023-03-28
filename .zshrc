@@ -57,6 +57,7 @@ alias la='exa --group-directories-first --all'
 alias ll='exa --group-directories-first --long'
 alias lst='exa --group-directories-first --tree'
 alias llt='exa --group-directories-first --long --tree'
+alias tar='gtar'
 
 # gcloud autocomplete
 # The next line updates PATH for the Google Cloud SDK.
@@ -81,6 +82,10 @@ export PATH="$PATH:$HOME/zls/zig-out/bin"
 
 # Gawk
 export PATH="/usr/local/opt/gawk/libexec/gnubin:$PATH"
+
+# Dotnet
+export DOTNET_ROOT="$HOME/.dotnet"
+export PATH="$PATH:$HOME/.dotnet:$HOME/.dotnet/tools"
 
 # Load Environment variable file for python virtual envs
 load-env() {

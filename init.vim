@@ -178,6 +178,14 @@ let g:ale_fixers = {
   \"trim_whitespace",
   \"remove_trailing_lines"
 \],
+\"fortran": [
+  \"trim_whitespace",
+  \"remove_trailing_lines"
+\],
+\"fsharp": [
+  \"trim_whitespace",
+  \"remove_trailing_lines"
+\],
 \}
 
 let g:ale_linters = {
@@ -224,6 +232,9 @@ let g:ale_linters = {
 \],
 \"zig": [
   \"zls",
+\],
+\"fortran": [
+  \"gcc",
 \]
 \}
 
@@ -428,6 +439,11 @@ augroup c_files
     au FileType c setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
+augroup fortran_files
+    autocmd!
+    au FileType fortran setlocal tabstop=2 softtabstop=2 shiftwidth=2
+augroup END
+
 augroup cpp_files
     autocmd!
     au FileType cpp setlocal tabstop=2 softtabstop=2 shiftwidth=2
@@ -472,6 +488,8 @@ augroup html_files
     autocmd!
     au FileType html setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
+
+autocmd BufNewFile,BufRead *.fs,*.fsx,*.fsi set filetype=fsharp
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FZF
