@@ -16,35 +16,6 @@
     "fsharp"
   ],
   "languageserver": {
-    "fsharp": {
-      "command": "fsautocomplete",
-      "args": [],
-      "filetypes": [
-        "fsharp"
-      ],
-      "trace.server": "verbose",
-      "initalizationOptions": {
-        "AutomaticWorkspaceInit": true
-      },
-      "settings": {
-        "FSharp.keywordsAutocomplete": true,
-        "FSharp.ExternalAutocomplete": false,
-        "FSharp.Linter": true,
-        "FSharp.UnionCaseStubGeneration": true,
-        "FSharp.UnionCaseStubGenerationBody": "failwith \"Not Implemented\"",
-        "FSharp.RecordStubGeneration": true,
-        "FSharp.RecordStubGenerationBody": "failwith \"Not Implemented\"",
-        "FSharp.InterfaceStubGeneration": true,
-        "FSharp.InterfaceStubGenerationObjectIdentifier": "this",
-        "FSharp.InterfaceStubGenerationMethodBody": "failwith \"Not Implemented\"",
-        "FSharp.UnusedOpensAnalyzer": true,
-        "FSharp.UnusedDeclarationsAnalyzer": true,
-        "FSharp.UseSdkScripts": true,
-        "FSharp.SimplifyNameAnalyzer": false,
-        "FSharp.ResolveNamespaces": true,
-        "FSharp.EnableReferenceCodeLens": true
-      }
-    },
     "fortran": {
       "command": "fortls",
       "filetypes": [

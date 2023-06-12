@@ -186,6 +186,11 @@ let g:ale_fixers = {
   \"trim_whitespace",
   \"remove_trailing_lines"
 \],
+\"r": [
+  \"trim_whitespace",
+  \"remove_trailing_lines",
+  \"styler"
+\]
 \}
 
 let g:ale_linters = {
@@ -235,6 +240,9 @@ let g:ale_linters = {
 \],
 \"fortran": [
   \"gcc",
+\],
+\"r": [
+  \"languageserver",
 \]
 \}
 
