@@ -97,7 +97,6 @@ nnoremap <leader>b :action ShowNavBar<CR>
 nnoremap <c-s> :action FileStructurePopup<CR>
 nnoremap gc :action GotoClass<CR>
 nnoremap gi :action GotoImplementation<CR>
-" nnoremap gd :action GotoToDeclaration<CR>
 nnoremap gp :action GotoToSuperMethod<CR>
 
 """ Tool windows
