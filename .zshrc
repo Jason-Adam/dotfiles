@@ -52,11 +52,6 @@ source $ZSH/oh-my-zsh.sh
 # Aliases
 alias reload!='clear && source ~/.zshrc'
 alias cat='bat'
-alias ls='exa --group-directories-first'
-alias la='exa --group-directories-first --all'
-alias ll='exa --group-directories-first --long'
-alias lst='exa --group-directories-first --tree'
-alias llt='exa --group-directories-first --long --tree'
 alias tar='gtar'
 
 # gcloud autocomplete
@@ -73,9 +68,6 @@ export PATH="$PATH:$HOME/.cargo/bin"
 
 # Poetry
 export PATH="$HOME/.poetry/bin:$PATH"
-
-# Node@16
-export PATH="/usr/local/opt/node@16/bin:$PATH"
 
 # ZLS
 export PATH="$PATH:$HOME/zls/zig-out/bin"
