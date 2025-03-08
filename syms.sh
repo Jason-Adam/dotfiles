@@ -14,3 +14,4 @@ ln -s -f "$HOME"/code/dotfiles/.gitignore_global "$HOME"/.gitignore_global
 ln -s -f "$HOME"/code/dotfiles/zls.json "$HOME"/Library/Application\ Support/zls.json
 ln -s -f "$HOME"/code/dotfiles/.ideavimrc "$HOME"/.ideavimrc
 ln -s -f "$HOME"/code/dotfiles/claude_desktop_config.json "$HOME"/Library/Application\ Support/Claude/claude_desktop_config.json
+ln -s -f "$HOME"/code/dotfiles/.goosehints "$HOME"/.config/goose/.goosehints

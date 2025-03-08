@@ -41,6 +41,13 @@
         "-y",
         "@modelcontextprotocol/server-memory"
       ]
+    },
+    "jetbrains": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@jetbrains/mcp-proxy"
+      ]
     }
   }
 }
