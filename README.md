@@ -13,6 +13,8 @@ git clone https://github.com/Jason-Adam/dotfiles.git "$HOME"/code
 
 From within the `dotfiles` folder:
 
+You may need to create some of the config folders.
+
 ```sh
 cd "$HOME"/code/dotfiles
 ./syms.sh
