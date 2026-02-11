@@ -2,7 +2,7 @@
     name = Jason Adam
     email = 22adamj22@gmail.com
     username = Jason-Adam
-	signingkey = 97CE138B76E75529
+    signingkey = ~/.ssh/id_ed25519.pub
 
 [credential "https://github.com"]
     username = Jason-Adam
@@ -11,16 +11,12 @@
     editor = vim
     excludesFile = ~/.gitignore_global
 
-[web]
-    browser = brave-browser
-
 [alias]
     br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
     lg = !git log --pretty=format:\"%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(dim green)(%cr) [%an]\" --abbrev-commit -30
-    ctags = !.git/hooks/ctags
 
-[init]
-    templatedir = /Users/jasonadam/.git_template
+[gpg]
+    format = ssh
 
 [commit]
-	gpgsign = true
+    gpgsign = true
