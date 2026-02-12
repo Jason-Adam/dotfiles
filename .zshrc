@@ -38,7 +38,6 @@ alias vimfzf='nvim $(fzf)'
 ###################################################
 plugins=(
     git 
-    git-prompt
     vi-mode 
     fzf
     tmux
@@ -67,21 +66,27 @@ load-env() {
 }
 
 # Git prompt
-autoload -Uz vcs_info
-precmd() { vcs_info }
+ZSH_THEME_GIT_PROMPT_PREFIX="["
+ZSH_THEME_GIT_PROMPT_SUFFIX="] "
+ZSH_THEME_GIT_PROMPT_SEPARATOR=""
+ZSH_THEME_GIT_PROMPT_BRANCH="%b"
+ZSH_THEME_GIT_PROMPT_DIRTY=" %F{red}●%f"
+ZSH_THEME_GIT_PROMPT_CLEAN=""
+PROMPT='%~ $(git_prompt_info)%# '
 
-zstyle ':vcs_info:git:*' check-for-changes true
+gnb() {
+  if [ -z "$1" ]; then
+    echo "Usage: gnb <branch-name-text>"
+    return 1
+  fi
 
-# Make change indicators red
-zstyle ':vcs_info:git:*' unstagedstr '%F{red} ●%f'
-zstyle ':vcs_info:git:*' stagedstr '%F{red} +%f'
+  local date
+  date=$(date +%Y%m%d)
 
-zstyle ':vcs_info:git:*' formats ' [%b%u%c]'
-zstyle ':vcs_info:git:*' actionformats ' [%b|%a%u%c]'
+  local text
+  text=$(echo "$1" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | tr -cd '[:alnum:]-')
 
-setopt prompt_subst
+  local branch="ja.${date}.${text}"
 
-RPROMPT=
-PROMPT='%~${vcs_info_msg_0_} %# '
-
-. "$HOME/.local/bin/env"
+  git checkout -b "$branch"
+}
