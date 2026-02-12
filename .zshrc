@@ -32,34 +32,22 @@ export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
 alias vim='nvim'
 alias vimfzf='nvim $(fzf)'
-alias ctags="`brew --prefix`/bin/ctags"
 
 ###################################################
 # Plugins
 ###################################################
 plugins=(
     git 
+    git-prompt
     vi-mode 
     fzf
     tmux
-    zsh-syntax-highlighting
-    zsh-autosuggestions
-    zsh-completions
 )
 
 source $ZSH/oh-my-zsh.sh
 
 # Aliases
 alias reload!='clear && source ~/.zshrc'
-alias cat='bat'
-alias tar='gtar'
-
-# gcloud autocomplete
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/jasonadam/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/jasonadam/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/jasonadam/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/jasonadam/google-cloud-sdk/completion.zsh.inc'; fi
 
 export PATH="$HOME/bin:$PATH"
 
@@ -69,19 +57,27 @@ export PATH="$PATH:$HOME/.cargo/bin"
 # Poetry
 export PATH="$HOME/.poetry/bin:$PATH"
 
-# ZLS
-export PATH="$PATH:$HOME/zls/zig-out/bin"
-
-# Gawk
-export PATH="/usr/local/opt/gawk/libexec/gnubin:$PATH"
-
-# Dotnet
-export DOTNET_ROOT="$HOME/.dotnet"
-export PATH="$PATH:$HOME/.dotnet:$HOME/.dotnet/tools"
-
 # Load Environment variable file for python virtual envs
 load-env() {
     set -o allexport && \
         source "$1" && \
         set +o allexport;
 }
+
+# Git prompt
+autoload -Uz vcs_info
+precmd() { vcs_info }
+
+zstyle ':vcs_info:git:*' check-for-changes true
+
+# Make change indicators red
+zstyle ':vcs_info:git:*' unstagedstr '%F{red} ●%f'
+zstyle ':vcs_info:git:*' stagedstr '%F{red} +%f'
+
+zstyle ':vcs_info:git:*' formats ' [%b%u%c]'
+zstyle ':vcs_info:git:*' actionformats ' [%b|%a%u%c]'
+
+setopt prompt_subst
+
+RPROMPT=
+PROMPT='%~${vcs_info_msg_0_} %# '

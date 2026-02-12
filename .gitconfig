@@ -2,7 +2,6 @@
     name = Jason Adam
     email = 22adamj22@gmail.com
     username = Jason-Adam
-    signingkey = ~/.ssh/id_ed25519.pub
 
 [credential "https://github.com"]
     username = Jason-Adam
@@ -15,8 +14,5 @@
     br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
     lg = !git log --pretty=format:\"%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(dim green)(%cr) [%an]\" --abbrev-commit -30
 
-[gpg]
-    format = ssh
-
 [commit]
-    gpgsign = true
+	gpgSign = false
