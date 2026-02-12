@@ -11,38 +11,9 @@
     "rust",
     "js",
     "ts",
-    "html",
-    "zig",
-    "fsharp"
+    "html"
   ],
   "languageserver": {
-    "fortran": {
-      "command": "fortls",
-      "filetypes": [
-        "fortran"
-      ],
-      "rootPatterns": [
-        ".fortls",
-        ".git/"
-      ]
-    },
-    "zig": {
-      "command": "zls",
-      "filetypes": [
-        "zig"
-      ]
-    },
-    "terraform": {
-      "command": "terraform-ls",
-      "args": [
-        "serve"
-      ],
-      "filetypes": [
-        "terraform",
-        "tf"
-      ],
-      "initializationOptions": {}
-    },
     "dockerfile": {
       "command": "docker-langserver",
       "filetypes": [

@@ -51,6 +51,8 @@ alias reload!='clear && source ~/.zshrc'
 
 export PATH="$HOME/bin:$PATH"
 
+export PATH="$HOME/.local/bin:$PATH"
+
 # Rust
 export PATH="$PATH:$HOME/.cargo/bin"
 
@@ -81,3 +83,5 @@ setopt prompt_subst
 
 RPROMPT=
 PROMPT='%~${vcs_info_msg_0_} %# '
+
+. "$HOME/.local/bin/env"
