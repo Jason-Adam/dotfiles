@@ -45,6 +45,8 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # Aliases
 alias reload!='clear && source ~/.zshrc'
 
@@ -89,4 +91,36 @@ gnb() {
   local branch="ja.${date}.${text}"
 
   git checkout -b "$branch"
+}
+
+prweb() {
+  # Ensure we're inside a git repository
+  if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    echo "Not inside a git repository."
+    return 1
+  fi
+
+  # Ensure gh CLI is installed
+  if ! command -v gh >/dev/null 2>&1; then
+    echo "GitHub CLI (gh) is not installed."
+    return 1
+  fi
+
+  # Get current branch
+  local branch
+  branch=$(git rev-parse --abbrev-ref HEAD)
+
+  if [[ "$branch" == "HEAD" ]]; then
+    echo "You are in a detached HEAD state."
+    return 1
+  fi
+
+  # Push branch if it doesn't exist on remote
+  if ! git ls-remote --exit-code --heads origin "$branch" >/dev/null 2>&1; then
+    echo "Pushing branch '$branch' to origin..."
+    git push -u origin "$branch" || return 1
+  fi
+
+  # Create draft PR and open in browser
+  gh pr create --fill --web
 }

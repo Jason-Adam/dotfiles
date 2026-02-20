@@ -110,9 +110,8 @@ let g:ale_linters_explicit = 1
 
 let g:ale_fixers = {
 \"python": [
-  \"add_blank_lines_for_python_control_statements",
-  \"black",
-  \"isort",
+  \"ruff",
+  \"ruff_format",
   \"remove_trailing_lines",
   \"trim_whitespace"
 \],
@@ -195,9 +194,7 @@ let g:ale_fixers = {
 
 let g:ale_linters = {
 \"python": [
-  \"flake8",
-  \"bandit",
-  \"pylint"
+  \"ruff",
 \],
 \"sh": [
   \"shellcheck"
@@ -250,6 +247,7 @@ let g:ale_python_pylint_options = "--disable=C0111,C0112,C0301,C0302"
 let g:ale_python_flake8_options = "--ignore=E501"
 let g:ale_python_mypy_options = "--ignore-missing-imports"
 let g:ale_sql_pgformatter_options = "--comma-break"
+let g:ale_python_auto_virtualenv = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Go
