@@ -16,3 +16,6 @@
 
 [commit]
 	gpgSign = false
+ 
+ [push]
+    autoSetupRemote = true
