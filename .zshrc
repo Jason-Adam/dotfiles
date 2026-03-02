@@ -50,6 +50,10 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # Aliases
 alias reload!='clear && source ~/.zshrc'
 
+clawd() {
+  claude --teammate-mode in-process --dangerously-skip-permissions "$@"
+}
+
 export PATH="$HOME/bin:$PATH"
 
 export PATH="$HOME/.local/bin:$PATH"

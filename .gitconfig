@@ -1,6 +1,6 @@
 [user]
     name = Jason Adam
-    email = 22adamj22@gmail.com
+	email = 35201417+Jason-Adam@users.noreply.github.com
     username = Jason-Adam
 
 [credential "https://github.com"]
@@ -19,3 +19,8 @@
  
  [push]
     autoSetupRemote = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
