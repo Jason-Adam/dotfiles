@@ -80,6 +80,16 @@ ZSH_THEME_GIT_PROMPT_DIRTY=" %F{red}●%f"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 PROMPT='%~ $(git_prompt_info)%# '
 
+bname() {
+  local date
+  date=$(date +%Y%m%d)
+
+  local text
+  text=$(echo "$1" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | tr -cd '[:alnum:]-')
+
+  echo "ja.${date}.${text}"
+}
+
 gnb() {
   if [ -z "$1" ]; then
     echo "Usage: gnb <branch-name-text>"
