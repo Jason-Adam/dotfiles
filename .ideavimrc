@@ -84,7 +84,7 @@ nnoremap <leader>l :action RecentLocations<CR>
 nnoremap <leader>h  :action LocalHistory.ShowHistory<CR>
 nnoremap ge :action GotoNextError<CR>
 nnoremap gE :action GotoPreviousError<CR>
-nnoremap <leader>s :write<CR>
+nnoremap <leader>w :write<CR>
 
 """ Searching and Source Code Navigation
 nnoremap <c-/> :action FindInPath<CR>
@@ -92,7 +92,7 @@ nnoremap <c-a> :action GotoAction<CR>
 nnoremap <c-f> :action GotoFile<CR>
 nnoremap <leader>u :action FindUsages<CR>
 nnoremap <leader>s :action GotoRelated<CR>
-nnoremap <leader>h :action CallHierarchy<CR>
+nnoremap <leader>ch :action CallHierarchy<CR>
 nnoremap <leader>b :action ShowNavBar<CR>
 nnoremap <c-s> :action FileStructurePopup<CR>
 nnoremap gc :action GotoClass<CR>

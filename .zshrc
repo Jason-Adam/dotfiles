@@ -87,7 +87,7 @@ bname() {
   local text
   text=$(echo "$1" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | tr -cd '[:alnum:]-')
 
-  echo "ja.${date}.${text}"
+  echo "jasonadam.${date}.${text}"
 }
 
 gnb() {
@@ -138,3 +138,4 @@ prweb() {
   # Create draft PR and open in browser
   gh pr create --fill --web
 }
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
