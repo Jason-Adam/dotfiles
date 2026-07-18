@@ -1,27 +1,49 @@
 ###################################################
+# Homebrew (first, so `brew` is on PATH below)
+###################################################
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+###################################################
 # Path
 ###################################################
-
 export GOPATH=$HOME/go
 export GOROOT="$(brew --prefix go)/libexec"
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
-# Path to your oh-my-zsh installation.
-ZSH_DISABLE_COMPFIX=true
-export ZSH=$HOME/.oh-my-zsh
+export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$PATH:$HOME/.cargo/bin"            # Rust
+export PATH="$HOME/.poetry/bin:$PATH"           # Poetry
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH" # libpq
 
 ###################################################
-# Misc
+# Shell options
 ###################################################
-# vim mode
-set -o vi
+# vi mode
+bindkey -v
 
-# Theme
-ZSH_THEME="minimal"
+###################################################
+# History
+###################################################
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=50000
+SAVEHIST=10000
+setopt share_history
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt inc_append_history
 
-COMPLETION_WAITING_DOTS="true"
+###################################################
+# Completion
+###################################################
+if type brew &>/dev/null; then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+fi
+autoload -Uz compinit && compinit
 
+###################################################
 # FZF
+###################################################
 export FZF_DEFAULT_COMMAND='fd --type file --hidden --no-ignore'
 export FZF_DEFAULT_OPTS='--height 30% --border'
 export FZF_CTRL_T_COMMAND='fd --type f'
@@ -29,56 +51,28 @@ export FZF_CTRL_T_OPTS="--preview 'head {}'"
 export FZF_CTRL_R_OPTS='--sort --exact'
 export FZF_ALT_C_COMMAND='fd --type d'
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+source <(fzf --zsh)
 
+###################################################
+# Aliases
+###################################################
 alias vim='nvim'
 alias vimfzf='nvim $(fzf)'
-
-###################################################
-# Plugins
-###################################################
-plugins=(
-    git 
-    vi-mode 
-    fzf
-    tmux
-)
-
-source $ZSH/oh-my-zsh.sh
-
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
-# Aliases
 alias reload!='clear && source ~/.zshrc'
 
+###################################################
+# Functions
+###################################################
 clawd() {
   claude --teammate-mode in-process --dangerously-skip-permissions "$@"
 }
 
-export PATH="$HOME/bin:$PATH"
-
-export PATH="$HOME/.local/bin:$PATH"
-
-# Rust
-export PATH="$PATH:$HOME/.cargo/bin"
-
-# Poetry
-export PATH="$HOME/.poetry/bin:$PATH"
-
-# Load Environment variable file for python virtual envs
+# Load an env file for python virtual envs
 load-env() {
-    set -o allexport && \
-        source "$1" && \
-        set +o allexport;
+  set -o allexport && \
+    source "$1" && \
+    set +o allexport;
 }
-
-# Git prompt
-ZSH_THEME_GIT_PROMPT_PREFIX="["
-ZSH_THEME_GIT_PROMPT_SUFFIX="] "
-ZSH_THEME_GIT_PROMPT_SEPARATOR=""
-ZSH_THEME_GIT_PROMPT_BRANCH="%b"
-ZSH_THEME_GIT_PROMPT_DIRTY=" %F{red}●%f"
-ZSH_THEME_GIT_PROMPT_CLEAN=""
-PROMPT='%~ $(git_prompt_info)%# '
 
 bname() {
   local date
@@ -105,6 +99,15 @@ gnb() {
   local branch="ja.${date}.${text}"
 
   git checkout -b "$branch"
+}
+
+unalias md 2>/dev/null
+md() {
+  if [ -z "$1" ]; then
+    echo "Usage: md <file.md>"
+    return 1
+  fi
+  open -a "MacDown 3000" "$1"
 }
 
 prweb() {
@@ -138,4 +141,8 @@ prweb() {
   # Create draft PR and open in browser
   gh pr create --fill --web
 }
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+###################################################
+# Prompt
+###################################################
+eval "$(starship init zsh)"
