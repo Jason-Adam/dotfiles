@@ -3,9 +3,14 @@
 set -e
 
 # Symlink all dotfiles
-ln -s -f "$HOME"/code/dotfiles/coc-settings.json "$HOME"/.config/nvim/coc-settings.json
+mkdir -p "$HOME"/.config/nvim
 ln -s -f "$HOME"/code/dotfiles/.zshrc "$HOME"/.zshrc
 ln -s -f "$HOME"/code/dotfiles/init.vim "$HOME"/.config/nvim/init.vim
 ln -s -f "$HOME"/code/dotfiles/starship.toml "$HOME"/.config/starship.toml
 ln -s -f "$HOME"/code/dotfiles/.gitconfig "$HOME"/.gitconfig
-ln -s -f "$HOME"/code/dotfiles/.ideavimrc "$HOME"/.ideavimrc
+
+# Global agent instructions (single source of truth: AGENTS.md)
+mkdir -p "$HOME"/.config/goose "$HOME"/.pi/agent "$HOME"/.claude
+ln -s -f "$HOME"/code/dotfiles/AGENTS.md "$HOME"/.config/goose/.goosehints
+ln -s -f "$HOME"/code/dotfiles/AGENTS.md "$HOME"/.pi/agent/AGENTS.md
+ln -s -f "$HOME"/code/dotfiles/AGENTS.md "$HOME"/.claude/CLAUDE.md

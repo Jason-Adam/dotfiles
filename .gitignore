@@ -30,3 +30,6 @@ tags
 
 ### Mac ###
 .DS_Store
+
+### Tooling ###
+.planning/

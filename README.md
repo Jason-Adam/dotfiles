@@ -19,3 +19,9 @@ You may need to create some of the config folders.
 cd "$HOME"/code/dotfiles
 ./syms.sh
 ```
+
+Install core CLI tools:
+
+```sh
+brew bundle --file=Brewfile
+```
