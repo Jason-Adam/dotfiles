@@ -1,0 +1,134 @@
+#!/usr/bin/env python3
+"""thoughts - manage the central ~/thoughts/<repo> store.
+
+Deterministic helper for the rpi-research, rpi-plan, handoff, and resume-handoff
+skills. It owns the mechanical parts - computing the repo-namespaced path, creating
+dated files, stamping git-metadata frontmatter, and locating the latest handoff -
+so the skills spend their tokens on content, not path/date/git plumbing.
+
+Usage:
+  thoughts new research "<topic>"   Create a research doc (with metadata frontmatter)
+  thoughts new plan "<description>"  Create a plan doc
+  thoughts new handoff              Create/locate today's handoff doc
+  thoughts latest handoff           Print the path to the most recent handoff (if any)
+  thoughts path [research|plans|handoffs]   Print (and mkdir) a store dir
+  thoughts repo                     Print the repo name used for namespacing
+
+Docs are written to ~/thoughts/<repo>/{research,plans,handoffs}/, where <repo> is the
+git repository name (falls back to the current directory name outside a repo).
+"""
+from __future__ import annotations
+
+import argparse
+import re
+import subprocess
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+
+ROOT = Path.home() / "thoughts"
+
+
+def _git(*args: str) -> str | None:
+    try:
+        out = subprocess.run(
+            ["git", *args], capture_output=True, text=True, check=True
+        )
+        return out.stdout.strip()
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return None
+
+
+def repo_name() -> str:
+    top = _git("rev-parse", "--show-toplevel")
+    return Path(top).name if top else Path.cwd().name
+
+
+def slug(text: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-") or "untitled"
+
+
+def store_dir(kind: str) -> Path:
+    d = ROOT / repo_name() / kind
+    d.mkdir(parents=True, exist_ok=True)
+    return d
+
+
+def _research_frontmatter(topic: str) -> str:
+    iso = datetime.now(timezone.utc).astimezone().isoformat(timespec="seconds")
+    return (
+        "---\n"
+        f"date: {iso}\n"
+        f"git_commit: {_git('rev-parse', 'HEAD') or 'unknown'}\n"
+        f"branch: {_git('rev-parse', '--abbrev-ref', 'HEAD') or 'unknown'}\n"
+        f"repository: {repo_name()}\n"
+        f'topic: "{topic}"\n'
+        "tags: [research]\n"
+        "status: in_progress\n"
+        "---\n\n"
+        f"# Research: {topic}\n"
+    )
+
+
+def cmd_new(args: argparse.Namespace) -> None:
+    now = datetime.now()
+    if args.type == "handoff":
+        path = store_dir("handoffs") / f"{now:%Y-%m-%d}.md"
+        if not path.exists():
+            path.write_text(f"## Handoff: {now:%Y-%m-%d} - \n")
+        print(path)
+        return
+
+    if not args.title:
+        sys.exit(f"error: 'thoughts new {args.type}' requires a title/topic")
+    fname = f"{now:%Y-%m-%d-%H%M}-{slug(args.title)}.md"
+    if args.type == "research":
+        path = store_dir("research") / fname
+        path.write_text(_research_frontmatter(args.title))
+    else:  # plan
+        path = store_dir("plans") / fname
+        path.write_text(f"# {args.title} Implementation Plan\n")
+    print(path)
+
+
+def cmd_path(args: argparse.Namespace) -> None:
+    print(store_dir(args.kind) if args.kind else (ROOT / repo_name()))
+
+
+def cmd_repo(_: argparse.Namespace) -> None:
+    print(repo_name())
+
+
+def cmd_latest(args: argparse.Namespace) -> None:
+    d = ROOT / repo_name() / f"{args.kind}s"
+    files = sorted(d.glob("*.md")) if d.exists() else []
+    if files:
+        print(files[-1])  # names are date-sorted, so lexical last = newest
+
+
+def main() -> None:
+    p = argparse.ArgumentParser(prog="thoughts", description=__doc__)
+    sub = p.add_subparsers(required=True)
+
+    pn = sub.add_parser("new", help="create a new doc")
+    pn.add_argument("type", choices=["research", "plan", "handoff"])
+    pn.add_argument("title", nargs="?", help="topic/description (omit for handoff)")
+    pn.set_defaults(func=cmd_new)
+
+    pl = sub.add_parser("latest", help="print the newest doc of a kind")
+    pl.add_argument("kind", choices=["handoff"])
+    pl.set_defaults(func=cmd_latest)
+
+    pp = sub.add_parser("path", help="print (and create) a store dir")
+    pp.add_argument("kind", nargs="?", choices=["research", "plans", "handoffs"])
+    pp.set_defaults(func=cmd_path)
+
+    pr = sub.add_parser("repo", help="print the namespacing repo name")
+    pr.set_defaults(func=cmd_repo)
+
+    args = p.parse_args()
+    args.func(args)
+
+
+if __name__ == "__main__":
+    main()

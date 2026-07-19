@@ -49,32 +49,19 @@ search. Request `file:line` references.
 Wait for ALL subagent tasks to finish. Compile and connect findings across
 components. Resolve contradictions. Note gaps.
 
-### 5. Gather git metadata
+### 5. Create and write the research document
+Create the file with the helper CLI:
+
 ```bash
-date -Iseconds
-git rev-parse HEAD
-git branch --show-current
-basename "$(git rev-parse --show-toplevel)"
+thoughts new research "<topic>"
 ```
 
-### 6. Write the research document
-Write to the central store: `~/thoughts/<repo>/research/YYYY-MM-DD-HHmm-topic.md`
-(e.g. `~/thoughts/myapp/research/2025-01-15-1430-auth-flow.md`), where `<repo>` is
-the repository name from step 5. `mkdir -p` the directory first if needed.
+This writes `~/thoughts/<repo>/research/YYYY-MM-DD-HHmm-<slug>.md` with the metadata
+frontmatter (date, git_commit, branch, repository) already stamped, and prints the
+path. Write the findings into that file under these sections, then set
+`status: complete` in the frontmatter:
 
 ```markdown
----
-date: [ISO date from step 5]
-git_commit: [commit hash]
-branch: [branch name]
-repository: [repo name]
-topic: "[Research Topic]"
-tags: [research, codebase, relevant-tags]
-status: complete
----
-
-# Research: [Topic]
-
 ## Research Question
 [Original query]
 
@@ -94,7 +81,7 @@ status: complete
 [Areas needing further investigation]
 ```
 
-### 7. Present summary
+### 6. Present summary
 Show the user a concise summary with key file references. Ask if they have
 follow-up questions; for follow-ups, spawn new subagents and append a
 `## Follow-up: [topic] (YYYY-MM-DD)` section, then re-save.

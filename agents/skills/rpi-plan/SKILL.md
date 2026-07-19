@@ -44,10 +44,14 @@ Propose a phase outline (Overview + numbered phases) and get feedback on the
 structure BEFORE writing details.
 
 ### Step 4: Write the plan
-After structure approval, write to the central store:
-`~/thoughts/<repo>/plans/YYYY-MM-DD-HHmm-description.md` (e.g.
-`~/thoughts/myapp/plans/2025-01-15-1430-add-auth.md`), where `<repo>` is
-`basename $(git rev-parse --show-toplevel)`. `mkdir -p` the directory first if needed:
+After structure approval, create the plan file with the helper CLI:
+
+```bash
+thoughts new plan "<description>"
+```
+
+It writes `~/thoughts/<repo>/plans/YYYY-MM-DD-HHmm-<slug>.md` and prints the path.
+Write the plan into that file using this structure:
 
 ```markdown
 # [Feature/Task Name] Implementation Plan

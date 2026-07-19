@@ -44,8 +44,8 @@ documents that let another session pick up exactly where this one left off.
 
 3. **Keep it under 150 words** - this is a brief, not a novel
 
-4. **Save** to `~/thoughts/<repo>/handoffs/YYYY-MM-DD.md`, where `<repo>` is
-   `basename $(git rev-parse --show-toplevel)` (`mkdir -p` the directory first)
+4. **Save**: create/locate today's file with `thoughts new handoff` (it prints the
+   path to `~/thoughts/<repo>/handoffs/YYYY-MM-DD.md`), then write the handoff into it
 
 ## Quality Gates
 

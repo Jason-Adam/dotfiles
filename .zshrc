@@ -11,6 +11,7 @@ export PATH="$PATH:$GOPATH/bin"                  # go-installed tools (golangci-
 
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/code/dotfiles/scripts:$PATH" # repo helper CLIs (thoughts, ...)
 export PATH="$PATH:$HOME/.cargo/bin"            # Rust
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH" # libpq
 
