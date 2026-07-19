@@ -1,0 +1,118 @@
+#!/usr/bin/env python3
+"""merge-findings - dedupe, merge, and severity-sort code-review findings.
+
+Bundled with the `polish` skill. Reads a JSON array of findings from stdin (or from
+file arguments, each a JSON array) and emits a single deduplicated, severity-ranked
+report. Findings at the same file:line are merged: highest severity wins, perspectives
+are unioned, and descriptions are combined.
+
+Finding schema (extra keys ignored):
+  {"file": "auth.py", "line": 42, "severity": "high",
+   "perspective": "correctness", "description": "..."}
+
+severity: one of critical, high, medium, low (case-insensitive; unknown -> low)
+
+Usage:
+  cat findings.json | merge-findings            # markdown report (default)
+  merge-findings a.json b.json --format json    # merged JSON
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+from collections import OrderedDict
+
+SEVERITY_ORDER = ["critical", "high", "medium", "low"]
+RANK = {s: i for i, s in enumerate(SEVERITY_ORDER)}
+
+
+def _norm_sev(value: object) -> str:
+    s = str(value or "").strip().lower()
+    return s if s in RANK else "low"
+
+
+def _line_key(line: object):
+    try:
+        return (0, int(line))
+    except (TypeError, ValueError):
+        return (1, str(line))
+
+
+def load(sources: list[str]) -> list[dict]:
+    items: list[dict] = []
+    if sources:
+        for path in sources:
+            with open(path) as fh:
+                items.extend(json.load(fh))
+    else:
+        data = sys.stdin.read().strip()
+        if data:
+            items.extend(json.loads(data))
+    return items
+
+
+def merge(findings: list[dict]) -> list[dict]:
+    by_loc: "OrderedDict[tuple[str, object], dict]" = OrderedDict()
+    for f in findings:
+        file = str(f.get("file", "?"))
+        line = f.get("line", "")
+        key = (file, line)
+        sev = _norm_sev(f.get("severity"))
+        persp = str(f.get("perspective", "")).strip()
+        desc = str(f.get("description", "")).strip()
+        cur = by_loc.setdefault(
+            key,
+            {"file": file, "line": line, "severity": sev,
+             "perspectives": [], "descriptions": []},
+        )
+        if RANK[sev] < RANK[cur["severity"]]:
+            cur["severity"] = sev
+        if persp and persp not in cur["perspectives"]:
+            cur["perspectives"].append(persp)
+        if desc and desc not in cur["descriptions"]:
+            cur["descriptions"].append(desc)
+    merged = list(by_loc.values())
+    merged.sort(key=lambda m: (RANK[m["severity"]], m["file"], _line_key(m["line"])))
+    return merged
+
+
+def to_markdown(merged: list[dict]) -> str:
+    out = ["## Polish Report", ""]
+    for sev in SEVERITY_ORDER:
+        rows = [m for m in merged if m["severity"] == sev]
+        if not rows:
+            continue
+        out.append(f"### {sev.capitalize()}")
+        for m in rows:
+            persp = f"[{' + '.join(m['perspectives'])}] " if m["perspectives"] else ""
+            loc = f"{m['file']}:{m['line']}" if m["line"] != "" else m["file"]
+            out.append(f"- {persp}`{loc}` - {' '.join(m['descriptions'])}")
+        out.append("")
+    out.append(f"_{len(merged)} finding(s) after dedup._")
+    return "\n".join(out)
+
+
+def to_json(merged: list[dict]) -> str:
+    return json.dumps(
+        [{"file": m["file"], "line": m["line"], "severity": m["severity"],
+          "perspectives": m["perspectives"],
+          "description": " ".join(m["descriptions"])} for m in merged],
+        indent=2,
+    )
+
+
+def main() -> None:
+    p = argparse.ArgumentParser(prog="merge-findings", description=__doc__)
+    p.add_argument("files", nargs="*", help="JSON files (default: read stdin)")
+    p.add_argument("--format", choices=["markdown", "json"], default="markdown")
+    args = p.parse_args()
+    try:
+        merged = merge(load(args.files))
+    except (OSError, json.JSONDecodeError) as exc:
+        sys.exit(f"merge-findings: invalid input: {exc}")
+    print(to_json(merged) if args.format == "json" else to_markdown(merged))
+
+
+if __name__ == "__main__":
+    main()

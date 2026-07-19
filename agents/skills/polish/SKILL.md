@@ -32,29 +32,27 @@ auto-fix the issues.
    > spawn these three in parallel. On agents without a subagent mechanism (e.g. Pi),
    > perform the three review passes yourself, one at a time, in the main context.
 
-3. **Collate and deduplicate**:
-   - Group findings by `file:line`
-   - When multiple agents flag the same location: keep the highest severity, merge
-     descriptions, tag which perspectives caught it (e.g. `[correctness + security]`)
-   - Sort by severity (critical -> high -> medium -> low), then by file
+3. **Collate and deduplicate** with the bundled helper:
+   - Collect each agent's findings into one JSON array of objects, one per finding:
+     `{"file", "line", "severity" (critical|high|medium|low), "perspective", "description"}`
+   - Pipe it to the bundled `merge-findings` script, which groups by `file:line`, keeps
+     the highest severity, unions the perspectives, and severity-sorts the result:
+     ```bash
+     echo "$FINDINGS_JSON" | scripts/merge-findings
+     ```
+     The script is bundled beside this SKILL.md (`scripts/merge-findings`); the resolved
+     path is `~/.agents/skills/polish/scripts/merge-findings`. It prints the merged
+     findings body used in the report below.
 
-4. **Present unified report**:
+4. **Present unified report** - wrap the script's merged findings with scope, score, and
+   summary:
    ```
    ## Polish Report: [scope description]
 
    ### Score: [X]/100
 
-   ### Critical
-   - [SEVERITY: CRITICAL] [perspectives] `file.py:42` - [merged description]
-
-   ### High
-   - [SEVERITY: HIGH] [perspectives] `file.py:88` - [merged description]
-
-   ### Medium
-   - [SEVERITY: MEDIUM] [perspectives] `file.py:120` - [merged description]
-
-   ### Low
-   - [SEVERITY: LOW] [perspectives] `file.py:200` - [merged description]
+   [merged findings from `merge-findings` - severity sections, each line:
+    [perspectives] `file.py:42` - merged description]
 
    ### Summary
    [2-3 sentence overall assessment]
