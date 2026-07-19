@@ -15,7 +15,7 @@ Documents are namespaced by repository:
 
 ## Helper CLI
 
-The `thoughts` CLI (`scripts/thoughts`, on `PATH` via `.zshrc`) owns the mechanics -
+The `thoughts` CLI (`agents/scripts/thoughts`, on `PATH` via `.zshrc`) owns the mechanics -
 computing the repo-namespaced path, creating dated files, and stamping git-metadata
 frontmatter - so the skills handle content, not plumbing:
 

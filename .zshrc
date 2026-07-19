@@ -11,7 +11,7 @@ export PATH="$PATH:$GOPATH/bin"                  # go-installed tools (golangci-
 
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/code/dotfiles/scripts:$PATH" # repo helper CLIs (thoughts, ...)
+export PATH="$HOME/code/dotfiles/agents/scripts:$PATH" # repo helper CLIs (thoughts, ...)
 export PATH="$PATH:$HOME/.cargo/bin"            # Rust
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH" # libpq
 
@@ -73,7 +73,7 @@ load-env() {
     set +o allexport;
 }
 
-# Namespaced branch name <user>.<yyyymmdd>.<slug>; logic lives in scripts/branch-name
+# Namespaced branch name <user>.<yyyymmdd>.<slug>; logic lives in agents/scripts/branch-name
 bname() { branch-name "$@"; }
 
 # Create and switch to a new branch named via branch-name

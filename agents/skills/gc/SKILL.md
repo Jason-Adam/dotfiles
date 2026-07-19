@@ -22,8 +22,8 @@ confirmation - the user trusts your judgment. You never commit to main or master
 1. **Branch safety**:
    - If on `main` or `master`:
      1. Derive a short description of the changes
-     2. Create the branch: `git checkout -b "$(branch-name "<description>")"`
-        (the `branch-name` helper yields `<user>.<yyyymmdd>.<slug>`)
+     2. Create the branch: `git checkout -b "$(~/.agents/scripts/branch-name "<description>")"`
+        (the `~/.agents/scripts/branch-name` helper yields `<user>.<yyyymmdd>.<slug>`)
      3. Verify with `git branch --show-current` - if still on main, STOP and report
    - If already on a feature branch, continue
 

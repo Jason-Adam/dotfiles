@@ -126,5 +126,5 @@ activate venvs manually.
 
 ## Definition of done
 
-Run `py-check` - it runs ruff (lint + format check), mypy, and pytest, and fails if
+Run `~/.agents/scripts/py-check` - it runs ruff (lint + format check), mypy, and pytest, and fails if
 any gate fails. All must pass before the work is done.

@@ -18,7 +18,7 @@ Handoffs live in the central thoughts directory:
 - **If a handoff path was provided**: read it FULLY immediately, then read any
   research/plan documents it links to under `~/thoughts/<repo>/{research,plans}/`
   (read these critical files directly, not via a subagent).
-- **If no path was provided**: run `thoughts latest handoff` to get the most recent
+- **If no path was provided**: run `~/.agents/scripts/thoughts latest handoff` to get the most recent
   handoff path (empty output means none exist - ask which handoff to resume).
 
 ## Process

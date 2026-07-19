@@ -53,7 +53,7 @@ components. Resolve contradictions. Note gaps.
 Create the file with the helper CLI:
 
 ```bash
-thoughts new research "<topic>"
+~/.agents/scripts/thoughts new research "<topic>"
 ```
 
 This writes `~/thoughts/<repo>/research/YYYY-MM-DD-HHmm-<slug>.md` with the metadata

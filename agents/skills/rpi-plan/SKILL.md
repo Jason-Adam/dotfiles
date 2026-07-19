@@ -47,7 +47,7 @@ structure BEFORE writing details.
 After structure approval, create the plan file with the helper CLI:
 
 ```bash
-thoughts new plan "<description>"
+~/.agents/scripts/thoughts new plan "<description>"
 ```
 
 It writes `~/thoughts/<repo>/plans/YYYY-MM-DD-HHmm-<slug>.md` and prints the path.
