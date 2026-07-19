@@ -24,3 +24,7 @@ ln -s -f "$HOME"/code/dotfiles/agents "$HOME"/.agents
 # Central thoughts store (research/plans/handoffs), namespaced by repo.
 # rpi-research, rpi-plan, and handoff write here; note content is git-ignored.
 ln -s -f "$HOME"/code/dotfiles/thoughts "$HOME"/thoughts
+
+# Pi extensions (agent hooks run on file edits, etc.)
+mkdir -p "$HOME"/.pi/agent/extensions
+ln -s -f "$HOME"/code/dotfiles/pi-extensions/format-on-edit.ts "$HOME"/.pi/agent/extensions/format-on-edit.ts
