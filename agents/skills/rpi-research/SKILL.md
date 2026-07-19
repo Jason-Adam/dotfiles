@@ -20,18 +20,25 @@ parallel subagents and synthesizing their findings.
 ### 1. Read mentioned files first
 If the user names specific files, read them FULLY (no limit/offset) before anything else.
 
-### 2. Decompose the question
+### 2. Decompose the question, and check prior thoughts
 Break the query into 3-5 specific research areas.
 
+Then check what prior context already exists: spawn `thoughts-locator` to find
+related documents in `~/thoughts/` (past research, plans, handoffs). For any relevant
+hit, spawn `thoughts-analyzer` to extract its still-applicable decisions and
+constraints. Fold that context in so you don't re-derive what's already known.
+
 ### 3. Spawn parallel subagents
-Dispatch these three roles, in parallel, one focused question each:
+Dispatch these roles, in parallel, one focused question each:
 
 - **codebase-locator** - find WHERE files and components live
 - **codebase-analyzer** - understand HOW specific code works
 - **pattern-finder** - find existing examples of a pattern to model after
+- **web-search-researcher** - external/current info (docs, releases, best practices)
+  when the topic needs knowledge beyond this codebase
 
 > Runtime note: on agents that support isolated subagents (Goose, Claude Code),
-> spawn `codebase-locator`, `codebase-analyzer`, and `pattern-finder` as parallel
+> spawn these (and `thoughts-locator`/`thoughts-analyzer` above) as parallel
 > subagents. On agents without a subagent mechanism (e.g. Pi), perform each role
 > yourself inline in the main context, keeping the same separation of concerns.
 
@@ -51,7 +58,9 @@ basename "$(git rev-parse --show-toplevel)"
 ```
 
 ### 6. Write the research document
-Create `thoughts/research/YYYY-MM-DD-HHmm-topic.md` (e.g. `2025-01-15-1430-auth-flow.md`):
+Write to the central store: `~/thoughts/<repo>/research/YYYY-MM-DD-HHmm-topic.md`
+(e.g. `~/thoughts/myapp/research/2025-01-15-1430-auth-flow.md`), where `<repo>` is
+the repository name from step 5. `mkdir -p` the directory first if needed.
 
 ```markdown
 ---
@@ -94,4 +103,4 @@ follow-up questions; for follow-ups, spawn new subagents and append a
 - Use subagents for research, not just your own tools
 - Document what IS, not what SHOULD BE
 - Include specific `file:line` references
-- Write the doc to `thoughts/research/`
+- Write the doc to `~/thoughts/<repo>/research/`

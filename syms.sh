@@ -20,3 +20,7 @@ ln -s -f "$HOME"/code/dotfiles/AGENTS.md "$HOME"/.claude/CLAUDE.md
 # Claude is intentionally NOT linked into ~/.claude: goose also reads ~/.claude
 # for backward compat, so linking there would double-load every skill/agent.
 ln -s -f "$HOME"/code/dotfiles/agents "$HOME"/.agents
+
+# Central thoughts store (research/plans/handoffs), namespaced by repo.
+# rpi-research, rpi-plan, and handoff write here; note content is git-ignored.
+ln -s -f "$HOME"/code/dotfiles/thoughts "$HOME"/thoughts

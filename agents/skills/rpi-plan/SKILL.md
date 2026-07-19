@@ -16,9 +16,13 @@ skeptical, thorough, and collaborative to produce high-quality technical specs.
 1. **Read all mentioned files immediately and FULLY** (tickets, research docs,
    related plans). Never read partially. Do this before spawning any subagents.
 2. **Spawn initial research** via subagents (see runtime note below):
+   - **thoughts-locator** - find prior research/plans/handoffs in `~/thoughts/` on
+     this topic; feed relevant hits to **thoughts-analyzer** for their decisions/constraints
    - **codebase-locator** - find all files related to the task
    - **codebase-analyzer** - understand the current implementation
    - **pattern-finder** - find similar features to model after
+   - **web-search-researcher** - external docs/best practices when the task needs
+     knowledge beyond this codebase
 3. **Read all files** the research surfaces, FULLY, into main context.
 4. **Analyze and verify understanding**: cross-reference requirements with actual
    code, identify discrepancies, note assumptions, determine true scope.
@@ -26,9 +30,8 @@ skeptical, thorough, and collaborative to produce high-quality technical specs.
    genuinely cannot answer through code investigation.
 
 > Runtime note: on agents that support isolated subagents (Goose, Claude Code),
-> spawn `codebase-locator`, `codebase-analyzer`, and `pattern-finder` as parallel
-> subagents. On agents without a subagent mechanism (e.g. Pi), perform each role
-> yourself inline in the main context.
+> spawn these as parallel subagents. On agents without a subagent mechanism
+> (e.g. Pi), perform each role yourself inline in the main context.
 
 ### Step 2: Research & discovery
 - If the user corrects a misunderstanding, DO NOT just accept it - spawn new
@@ -41,8 +44,10 @@ Propose a phase outline (Overview + numbered phases) and get feedback on the
 structure BEFORE writing details.
 
 ### Step 4: Write the plan
-After structure approval, write to `thoughts/plans/YYYY-MM-DD-HHmm-description.md`
-(e.g. `2025-01-15-1430-add-auth.md`):
+After structure approval, write to the central store:
+`~/thoughts/<repo>/plans/YYYY-MM-DD-HHmm-description.md` (e.g.
+`~/thoughts/myapp/plans/2025-01-15-1430-add-auth.md`), where `<repo>` is
+`basename $(git rev-parse --show-toplevel)`. `mkdir -p` the directory first if needed:
 
 ```markdown
 # [Feature/Task Name] Implementation Plan

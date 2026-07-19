@@ -18,7 +18,7 @@ documents that let another session pick up exactly where this one left off.
 1. **Gather session context**:
    - `git log --oneline -10` for recent commits
    - `git diff --stat` for uncommitted changes
-   - Check any active plan or research docs under `thoughts/`
+   - Check any active plan or research docs under `~/thoughts/<repo>/`
 
 2. **Create the handoff document** using this format:
    ```
@@ -44,7 +44,8 @@ documents that let another session pick up exactly where this one left off.
 
 3. **Keep it under 150 words** - this is a brief, not a novel
 
-4. **Save** to `thoughts/handoffs/YYYY-MM-DD.md`
+4. **Save** to `~/thoughts/<repo>/handoffs/YYYY-MM-DD.md`, where `<repo>` is
+   `basename $(git rev-parse --show-toplevel)` (`mkdir -p` the directory first)
 
 ## Quality Gates
 
