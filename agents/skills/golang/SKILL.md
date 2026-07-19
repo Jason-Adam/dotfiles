@@ -87,5 +87,5 @@ golangci-lint version in CI. Use `//nolint:<linter> // reason` - never a bare `/
 
 ## Definition of done
 
-`gofmt -l` empty, `go vet ./...` clean, `golangci-lint run` clean,
-`go test ./... -race` green.
+Run `go-check` - it runs gofmt, go vet, golangci-lint, and `go test ./... -race`, and
+fails if any gate fails. All must pass.

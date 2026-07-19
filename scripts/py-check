@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+# py-check - run the Python definition-of-done gates and summarize.
+# Gates: ruff check, ruff format --check, mypy, pytest. Exits non-zero if any fails.
+# Prefers `uv run` in a uv-managed project; falls back to bare tools otherwise.
+# Usage: py-check   (run from the project root)
+set -uo pipefail
+
+if command -v uv >/dev/null 2>&1 && [ -f pyproject.toml ]; then
+  run() { uv run "$@"; }
+else
+  run() { "$@"; }
+fi
+
+mypy_target="src"; [ -d src ] || mypy_target="."
+
+fails=()
+step() { # step <label> <cmd...>
+  local label=$1; shift
+  printf '\n=== %s ===\n' "$label"
+  if "$@"; then
+    printf '  PASS: %s\n' "$label"
+  else
+    printf '  FAIL: %s\n' "$label"
+    fails+=("$label")
+  fi
+}
+
+step "ruff check"        run ruff check .
+step "ruff format check" run ruff format --check .
+step "mypy"              run mypy "$mypy_target"
+step "pytest"            run pytest
+
+printf '\n===============================\n'
+if [ ${#fails[@]} -eq 0 ]; then
+  echo "ALL GATES PASSED"
+  exit 0
+fi
+printf 'FAILED: %s\n' "${fails[*]}"
+exit 1

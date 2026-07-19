@@ -126,5 +126,5 @@ activate venvs manually.
 
 ## Definition of done
 
-`uv run ruff check .` clean, `uv run ruff format --check .` clean,
-`uv run mypy src` clean, `uv run pytest` green.
+Run `py-check` - it runs ruff (lint + format check), mypy, and pytest, and fails if
+any gate fails. All must pass before the work is done.

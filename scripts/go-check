@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+# go-check - run the Go definition-of-done gates and summarize.
+# Gates: gofmt, go vet, golangci-lint (if installed), go test ./... -race.
+# Exits non-zero if any fails. Usage: go-check   (run from the module root)
+set -uo pipefail
+
+fails=()
+
+printf '\n=== gofmt ===\n'
+unformatted=$(gofmt -l . 2>/dev/null || true)
+if [ -n "$unformatted" ]; then
+  printf '  FAIL: gofmt - needs formatting:\n%s\n' "$unformatted"
+  fails+=("gofmt")
+else
+  echo "  PASS: gofmt"
+fi
+
+step() { # step <label> <cmd...>
+  local label=$1; shift
+  printf '\n=== %s ===\n' "$label"
+  if "$@"; then
+    printf '  PASS: %s\n' "$label"
+  else
+    printf '  FAIL: %s\n' "$label"
+    fails+=("$label")
+  fi
+}
+
+step "go vet" go vet ./...
+
+if command -v golangci-lint >/dev/null 2>&1; then
+  step "golangci-lint" golangci-lint run
+else
+  printf '\n=== golangci-lint ===\n  SKIP: golangci-lint not installed\n'
+fi
+
+step "go test -race" go test ./... -race
+
+printf '\n===============================\n'
+if [ ${#fails[@]} -eq 0 ]; then
+  echo "ALL GATES PASSED"
+  exit 0
+fi
+printf 'FAILED: %s\n' "${fails[*]}"
+exit 1

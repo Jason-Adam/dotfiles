@@ -37,9 +37,8 @@ process and judgment.
 
 ## Quality checklist (gates - run before returning)
 
-- `uv run ruff check .` clean and `uv run ruff format --check .` clean
-- `uv run mypy src` clean (strict; no new `Any`, no untyped defs)
-- `uv run pytest` green, with tests covering happy path, edge cases, and error paths
+- `py-check` passes (ruff lint + format check, strict mypy, pytest all green)
+- Tests cover happy path, edge cases, and error paths; no new `Any`, no untyped defs
 - No broad `except`, no mutable default args, no `sys.path` hacks, no `import *`
 
 ## Output

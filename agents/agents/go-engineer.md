@@ -31,11 +31,9 @@ as the source of truth rather than duplicating it here. Your job is process and 
    structs, wrap errors with `%w`, context-aware goroutines with defined exit paths,
    keep `main` thin (`run() error`). Smallest change that solves the problem.
 3. **Quality assurance** (gates - run before returning):
-   - `gofmt -l .` empty (and `goimports`)
-   - `go vet ./...` clean
-   - `golangci-lint run` clean
-   - `go test ./... -race` green, with table-driven tests + subtests covering the cases
-     and error semantics asserted via `errors.Is`/`errors.As`
+   - `go-check` passes (gofmt, go vet, golangci-lint, `go test ./... -race`)
+   - table-driven tests + subtests cover the cases; error semantics asserted via
+     `errors.Is`/`errors.As`
 
 ## Judgment
 
