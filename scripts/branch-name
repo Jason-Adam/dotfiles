@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# branch-name - print a namespaced git branch name: <user>.<yyyymmdd>.<slug>
+# Usage: branch-name "<text>"
+set -euo pipefail
+
+if [ "$#" -eq 0 ] || [ -z "${1:-}" ]; then
+  echo "Usage: branch-name <text>" >&2
+  exit 1
+fi
+
+# lowercase, replace every non-alphanumeric run with a single hyphen, trim ends
+slug=$(printf '%s' "$1" \
+  | tr '[:upper:]' '[:lower:]' \
+  | tr -c 'a-z0-9' '-' \
+  | tr -s '-' \
+  | sed 's/^-//; s/-$//')
+slug=${slug:-untitled}
+
+printf '%s.%s.%s\n' "$(whoami)" "$(date +%Y%m%d)" "$slug"

@@ -73,27 +73,17 @@ load-env() {
     set +o allexport;
 }
 
-# Build a namespaced branch name: <user>.<yyyymmdd>.<slug>
-bname() {
-  if [ -z "$1" ]; then
-    echo "Usage: bname <text>"
-    return 1
-  fi
+# Namespaced branch name <user>.<yyyymmdd>.<slug>; logic lives in scripts/branch-name
+bname() { branch-name "$@"; }
 
-  local text
-  text=$(echo "$1" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | tr -cd '[:alnum:]-')
-
-  echo "$(whoami).$(date +%Y%m%d).${text}"
-}
-
-# Create and switch to a new branch named via bname
+# Create and switch to a new branch named via branch-name
 gnb() {
   if [ -z "$1" ]; then
     echo "Usage: gnb <branch-name-text>"
     return 1
   fi
 
-  git checkout -b "$(bname "$1")"
+  git checkout -b "$(branch-name "$1")"
 }
 
 unalias md 2>/dev/null
