@@ -6,14 +6,12 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 ###################################################
 # Path
 ###################################################
-export GOPATH=$HOME/go
-export GOROOT="$(brew --prefix go)/libexec"
-export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+export GOPATH="$HOME/go"
+export PATH="$PATH:$GOPATH/bin"                  # go-installed tools (golangci-lint, gopls, ...)
 
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:$HOME/.cargo/bin"            # Rust
-export PATH="$HOME/.poetry/bin:$PATH"           # Poetry
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH" # libpq
 
 ###################################################
@@ -27,7 +25,7 @@ bindkey -v
 ###################################################
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=50000
-SAVEHIST=10000
+SAVEHIST=50000
 setopt share_history
 setopt hist_ignore_all_dups
 setopt hist_ignore_space
@@ -74,31 +72,27 @@ load-env() {
     set +o allexport;
 }
 
+# Build a namespaced branch name: <user>.<yyyymmdd>.<slug>
 bname() {
-  local date
-  date=$(date +%Y%m%d)
+  if [ -z "$1" ]; then
+    echo "Usage: bname <text>"
+    return 1
+  fi
 
   local text
   text=$(echo "$1" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | tr -cd '[:alnum:]-')
 
-  echo "jasonadam.${date}.${text}"
+  echo "$(whoami).$(date +%Y%m%d).${text}"
 }
 
+# Create and switch to a new branch named via bname
 gnb() {
   if [ -z "$1" ]; then
     echo "Usage: gnb <branch-name-text>"
     return 1
   fi
 
-  local date
-  date=$(date +%Y%m%d)
-
-  local text
-  text=$(echo "$1" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | tr -cd '[:alnum:]-')
-
-  local branch="ja.${date}.${text}"
-
-  git checkout -b "$branch"
+  git checkout -b "$(bname "$1")"
 }
 
 unalias md 2>/dev/null
