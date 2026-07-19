@@ -36,3 +36,7 @@ tags
 
 ### Thoughts (public repo: track structure, not note content) ###
 thoughts/*/
+
+### Python ###
+__pycache__/
+*.py[cod]
